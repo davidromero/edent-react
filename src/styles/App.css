@@ -9,13 +9,13 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  font-size: calc(5px + 2vmin);
+  font-size: calc(15px + 2vmin);
   color: white;
 }
 
 .Header-logo{
   height: 100px;
   width: 100px;
-  margin: 10px;
+  margin: 50px;
 }
 

@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "eDent",
+  "name": "Sistema eDent",
   "icons": [
     {
       "src": "favicon.ico",

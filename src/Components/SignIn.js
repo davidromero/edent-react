@@ -18,6 +18,11 @@ function SignIn(props) {
   const {classes} = props;
   return (
     <main className={classes.main}>
+      <header className="App-header">
+        <p>
+          Sistema eDent
+        </p>
+      </header>
       <Paper className={classes.paper}>
         <Avatar className={classes.avatar} src={logo} />
         <Typography component="h1" variant="h5">

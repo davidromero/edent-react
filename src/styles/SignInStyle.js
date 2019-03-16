@@ -2,6 +2,8 @@ export default theme => ({
   main: {
     width: 'auto',
     display: 'block',
+  },
+  paper: {
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
@@ -9,8 +11,6 @@ export default theme => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
-  },
-  paper: {
     marginTop: theme.spacing.unit * 8,
     display: 'flex',
     flexDirection: 'column',

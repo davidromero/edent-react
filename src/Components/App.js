@@ -1,25 +1,19 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
-import '../css/App.css';
+import '../styles/App.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import SignIn from './SignIn.js'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+        <CssBaseline/>
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Woop woop!
+            Sistema eDent
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
         </header>
+        <SignIn/>
       </div>
     );
   }

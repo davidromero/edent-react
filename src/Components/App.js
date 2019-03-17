@@ -1,29 +1,30 @@
 import React, {Component} from 'react';
 import '../styles/App.css';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import SignIn from './SignIn.js'
-import Home from './Home.js'
+import {BrowserRouter} from 'react-router-dom'
+// import Login from './Login'
+import Home from './Home'
 import fire from '../config/Firebase'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user:{},
+      user: {},
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.authListener();
   }
 
   authListener() {
     fire.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ user })
-      } else {
-        this.setState({ user:null })
-
+        this.setState({user});
+      }
+      else {
+        this.setState({user: null});
       }
     });
   }
@@ -31,10 +32,13 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <BrowserRouter>
         <CssBaseline/>
-        {this.state.user ? (<Home />) : (<SignIn />)}
-      </div>
+        <div className="App">
+          {/*{this.state.user ? (<Home/>) : (<Login/>)}*/}
+          <Home/>
+        </div>
+      </BrowserRouter>
     );
   }
 }

@@ -17,6 +17,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import {mainListItems, secondaryListItems} from '../layout/DrawerLinks';
 import styles from '../styles/NavBarStyle';
+import Link from 'react-router-dom/Link'
 
 class NavBar extends React.Component {
   state = {
@@ -78,6 +79,7 @@ class NavBar extends React.Component {
               <MoreIcon/>
             </IconButton>
 
+
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}
@@ -85,8 +87,8 @@ class NavBar extends React.Component {
               transformOrigin={{ vertical: 'top', horizontal: 'right', }}
               open={open}
               onClose={this.handleClose}>
-              <MenuItem onClick={this.handleClose}>Mi Usuario</MenuItem>
-              <MenuItem onClick={this.handleClose}>Cerrar Sesión</MenuItem>
+              <MenuItem onClick={this.handleClose} component={Link} to="/user">Mi Usuario</MenuItem>
+              <MenuItem onClick={this.handleClose} component={Link} to="/logout">Cerrar Sesión</MenuItem>
             </Menu>
           </Toolbar>
         </AppBar>

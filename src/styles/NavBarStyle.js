@@ -8,6 +8,7 @@ export default theme => ({
   },
   appBar: {
     position: 'absolute',
+    backgroundColor: '#1595BD',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,

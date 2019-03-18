@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import styles from '../styles/LoginStyle'
 import withStyles from "@material-ui/core/es/styles/withStyles";
 import fire from '../config/Firebase'
-import logo from '../img/edent-logo.png'
+import logo from '../assets/img/edent-logo.png'
 
 class Login extends Component {
 
@@ -24,18 +24,18 @@ class Login extends Component {
     }
   }
 
-  login(e){
+  login(e) {
     e.preventDefault();
     fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-      .catch(function(error) {
-      // const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error(errorMessage);
-    });
+      .catch(function (error) {
+        // const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(errorMessage);
+      });
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({[e.target.name]: e.target.value});
   }
 
   render() {

@@ -10,5 +10,3 @@ Using React with Material-UI components
 ## Deploy
 
 npm build
-
-## TO-DO

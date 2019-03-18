@@ -8,34 +8,35 @@ import TodayIcon from '@material-ui/icons/Today';
 import ContactsIcon from '@material-ui/icons/Contacts';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import CreateIcon from '@material-ui/icons/Create';
+import Link from 'react-router-dom/Link'
 
 export const mainListItems = (
   <div>
-    <ListItem button>
+    <ListItem button component={Link} to="/">
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Inicio" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component={Link} to="/today">
       <ListItemIcon>
         <TodayIcon />
       </ListItemIcon>
       <ListItemText primary="Hoy" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component={Link} to="/patients">
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="Pacientes" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component={Link} to="/exams">
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Exámenes" />
     </ListItem>
-    <ListItem button>
+    <ListItem button component={Link} to="/contacts">
       <ListItemIcon>
         <ContactsIcon />
       </ListItemIcon>
@@ -46,7 +47,7 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <div>
-    <ListItem button>
+    <ListItem button component={Link} to="/createpatient">
       <ListItemIcon>
         <CreateIcon />
       </ListItemIcon>

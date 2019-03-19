@@ -14,15 +14,10 @@ import logo from '../assets/img/edent-logo.png'
 
 class Login extends Component {
 
-  constructor(props) {
-    super(props);
-    this.login = this.login.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {
-      email: '',
-      password: ''
-    }
-  }
+  state = {
+    email: '',
+    password: ''
+  };
 
   login(e) {
     e.preventDefault();
@@ -34,9 +29,15 @@ class Login extends Component {
       });
   }
 
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value});
-  }
+    console.log(this.state);
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(this.state);
+  };
 
   render() {
     const {classes} = this.props;
@@ -53,14 +54,14 @@ class Login extends Component {
           <Typography component="h1" variant="h5">
             Iniciar Sesión
           </Typography>
-          <form className={classes.form}>
+          <form className={classes.form} onSubmit={this.handleSubmit}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Correo electrónico</InputLabel>
-              <Input id="email" name="email" autoComplete="email" autoFocus/>
+              <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange}/>
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password">Contraseña</InputLabel>
-              <Input name="password" type="password" id="password" autoComplete="current-password"/>
+              <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange}/>
             </FormControl>
             <Button
               type="submit"

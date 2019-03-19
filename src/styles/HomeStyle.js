@@ -10,6 +10,7 @@ export default theme => ({
     overflow: 'auto',
   },
   content: {
-    background: 'blue'
+    display: 'flex',
+    flexFlow: 'column wrap',
   },
 })

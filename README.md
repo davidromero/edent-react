@@ -1,5 +1,4 @@
 # Description  
-
 [![Build Status](https://travis-ci.com/AldoGatica123/edent-react.svg?branch=master)](https://travis-ci.com/AldoGatica123/edent-react)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3652b32882c9474b9ddba2fce717a812)](https://www.codacy.com/app/AldoGatica123/edent-react?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AldoGatica123/edent-react&amp;utm_campaign=Badge_Grade)  
 

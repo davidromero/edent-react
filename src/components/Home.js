@@ -7,7 +7,7 @@ import Dashboard from './Dashboard';
 import Contacts from './Contacts'
 import Today from './Today'
 import Patients from './Patients'
-import PatientForm from './PatientForm'
+import PatientForm from './forms/PatientForm'
 import Exams from './Exams'
 import {Route, Switch} from "react-router-dom";
 

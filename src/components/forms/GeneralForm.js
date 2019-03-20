@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-// import Avatar from '@material-ui/core/Avatar';
 import FormControl from '@material-ui/core/FormControl';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import styles from '../styles/PatientFormStyle';
+import styles from '../../styles/GeneralFormStyle';
 
-class PatientForm extends Component{
+class GeneralForm extends Component{
   state ={
     first_name: '',
     last_name: '',
@@ -32,13 +31,13 @@ class PatientForm extends Component{
   };
 
 
+
   render(){
     const { classes } = this.props;
 
     return (
       <main className={classes.main}>
         <Paper className={classes.paper}>
-          {/*<Avatar className={classes.avatar} src={''}/>*/}
           <Typography component="h1" variant="h5">
             Datos Generales
           </Typography>
@@ -50,18 +49,18 @@ class PatientForm extends Component{
                          className={classes.textField} onChange={this.handleChange} margin="normal" />
               <TextField name="phone_number" label="Número Telefónico"
                          className={classes.textField} onChange={this.handleChange} margin="normal" />
-              <TextField name="birthday" label="Fecha de Nacimiento ~ MM/DD/AAAA" defaultValue="1995-08-02"
+              <TextField name="birthday" label="Fecha de Nacimiento ~ MM/DD/AAAA" defaultValue="2019-01-01"
                          className={classes.datePicker} type="date" InputLabelProps={{ shrink: true, }}/>
               <RadioGroup aria-label="Sexo" name="sex"
-                className={classes.genderGroup}
-                value={this.state.value}
-                onChange={this.handleChange} >
+                          className={classes.genderGroup}
+                          value={this.state.value}
+                          onChange={this.handleChange} >
                 <FormControlLabel value="male" control={<Radio />} label="Hombre" />
                 <FormControlLabel value="female" control={<Radio />} label="Mujer" />
               </RadioGroup>
             </FormControl>
             <Button type="submit" variant="contained" color="primary"
-              className={classes.submit}>
+                    className={classes.submit}>
               Guardar Información
             </Button>
           </form>
@@ -71,8 +70,8 @@ class PatientForm extends Component{
   }
 }
 
-PatientForm.propTypes = {
+GeneralForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PatientForm);
+export default withStyles(styles)(GeneralForm);

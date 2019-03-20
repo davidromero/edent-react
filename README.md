@@ -1,5 +1,6 @@
 # Description  
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1c16b8372e434e54b5f8e3da24f59e09)](https://app.codacy.com/app/AldoGatica123/edent-react?utm_source=github.com&utm_medium=referral&utm_content=AldoGatica123/edent-react&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.com/AldoGatica123/edent-react.svg?branch=master)](https://travis-ci.com/AldoGatica123/edent-react)
 
 React web application for patient management using Material-UI library.

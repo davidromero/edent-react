@@ -1,13 +1,10 @@
 export default theme => ({
   main: {
     width: '100%',
-    minWidth: '350px',
-  },
-  paper: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+    padding: `${theme.spacing.unit }px ${theme.spacing.unit }px ${theme.spacing.unit }px`,
   },
   formControl:{
     width: '100%',
@@ -19,23 +16,23 @@ export default theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    minWidth: '300px',
+    minWidth: '250px',
     maxWidth: '600px',
   },
   datePicker: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    marginTop: theme.spacing.unit * 2,
-    minWidth: '300px',
+    marginTop: theme.spacing.unit * 2 ,
+    minWidth: '250px',
     maxWidth: '600px',
   },
   genderGroup:{
-    margin: theme.spacing.unit,
-    minWidth: '300px',
+    margin: theme.spacing.unit * 2,
+    minWidth: '250px',
     maxWidth: '600px',
     display: 'inline-block',
   },
   submit: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing.unit * 2,
   },
 });

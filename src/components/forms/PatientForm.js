@@ -69,7 +69,7 @@ class PatientForm extends Component {
         </Stepper>
         {activeStep === steps.length && (
           <Paper square elevation={0} className={classes.resetContainer}>
-            <Typography component="h1" variant="h5">Paciente correctamente ingresado</Typography>
+            <Typography component="h1" variant="h5">Paciente ingresado correctamente</Typography>
           </Paper>
         )}
       </Paper>

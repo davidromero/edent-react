@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import StepContent from '@material-ui/core/StepContent';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import styles from '../../styles/PatientFormStyle';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import StepContent from "@material-ui/core/StepContent";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import styles from "../../styles/PatientFormStyle";
 import FormSteps from "./FormSteps";
 
 
 function getSteps() {
-  return ['Datos Generales', 'Datos Familiares', 'Historia Médica'];
+  return ["Datos Generales", "Datos Familiares", "Historia Médica"];
 }
 
 class PatientForm extends Component {
@@ -46,11 +46,11 @@ class PatientForm extends Component {
     const { activeStep } = this.state;
 
     return (
-      <Paper className={classes.root} elevation='2' square='false'>
+      <Paper className={classes.root} elevation={2} square={false}>
         <Stepper className={classes.stepper} activeStep={activeStep} orientation="vertical">
           {steps.map((label, index) => (
             <Step key={label}>
-              <StepLabel className={classes.stepLabel} children={''}/>
+              <StepLabel className={classes.stepLabel} children={""}/>
               <StepContent>
                 <FormSteps/>
                 <div>
@@ -60,7 +60,7 @@ class PatientForm extends Component {
                   </Button>
                   <Button onClick={this.handleNext} className={classes.button}
                     variant="contained" color="primary" >
-                    {activeStep === steps.length - 1 ? 'Terminar' : 'Siguiente'}
+                    {activeStep === steps.length - 1 ? "Terminar" : "Siguiente"}
                   </Button>
                 </div>
               </StepContent>

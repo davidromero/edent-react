@@ -1,22 +1,22 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import styles from '../styles/LoginStyle'
+import React, {Component} from "react";
+import PropTypes from "prop-types";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import styles from "../styles/LoginStyle"
 import withStyles from "@material-ui/core/es/styles/withStyles";
-import fire from '../config/Firebase'
-import logo from '../assets/img/edent-logo.png'
+import fire from "../config/Firebase"
+import logo from "../assets/img/edent-logo.png"
 
 class Login extends Component {
 
   state = {
-    email: '',
-    password: ''
+    email: "",
+    password: ""
   };
 
   login(e) {

@@ -1,23 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import {withStyles} from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import MenuItem from '@material-ui/core/MenuItem'
-import Menu from '@material-ui/core/Menu'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import {mainListItems, secondaryListItems} from '../layout/DrawerLinks';
-import styles from '../styles/NavBarStyle';
-import Link from 'react-router-dom/Link'
+import React from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import {withStyles} from "@material-ui/core/styles";
+import Drawer from "@material-ui/core/Drawer";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import SearchIcon from "@material-ui/icons/Search";
+import InputBase from "@material-ui/core/InputBase";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import MenuItem from "@material-ui/core/MenuItem"
+import Menu from "@material-ui/core/Menu"
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import MoreIcon from "@material-ui/icons/MoreVert";
+import {mainListItems, secondaryListItems} from "../layout/DrawerLinks";
+import styles from "../styles/NavBarStyle";
+import Link from "react-router-dom/Link"
 
 class NavBar extends React.Component {
   state = {
@@ -71,11 +71,11 @@ class NavBar extends React.Component {
             </div>
 
             <IconButton
-              aria-owns={open ? 'menu-appbar' : undefined}
+              aria-owns={open ? "menu-appbar" : undefined}
               aria-haspopup="true"
               onClick={this.handleMenu}
-              color='inherit'
-              className='accountButton'>
+              color="inherit"
+              className="accountButton">
               <MoreIcon/>
             </IconButton>
 
@@ -83,8 +83,8 @@ class NavBar extends React.Component {
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}
-              anchorOrigin={{ vertical: 'top', horizontal: 'right', }}
-              transformOrigin={{ vertical: 'top', horizontal: 'right', }}
+              anchorOrigin={{ vertical: "top", horizontal: "right", }}
+              transformOrigin={{ vertical: "top", horizontal: "right", }}
               open={open}
               onClose={this.handleClose}>
               <MenuItem onClick={this.handleClose} component={Link} to="/user">Mi Usuario</MenuItem>

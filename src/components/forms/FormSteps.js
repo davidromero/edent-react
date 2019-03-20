@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import GeneralForm from './GeneralForm'
+import React, { Component } from "react";
+import GeneralForm from "./GeneralForm"
 
 export class FormSteps extends Component {
   state = {

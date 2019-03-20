@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
-import styles from '../styles/HomeStyle';
-import NavBar from './NavBar'
-import Dashboard from './Dashboard';
-import Contacts from './Contacts'
-import Today from './Today'
-import Patients from './Patients'
-import PatientForm from './forms/PatientForm'
-import Exams from './Exams'
+import React from "react";
+import PropTypes from "prop-types";
+import {withStyles} from "@material-ui/core/styles";
+import styles from "../styles/HomeStyle";
+import NavBar from "./NavBar"
+import Dashboard from "./Dashboard";
+import Contacts from "./Contacts"
+import Today from "./Today"
+import Patients from "./Patients"
+import PatientForm from "./forms/PatientForm"
+import Exams from "./Exams"
 import {Route, Switch} from "react-router-dom";
 
 class Home extends React.Component {
@@ -34,12 +34,12 @@ class Home extends React.Component {
           <div className={classes.appBarSpacer}/>
           <div className={classes.content}>
               <Switch>
-                <Route exact path={'/'} component={Dashboard}/>
-                <Route path={'/today'} component={Today}/>
-                <Route path={'/patients'} component={Patients}/>
-                <Route path={'/exams'} component={Exams}/>
-                <Route path={'/contacts'} component={Contacts}/>
-                <Route path={'/createpatient'} component={PatientForm}/>
+                <Route exact path={"/"} component={Dashboard}/>
+                <Route path={"/today"} component={Today}/>
+                <Route path={"/patients"} component={Patients}/>
+                <Route path={"/exams"} component={Exams}/>
+                <Route path={"/contacts"} component={Contacts}/>
+                <Route path={"/createpatient"} component={PatientForm}/>
               </Switch>
           </div>
         </main>

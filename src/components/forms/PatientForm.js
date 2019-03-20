@@ -46,8 +46,8 @@ class PatientForm extends Component {
     const { activeStep } = this.state;
 
     return (
-      <Paper className={classes.root} elevation='2'>
-        <Stepper activeStep={activeStep} orientation="vertical">
+      <Paper className={classes.root} elevation='2' square='false'>
+        <Stepper className={classes.stepper} activeStep={activeStep} orientation="vertical">
           {steps.map((label, index) => (
             <Step key={label}>
               <StepLabel className={classes.stepLabel} children={''}/>

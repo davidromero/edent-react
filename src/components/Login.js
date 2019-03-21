@@ -7,10 +7,10 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import styles from "../styles/LoginStyle"
+import styles from "../styles/LoginStyle";
 import withStyles from "@material-ui/core/es/styles/withStyles";
-import fire from "../config/Firebase"
-import logo from "../assets/img/edent-logo.png"
+import fire from "../config/Firebase";
+import logo from "../assets/img/edent-logo.png";
 
 class Login extends Component {
 
@@ -61,7 +61,8 @@ class Login extends Component {
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password">Contraseña</InputLabel>
-              <Input name="password" type="password" id="password" autoComplete="current-password" onChange={this.handleChange}/>
+              <Input name="password" type="password" id="password" autoComplete="current-password"
+                     onChange={this.handleChange}/>
             </FormControl>
             <Button
               type="submit"

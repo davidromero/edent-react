@@ -1,4 +1,4 @@
-export default theme => ({
+export default (theme) => ({
   main: {
     width: "inherit",
     display: "flex",

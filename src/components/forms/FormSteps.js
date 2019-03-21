@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import GeneralForm from "./GeneralForm"
+import React, {Component} from "react";
+import GeneralForm from "./GeneralForm";
 
 export class FormSteps extends Component {
   state = {
@@ -8,20 +8,20 @@ export class FormSteps extends Component {
 
 
   render() {
-    const { step } = this.state;
+    const {step} = this.state;
 
     switch (step) {
       case 1:
         return (
-          <GeneralForm />
+          <GeneralForm/>
         );
       case 2:
         return (
-          <GeneralForm />
+          <GeneralForm/>
         );
       case 3:
         return (
-          <GeneralForm />
+          <GeneralForm/>
         );
       default:
         return null;

@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+import {withStyles} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import styles from "../styles/PatientsStyle";
 
-class Patients extends Component{
+class Patients extends Component {
 
-  render(){
-    const { classes } = this.props;
+  render() {
+    const {classes} = this.props;
 
     return (
       <div className={classes.base}>
@@ -21,7 +21,7 @@ class Patients extends Component{
           </Typography>
         </Paper>
       </div>
-    )
+    );
   }
 }
 

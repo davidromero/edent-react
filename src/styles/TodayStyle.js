@@ -1,4 +1,4 @@
-export default theme => ({
+export default (theme) => ({
   base: {
     display: "flex",
     flexFlow: "row wrap",
@@ -9,5 +9,5 @@ export default theme => ({
     paddingBottom: theme.spacing.unit * 2,
     margin: theme.spacing.unit,
     minWidth: "325px",
-  }
-})
+  },
+});

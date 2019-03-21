@@ -47,14 +47,15 @@ class GeneralForm extends Component {
           </Button>
         </label>
         <form onSubmit={this.handleSubmit}>
-          <FormControl className={classes.formControl} margin="normal" >
+          <FormControl className={classes.formControl} margin="normal">
             <TextField name="first_name" label="Nombres" type="text" required
                        className={classes.textField} onChange={this.handleChange} margin="normal"/>
             <TextField name="last_name" label="Apellidos" type="text" required
                        className={classes.textField} onChange={this.handleChange} margin="normal"/>
             <TextField name="birthday" label="Fecha de Nacimiento" defaultValue="2019-01-01" required
                        className={classes.datePicker} type="date" InputLabelProps={{shrink: true,}}/>
-            <RadioGroup className={classes.genderGroup} onChange={this.handleChange} name="sex" value={this.state.value}>
+            <RadioGroup className={classes.genderGroup} onChange={this.handleChange} name="sex"
+                        value={this.state.value}>
               <FormHelperText>Sexo *</FormHelperText>
               <FormControlLabel value="male" control={<Radio/>} label="Hombre"/>
               <FormControlLabel value="female" control={<Radio/>} label="Mujer"/>
@@ -73,7 +74,7 @@ class GeneralForm extends Component {
           </Button>
         </form>
       </main>
-    )
+    );
   }
 }
 

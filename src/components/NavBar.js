@@ -11,13 +11,13 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import MenuItem from "@material-ui/core/MenuItem"
-import Menu from "@material-ui/core/Menu"
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import {mainListItems, secondaryListItems} from "../layout/DrawerLinks";
 import styles from "../styles/NavBarStyle";
-import Link from "react-router-dom/Link"
+import Link from "react-router-dom/Link";
 
 class NavBar extends React.Component {
   state = {
@@ -33,7 +33,7 @@ class NavBar extends React.Component {
     this.setState({open: false});
   };
 
-  handleMenu = event => {
+  handleMenu = (event) => {
     this.setState({anchorEl: event.currentTarget});
   };
 
@@ -83,8 +83,8 @@ class NavBar extends React.Component {
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}
-              anchorOrigin={{ vertical: "top", horizontal: "right", }}
-              transformOrigin={{ vertical: "top", horizontal: "right", }}
+              anchorOrigin={{vertical: "top", horizontal: "right",}}
+              transformOrigin={{vertical: "top", horizontal: "right",}}
               open={open}
               onClose={this.handleClose}>
               <MenuItem onClick={this.handleClose} component={Link} to="/user">Mi Usuario</MenuItem>

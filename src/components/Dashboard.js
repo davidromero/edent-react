@@ -41,7 +41,7 @@ class Dashboard extends Component{
           </Typography>
         </Paper>
       </div>
-    )
+    );
   }
 }
 

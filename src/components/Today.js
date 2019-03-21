@@ -21,7 +21,7 @@ class Today extends Component{
           </Typography>
         </Paper>
       </div>
-    )
+    );
   }
 }
 

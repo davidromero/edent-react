@@ -1,4 +1,4 @@
-export default theme => ({
+export default (theme) => ({
   root: {
     display: "flex",
   },
@@ -13,4 +13,4 @@ export default theme => ({
     display: "flex",
     flexFlow: "column wrap",
   },
-})
+});

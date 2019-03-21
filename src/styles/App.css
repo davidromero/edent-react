@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  background-color: #1595BD;
+  background-color: #1595bd;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -13,7 +13,7 @@
   color: white;
 }
 
-.Header-logo{
+.Header-logo {
   height: 100px;
   width: 100px;
   margin: 50px;

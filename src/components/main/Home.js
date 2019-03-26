@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/core/styles";
-import styles from "../styles/HomeStyle";
+import styles from "./styles/HomeStyle";
 import NavBar from "./NavBar";
-import Dashboard from "./Dashboard";
-import Contacts from "./Contacts";
-import Today from "./Today";
-import Patients from "./Patients";
-import PatientForm from "./forms/NewPatientForm";
-import Exams from "./Exams";
+import Dashboard from "../Dashboard";
+import Contacts from "../Contacts";
+import Today from "../Today";
+import Patients from "../Patients";
+import PatientForm from "../forms/NewPatientForm";
+import Exams from "../Exams";
 import {Route, Switch} from "react-router-dom";
 
 class Home extends React.Component {

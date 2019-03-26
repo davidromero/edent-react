@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import "../styles/App.css";
+import "./styles/App.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import {BrowserRouter} from "react-router-dom"
 // import Login from "./Login"
-import Home from "./Home";
+import Home from "./main/Home";
 import fire from "../config/Firebase";
 
 class App extends Component {

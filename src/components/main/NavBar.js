@@ -15,8 +15,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import {mainListItems, secondaryListItems} from "../layout/DrawerLinks";
-import styles from "../styles/NavBarStyle";
+import {mainListItems, secondaryListItems} from "./DrawerLinks";
+import styles from "./styles/NavBarStyle";
 import Link from "react-router-dom/Link";
 
 class NavBar extends React.Component {

@@ -5,11 +5,6 @@ export default (theme) => ({
     flexDirection: "column",
     alignItems: "center",
   },
-  avatar: {
-    height: "150px",
-    width: "150px",
-    margin: theme.spacing.unit,
-  },
   formControl:{
     display: "flex",
     flexDirection: "row",
@@ -39,5 +34,5 @@ export default (theme) => ({
   },
   submit: {
     marginTop: theme.spacing.unit * 2,
-  },
+  }
 });

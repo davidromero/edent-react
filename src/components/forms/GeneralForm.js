@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import FormControl from "@material-ui/core/FormControl";
-import Avatar from "@material-ui/core/Avatar";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import FormHelperText from "@material-ui/core/FormHelperText";
+import ImagePicker from "./ImagePicker"
 import styles from "./styles/GeneralFormStyle";
 
 class GeneralForm extends Component {
@@ -28,7 +28,6 @@ class GeneralForm extends Component {
     this.setState({[e.target.name]: e.target.value});
   };
 
-  //Has issues with 18 years - 1 ~ 2 days
   patientAdultCheck = (e) => {
     const birthdayDate = e.target.value;
     const today = new Date();
@@ -38,10 +37,10 @@ class GeneralForm extends Component {
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
       age--;
     }
+    //Has issues with 18 years - 1 ~ 2 days
     this.setState({birthday: birthdayDate});
     this.setState({adult: age >= 18});
   };
-
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -56,12 +55,7 @@ class GeneralForm extends Component {
         <Typography component="h1" variant="h5">
           Datos Generales
         </Typography>
-        <Avatar className={classes.avatar} src=""/>
-        <label htmlFor="contained-button-file">
-          <Button variant="contained" color="primary" component="span">
-            Seleccionar Imagen
-          </Button>
-        </label>
+        <ImagePicker/>
         <form onSubmit={this.handleSubmit}>
           <FormControl className={classes.formControl} margin="normal">
             <TextField name="first_name" label="Nombres" type="text" required

@@ -3,8 +3,8 @@ import "./styles/App.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import {BrowserRouter} from "react-router-dom"
 // import Login from "./Login"
-import Home from "./main/Home";
-import fire from "../config/Firebase";
+import Home from "./Home";
+import fire from "../../config/Firebase";
 
 class App extends Component {
   constructor(props) {

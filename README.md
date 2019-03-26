@@ -20,7 +20,7 @@ npm start
 | /patients      | Patients    | List of patients medical info for each clinic |
 | /exams         | Exams       | List of patients exams for each clinic        |
 | /contacts      | Contacts    | List of contacts                              |
-| /createpatient | PatientForm | Form to fill new patients information         |
+| /createpatient | NewPatientForm | Form to fill new patients information         |
 | /user          | User        | Display logged in users information           |
 | /login         | Login       | Login page                                    |
 | /logout        | Logout      | Display log out confirmation                  |

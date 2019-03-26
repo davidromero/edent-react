@@ -26,7 +26,8 @@ export default (theme) => ({
   datePicker: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    marginTop: theme.spacing.unit * 2 ,
+    marginTop: theme.spacing.unit ,
+    paddingTop: theme.spacing.unit  ,
     minWidth: "180px",
     maxWidth: "600px",
   },

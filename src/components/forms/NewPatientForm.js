@@ -8,15 +8,17 @@ import StepLabel from "@material-ui/core/StepLabel";
 import StepContent from "@material-ui/core/StepContent";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import styles from "../../styles/PatientFormStyle";
-import FormSteps from "./FormSteps";
+import styles from "./styles/NewPatientFormStyle";
+import GeneralForm from "./GeneralForm";
+import Child from "./ChildForm";
+import Adult from "./AdultForm";
 
 
 function getSteps() {
   return ["Datos Generales", "Datos Familiares", "Historia Médica"];
 }
 
-class PatientForm extends Component {
+class NewPatientForm extends Component {
 
   state = {
     activeStep: 0,
@@ -40,6 +42,28 @@ class PatientForm extends Component {
     });
   };
 
+  renderSteps = () => {
+    switch (this.state.activeStep) {
+      case 0:
+        return (
+          <GeneralForm/>
+        );
+      case 1:
+        if (this.state.adult){
+          return (<Adult/>);
+        }
+        else{
+          return (<Child/>);
+        }
+      case 2:
+        return (
+          <GeneralForm/>
+        );
+      default:
+        return null;
+    }
+  };
+
   render() {
     const { classes } = this.props;
     const steps = getSteps();
@@ -52,7 +76,7 @@ class PatientForm extends Component {
             <Step key={label}>
               <StepLabel className={classes.stepLabel} children={""}/>
               <StepContent>
-                <FormSteps/>
+                {this.renderSteps()}
                 <div>
                   <Button onClick={this.handleBack} className={classes.button}
                     disabled={activeStep === 0} >
@@ -77,8 +101,8 @@ class PatientForm extends Component {
   }
 }
 
-PatientForm.propTypes = {
+NewPatientForm.propTypes = {
   classes: PropTypes.object,
 };
 
-export default withStyles(styles)(PatientForm);
+export default withStyles(styles)(NewPatientForm);

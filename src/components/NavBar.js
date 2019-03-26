@@ -71,7 +71,7 @@ class NavBar extends React.Component {
             </div>
 
             <IconButton
-              aria-owns={open ? "menu-appbar" : undefined}
+              aria-owns={open ? "menu-appbar" : null}
               aria-haspopup="true"
               onClick={this.handleMenu}
               color="inherit"

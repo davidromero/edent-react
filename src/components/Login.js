@@ -24,19 +24,19 @@ class Login extends Component {
     fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .catch(function (error) {
         // const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error(errorMessage);
+        // const errorMessage = error.message;
+        // console.error(errorMessage);
       });
   }
 
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value});
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   render() {

@@ -10,26 +10,42 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import FormHelperText from "@material-ui/core/FormHelperText";
-import styles from "../../styles/GeneralFormStyle";
+import styles from "./styles/GeneralFormStyle";
 
 class GeneralForm extends Component {
   state = {
     first_name: "",
     last_name: "",
     birthday: "",
-    sex: "",
+    sex: "male",
     phone_number: "",
     address: "",
     email: "",
+    adult: null,
   };
 
   handleChange = (e) => {
     this.setState({[e.target.name]: e.target.value});
   };
 
+  //Has issues with 18 years - 1 ~ 2 days
+  patientAdultCheck = (e) => {
+    const birthdayDate = e.target.value;
+    const today = new Date();
+    const birthDate = new Date(birthdayDate);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    this.setState({birthday: birthdayDate});
+    this.setState({adult: age >= 18});
+  };
+
+
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    console.log(this.state)
   };
 
   render() {
@@ -52,10 +68,12 @@ class GeneralForm extends Component {
                        className={classes.textField} onChange={this.handleChange} margin="normal"/>
             <TextField name="last_name" label="Apellidos" type="text" required
                        className={classes.textField} onChange={this.handleChange} margin="normal"/>
-            <TextField name="birthday" label="Fecha de Nacimiento" defaultValue="2019-01-01" required
-                       className={classes.datePicker} type="date" InputLabelProps={{shrink: true,}}/>
+            <TextField name="birthday" label="Fecha de Nacimiento MM/DD/AAAA" defaultValue="2019-12-31" required
+                       className={classes.datePicker} type="date" onChange={this.patientAdultCheck}
+                       InputLabelProps={{shrink: true,}}/>
+
             <RadioGroup className={classes.genderGroup} onChange={this.handleChange} name="sex"
-                        value={this.state.value}>
+                        value={this.state.sex}>
               <FormHelperText>Sexo *</FormHelperText>
               <FormControlLabel value="male" control={<Radio/>} label="Hombre"/>
               <FormControlLabel value="female" control={<Radio/>} label="Mujer"/>

@@ -31,7 +31,7 @@ class ImagePicker extends Component {
   handleImage = (e) => {
     let file = e.target.files[0];
     let reader = new FileReader();
-    let url = reader.readAsDataURL(file);
+    reader.readAsDataURL(file);
 
     reader.onloadend = function (e) {
       this.setState({ avatar: [reader.result]})

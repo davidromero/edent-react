@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { palette } from '../../../src/ui/index'
 import {BrowserRouter} from "react-router-dom"
 import fire from "../../config/Firebase";
 import Home from "./Home";
@@ -33,9 +32,7 @@ class App extends Component {
     return (
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <MuiThemeProvider theme={theme}>
-          <div>
-            <Home/>
-          </div>
+          <Home/>
         </MuiThemeProvider>
       </BrowserRouter>
     );

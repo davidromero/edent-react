@@ -47,7 +47,7 @@ class NavBar extends React.Component {
     const open = Boolean(anchorEl);
 
     return (
-      <div className={classes.root}>
+      <div className={classes.appBarRoot}>
         <AppBar
           className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
           <Toolbar disableGutters={!this.state.open} className={classes.toolbar}>
@@ -58,7 +58,7 @@ class NavBar extends React.Component {
                 this.state.open && classes.menuButtonHidden,)}>
               <MenuIcon/>
             </IconButton>
-            <div className={classes.search}>
+            <div className={classes.searchBar}>
               <div className={classes.searchIcon}>
                 <SearchIcon/>
               </div>

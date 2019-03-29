@@ -1,5 +1,5 @@
 export default (theme) => ({
-  root: {
+  homeRoot: {
     display: "flex",
   },
   appBarSpacer: theme.mixins.toolbar,
@@ -9,7 +9,7 @@ export default (theme) => ({
     height: "100vh",
     overflow: "auto",
   },
-  content: {
+  homeContent: {
     display: "flex",
     flexFlow: "column wrap",
   },

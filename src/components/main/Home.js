@@ -7,8 +7,8 @@ import Dashboard from "../Dashboard";
 import Contacts from "../Contacts";
 import Today from "../Today";
 import Patients from "../Patients";
-import PatientForm from "../forms/NewPatientForm";
 import Exams from "../Exams";
+import PatientForm from "../forms/NewPatientForm";
 import {Route, Switch} from "react-router-dom";
 
 class Home extends React.Component {
@@ -28,11 +28,11 @@ class Home extends React.Component {
     const {classes} = this.props;
 
     return (
-      <div className={classes.root}>
+      <div className={classes.homeRoot}>
         <NavBar/>
         <main className={classes.homeFrame}>
           <div className={classes.appBarSpacer}/>
-          <div className={classes.content}>
+          <div className={classes.homeContent}>
             <Switch>
               <Route exact path={"/"} component={Dashboard}/>
               <Route path={"/today"} component={Today}/>

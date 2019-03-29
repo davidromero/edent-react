@@ -3,7 +3,7 @@ import {fade} from "@material-ui/core/styles/colorManipulator";
 const drawerWidth = 210;
 
 export default (theme) => ({
-  root: {
+  appBarRoot: {
     display: "flex",
   },
   appBar: {
@@ -63,7 +63,7 @@ export default (theme) => ({
       width: theme.spacing.unit * 9,
     },
   },
-  search: {
+  searchBar: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),

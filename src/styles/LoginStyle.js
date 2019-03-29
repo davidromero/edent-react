@@ -26,7 +26,7 @@ export default (theme) => ({
     width: "100%",
     marginTop: theme.spacing.unit,
   },
-  submit: {
+  button: {
     marginTop: theme.spacing.unit * 3,
   },
 });

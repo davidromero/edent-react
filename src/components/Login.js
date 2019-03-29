@@ -69,7 +69,7 @@ class Login extends Component {
               fullWidth
               variant="contained"
               color="primary"
-              className={classes.submit}>
+              className={classes.button}>
               Iniciar Sesión
             </Button>
           </form>

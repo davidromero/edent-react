@@ -1,63 +1,77 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+import {withStyles} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import StepContent from "@material-ui/core/StepContent";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import styles from "./styles/NewPatientFormStyle";
 import GeneralForm from "./GeneralForm";
-import Child from "./ChildForm";
-import Adult from "./AdultForm";
+import DetailsForm from "./DetailsForm";
+import RelativesForm from "./RelativesForm";
+import Confirmation from "./Confirmation";
+import styles from "./styles/NewPatientFormStyle";
 
 
 function getSteps() {
-  return ["Datos Generales", "Datos Familiares", "Historia Médica"];
+  return ["Datos Generales", "Datos Familiares", "Detalles Adicionales", "Confirmación"];
 }
 
 class NewPatientForm extends Component {
 
   state = {
-    activeStep: 0,
+    step: 0,
   };
 
   handleNext = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep + 1,
-    }));
+    const {step} = this.state;
+    this.setState({step: step + 1})
   };
 
   handleBack = () => {
-    this.setState(state => ({
-      activeStep: state.activeStep - 1,
-    }));
+    const {step} = this.state;
+    this.setState({step: step - 1})
   };
 
-  handleReset = () => {
-    this.setState({
-      activeStep: 0,
-    });
+  handleChange = (e) => {
+    this.setState({[e.target.name]: e.target.value});
   };
 
-  renderSteps = () => {
-    switch (this.state.activeStep) {
+  renderSteps = (step, values) => {
+    switch (step) {
       case 0:
         return (
-          <GeneralForm/>
+          <GeneralForm
+            nextStep={this.handleNext}
+            handleChange={this.handleChange}
+            values={values}/>
         );
       case 1:
-        if (this.state.adult){
-          return (<Adult/>);
-        }
-        else{
-          return (<Child/>);
-        }
+        return (
+          <div>
+            <RelativesForm
+              prevStep={this.handleBack}
+              nextStep={this.handleNext}
+              handleChange={this.handleChange}
+              values={values}/>
+          </div>
+        );
       case 2:
         return (
-          <GeneralForm/>
+          <DetailsForm
+            prevStep={this.handleBack}
+            nextStep={this.handleNext}
+            handleChange={this.handleChange}
+            values={values}/>
+        );
+      case 3:
+        return (
+          <Confirmation
+            prevStep={this.handleBack}
+            nextStep={this.handleNext}
+            handleChange={this.handleChange}
+            values={values}/>
         );
       default:
         return null;
@@ -65,36 +79,33 @@ class NewPatientForm extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const {classes} = this.props;
     const steps = getSteps();
-    const { activeStep } = this.state;
+    const {step} = this.state;
+    const {first_name, last_name, birthday, sex, phone_number, address, email} = this.state;
+    const values = {first_name, last_name, birthday, sex, phone_number, address, email};
 
     return (
-      <Paper className={classes.root} elevation={2} square={false}>
-        <Stepper className={classes.stepper} activeStep={activeStep} orientation="vertical">
+      <Paper className={classes.paper} elevation={2} square={false}>
+        <Stepper className={classes.stepper} activeStep={step} orientation="vertical">
           {steps.map((label, index) => (
             <Step key={label}>
-              <StepLabel className={classes.stepLabel} children={""}/>
+              <StepLabel>
+                <Typography component="h1" variant="h6">
+                  {label}
+                </Typography>
+              </StepLabel>
               <StepContent>
-                {this.renderSteps()}
-                <div>
-                  <Button onClick={this.handleBack} className={classes.button}
-                    disabled={activeStep === 0} >
-                    Atrás
-                  </Button>
-                  <Button onClick={this.handleNext} className={classes.button}
-                    variant="contained" color="primary" >
-                    {activeStep === steps.length - 1 ? "Terminar" : "Siguiente"}
-                  </Button>
-                </div>
+                {this.renderSteps(index, values)}
               </StepContent>
             </Step>
           ))}
         </Stepper>
-        {activeStep === steps.length && (
-          <Paper square elevation={0} className={classes.resetContainer}>
-            <Typography component="h1" variant="h5">Paciente ingresado correctamente</Typography>
-          </Paper>
+        {step === steps.length && (
+          <div className={classes.resultContainer}>
+            <Typography component="h1" variant="h5">El paciente ha sido ingresado</Typography>
+          </div>
+          //  TODO mostrar resultado
         )}
       </Paper>
     );

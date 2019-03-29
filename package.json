@@ -9,9 +9,11 @@
     "firebase": "5.9.0",
     "react": "16.8.4",
     "react-dom": "16.8.4",
+    "react-redux": "6.0.1",
     "react-router-dom": "4.4.0",
     "react-scripts": "2.1.8",
-    "recharts": "1.5.0"
+    "recharts": "1.5.0",
+    "redux": "4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

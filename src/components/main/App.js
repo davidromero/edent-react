@@ -1,10 +1,7 @@
 import React, {Component} from "react";
-import "./styles/App.css";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import {BrowserRouter} from "react-router-dom"
-// import Login from "./Login"
-import Home from "./Home";
 import fire from "../../config/Firebase";
+import Home from "./Home";
 
 class App extends Component {
   constructor(props) {
@@ -33,14 +30,13 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <CssBaseline/>
-        <div className="App">
+        <div>
           <Home/>
-          {/*<Login/>*/}
         </div>
       </BrowserRouter>
     );
   }
 }
 
-export default App;
+
+export default (App);

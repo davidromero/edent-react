@@ -4,24 +4,6 @@ import {withStyles} from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 
-const styles = theme => ({
-  main: {
-    width: "inherit",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  avatar: {
-    height: "150px",
-    width: "150px",
-    margin: theme.spacing.unit,
-  },
-  input: {
-  display: 'none',
-  },
-});
-
-
 class ImagePicker extends Component {
   state = {
     avatar: null,
@@ -56,6 +38,24 @@ class ImagePicker extends Component {
     );
   }
 }
+
+const styles = theme => ({
+  main: {
+    width: "inherit",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    height: "150px",
+    width: "150px",
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
+
 
 ImagePicker.propTypes = {
   classes: PropTypes.object.isRequired,

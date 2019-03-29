@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import styles from "../styles/DashboardStyle";
+import styles from "./styles/DashboardStyle";
 
 class Dashboard extends Component{
 

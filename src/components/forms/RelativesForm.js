@@ -17,7 +17,7 @@ class RelativesForm extends Component {
     name: "",
     phone_number: "",
     email: "",
-    relative_type: "",
+    relative_type: "Padre",
   };
 
   continue = e => {

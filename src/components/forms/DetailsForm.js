@@ -18,24 +18,33 @@ class DetailsForm extends Component {
   };
 
   render() {
-    const {classes} = this.props;
+    const {classes, handleChange} = this.props;
 
     return (
-      <main>
+      <div>
         <div>
-          <TextField name="observations" label="Observaciones" type="text"
-                     className={classes.textField} onChange={this.handleChange} margin="normal"/>
+          <TextField name="cui" label="DPI" type="text"
+                     className={classes.textField} onChange={handleChange}/>
+          <TextField name="observations" label="Observaciones" type="text" multiline={true}
+                     className={classes.textField} onChange={handleChange}/>
+          <TextField name="job" label="Ocupación" type="text"
+                     className={classes.textField} onChange={handleChange}/>
+          <TextField name="civil_status" label="Estado Civil" type="text"
+                     className={classes.textField} onChange={handleChange}/>
+          <TextField name="visit_reason" label="Motivo de Visita" type="text"
+                     className={classes.textField} onChange={handleChange}/>
+          <TextField name="insurance" label="Seguro" type="text"
+                     className={classes.textField} onChange={handleChange}/>
+          <TextField name="personal_doctor" label="Médico Personal" type="text"
+                     className={classes.textField} onChange={handleChange}/>
           <TextField name="alergies" label="Alergias" type="text"
-                     className={classes.textField} onChange={this.handleChange} margin="normal"/>
-          <TextField name="phone_number" label="Número Telefónico" type="number"
-                     className={classes.textField} onChange={this.handleChange} margin="normal"/>
-          <TextField name="email" label="Correo Electrónico" type="email"
-                     className={classes.textField} onChange={this.handleChange} margin="normal"/>
-          <TextField name="address" label="Dirección" type="text"
-                     className={classes.textField} onChange={this.handleChange} margin="normal"/>
-          <TextField name="visit_reason" label="Motivo de Visita" type="text" multiline={true}
-                     className={classes.textField} onChange={this.handleChange} margin="normal"/>
+                     className={classes.textField} onChange={handleChange}/>
+          <TextField name="referals" label="¿Quién lo refirió?" type="text"  multiline={true}
+                     className={classes.textField} onChange={handleChange}/>
+          <TextField name="notice" label="¿Cómo se enteró de nosotros?" type="text" multiline={true}
+                     className={classes.textField} onChange={handleChange}/>
         </div>
+
         <div>
           <Button className={classes.button} onClick={this.back}>
             Atrás
@@ -44,7 +53,7 @@ class DetailsForm extends Component {
             Siguiente
           </Button>
         </div>
-      </main>
+      </div>
     );
   }
 }

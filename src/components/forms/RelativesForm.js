@@ -8,7 +8,7 @@ import Input from "@material-ui/core/Input";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import styles from "./styles/NewPatientFormStyle";
+import styles from "./styles/FormsStyle";
 
 
 class RelativesForm extends Component {

@@ -8,7 +8,8 @@ import TodayIcon from "@material-ui/icons/Today";
 import ContactsIcon from "@material-ui/icons/Contacts";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import CreateIcon from "@material-ui/icons/Create";
-import Link from "react-router-dom/Link"
+
+const Link = require("react-router-dom").Link;
 
 export const mainListItems = (
   <div>

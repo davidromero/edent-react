@@ -11,6 +11,7 @@ export default (theme) => ({
     padding: "10px",
   },
   textField: {
+    marginTop: "1em",
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     minWidth: "180px",
@@ -19,8 +20,8 @@ export default (theme) => ({
   datePicker: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    marginTop: theme.spacing.unit ,
-    paddingTop: theme.spacing.unit  ,
+    marginTop: theme.spacing.unit,
+    paddingTop: theme.spacing.unit,
     minWidth: "180px",
     maxWidth: "600px",
   },
@@ -42,6 +43,6 @@ export default (theme) => ({
     marginTop: theme.spacing.unit * 2,
   },
   button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing.unit * 2,
   },
 });

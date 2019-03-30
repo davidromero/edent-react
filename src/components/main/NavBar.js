@@ -17,7 +17,8 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import {mainListItems, secondaryListItems} from "./DrawerLinks";
 import styles from "./styles/NavBarStyle";
-import Link from "react-router-dom/Link";
+
+const Link = require("react-router-dom").Link;
 
 class NavBar extends React.Component {
   state = {

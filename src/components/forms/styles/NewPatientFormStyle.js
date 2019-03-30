@@ -1,26 +1,10 @@
 export default (theme) => ({
-  paper: {
-    width: "100%",
-    minWidth: "250px",
-    padding: "2px",
-  },
-  main: {
+  base: {
     width: "inherit",
-    display: "flex",
     flexDirection: "column",
     alignItems: "center",
   },
-  stepper: {
-    padding: "12px",
-  },
-  button: {
-    margin: theme.spacing.unit,
-  },
-  resultContainer: {
-    padding: theme.spacing.unit,
-  },
   formControl:{
-    display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
@@ -46,12 +30,6 @@ export default (theme) => ({
     maxWidth: "600px",
     display: "inline-block",
   },
-  base: {
-    width: "inherit",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
   selectControl: {
     marginTop: theme.spacing.unit * 2,
     marginLeft: theme.spacing.unit,
@@ -62,5 +40,8 @@ export default (theme) => ({
   },
   selectEmpty: {
     marginTop: theme.spacing.unit * 2,
+  },
+  button: {
+    margin: theme.spacing.unit,
   },
 });

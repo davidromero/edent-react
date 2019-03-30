@@ -8,7 +8,7 @@ import Contacts from "../Contacts";
 import Today from "../Today";
 import Patients from "../Patients";
 import Exams from "../Exams";
-import PatientForm from "../forms/NewPatientForm";
+import PatientForm from "../NewPatient";
 import {Route, Switch} from "react-router-dom";
 
 class Home extends React.Component {

@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
-import Typography from "@material-ui/core/Typography";
 import Select from "@material-ui/core/Select";
 import Input from "@material-ui/core/Input";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -35,12 +34,12 @@ class RelativesForm extends Component {
     const {classes, handleChange} = this.props;
 
     return (
-      <main className={classes.main}>
+      <div>
         <div>
           <FormControl className={classes.selectControl}>
             <InputLabel htmlFor="relative-helper">Parentezco</InputLabel>
             <Select className={classes.selectEmpty} value={this.state.relative_type}
-                    onChange={this.handleChange} input={<Input name="relative_type" id="relatives-helper"/>}>
+                    onChange={handleChange} input={<Input name="relative_type" id="relatives-helper"/>}>
               <MenuItem value=""> <em>Ninguno</em> </MenuItem>
               <MenuItem value="Padre">Padre</MenuItem>
               <MenuItem value={"Madre"}>Madre</MenuItem>
@@ -49,11 +48,11 @@ class RelativesForm extends Component {
             </Select>
           </FormControl>
           <TextField name="name" label="Nombre" type="text" required
-                     className={classes.textField} onChange={this.handleChange} margin="normal"/>
+                     className={classes.textField} onChange={handleChange} margin="normal"/>
           <TextField name="phone_number" label="Número Telefónico" type="number"
-                     className={classes.textField} onChange={this.handleChange} margin="normal"/>
+                     className={classes.textField} onChange={handleChange} margin="normal"/>
           <TextField name="email" label="Correo Electrónico" type="email"
-                     className={classes.textField} onChange={this.handleChange} margin="normal"/>
+                     className={classes.textField} onChange={handleChange} margin="normal"/>
         </div>
 
         <div>
@@ -64,7 +63,7 @@ class RelativesForm extends Component {
             Siguiente
           </Button>
         </div>
-      </main>
+      </div>
     );
   }
 }

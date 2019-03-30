@@ -7,18 +7,18 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import StepContent from "@material-ui/core/StepContent";
 import Typography from "@material-ui/core/Typography";
-import GeneralForm from "./GeneralForm";
-import DetailsForm from "./DetailsForm";
-import RelativesForm from "./RelativesForm";
-import Confirmation from "./Confirmation";
-import styles from "./styles/NewPatientFormStyle";
+import GeneralForm from "./forms/GeneralForm";
+import DetailsForm from "./forms/DetailsForm";
+import RelativesForm from "./forms/RelativesForm";
+import Confirmation from "./forms/Confirmation";
+import styles from "./styles/NewPatientStyle";
 
 
 function getSteps() {
   return ["Datos Generales", "Datos Familiares", "Detalles Adicionales", "Confirmación"];
 }
 
-class NewPatientForm extends Component {
+class NewPatient extends Component {
 
   state = {
     step: 0,
@@ -112,8 +112,8 @@ class NewPatientForm extends Component {
   }
 }
 
-NewPatientForm.propTypes = {
+NewPatient.propTypes = {
   classes: PropTypes.object,
 };
 
-export default withStyles(styles)(NewPatientForm);
+export default withStyles(styles)(NewPatient);

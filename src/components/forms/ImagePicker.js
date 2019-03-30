@@ -9,7 +9,6 @@ class ImagePicker extends Component {
     avatar: null,
   };
 
-
   handleImage = (e) => {
     let file = e.target.files[0];
     let reader = new FileReader();

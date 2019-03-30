@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -22,7 +21,7 @@ class GeneralForm extends Component {
     const {classes, values, handleChange} = this.props;
 
     return (
-      <main className={classes.main}>
+      <div>
         <ImagePicker/>
         <br/>
         <div>
@@ -52,7 +51,7 @@ class GeneralForm extends Component {
         <Button className={classes.button} onClick={this.continue} variant="contained" color="primary">
           Siguiente
         </Button>
-      </main>
+      </div>
     );
   }
 }

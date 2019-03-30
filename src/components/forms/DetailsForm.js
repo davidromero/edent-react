@@ -22,7 +22,7 @@ class DetailsForm extends Component {
     const {classes} = this.props;
 
     return (
-      <main className={classes.main}>
+      <main>
         <div>
           <TextField name="observations" label="Observaciones" type="text"
                      className={classes.textField} onChange={this.handleChange} margin="normal"/>

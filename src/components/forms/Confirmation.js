@@ -19,7 +19,7 @@ class Today extends Component {
     const { classes } = this.props;
 
     return (
-      <main className={classes.main} >
+      <main>
         <Button className={classes.button} onClick={this.back}>
           Atrás
         </Button>

@@ -36,7 +36,7 @@ class GeneralForm extends Component {
             <FormHelperText id="component-helper-text">Sexo *</FormHelperText>
             <FormControlLabel value="male" control={<Radio/>} label="Hombre"/>
             <FormControlLabel value="female" control={<Radio/>} label="Mujer"/>
-          </RadioGroup>
+          </RadioGroup> <br/>
           <TextField name="phone_number" label="Número Telefónico" type="number"
                      className={classes.textField} onChange={handleChange}/>
           <TextField name="email" label="Correo Electrónico" type="email"

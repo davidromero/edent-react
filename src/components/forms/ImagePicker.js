@@ -24,9 +24,9 @@ class ImagePicker extends Component {
     const {classes} = this.props;
 
     return (
-      <div className={classes.main}>
-        <input accept="image/*" className={classes.input} id="contained-button-file" type="file"
-               onChange={this.handleImage}/>
+      <div className={classes.base}>
+        <input accept="image/*" className={classes.input} id="contained-button-file"
+               type="file" onChange={this.handleImage}/>
         <Avatar className={classes.avatar} src={this.state.avatar}/>
         <label htmlFor="contained-button-file">
           <Button variant="contained" color="primary" component="span">
@@ -39,7 +39,7 @@ class ImagePicker extends Component {
 }
 
 const styles = theme => ({
-  main: {
+  base: {
     width: "inherit",
     display: "flex",
     flexDirection: "column",

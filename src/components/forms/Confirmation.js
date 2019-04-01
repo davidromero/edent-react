@@ -1,11 +1,16 @@
 import React, {Component} from "react";
 import {withStyles} from "@material-ui/core/styles";
-import GridList from '@material-ui/core/GridList';
+import Avatar from '@material-ui/core/Avatar';
+import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Button from "@material-ui/core/Button";
 import styles from "./styles/FormsStyle";
 
-class Today extends Component {
+class Confirmation extends Component {
+
+  state = {
+    avatar: null,
+  };
 
   continue = e => {
     e.preventDefault();
@@ -23,12 +28,7 @@ class Today extends Component {
     return (
       <div>
         <div>
-          <GridList>
-            <ListItem>Nombre: Aldo</ListItem>
-            <ListItem>Apellido: Gatica</ListItem>
-            <ListItem>Edad: 24 años</ListItem>
-            <ListItem>Motivo de visita: Ortodoncia</ListItem>
-          </GridList>
+          <Avatar className={classes.avatar} src={this.state.avatar}/>
         </div>
 
         <Button className={classes.button} onClick={this.back}>
@@ -43,4 +43,4 @@ class Today extends Component {
 }
 
 
-export default withStyles(styles)(Today);
+export default withStyles(styles)(Confirmation);

@@ -24,6 +24,10 @@ class NewPatient extends Component {
     step: 0,
   };
 
+  componentDidMount(){
+    console.log("New Patient Mounted")
+  }
+
   handleNext = () => {
     const {step} = this.state;
     this.setState({step: step + 1})
@@ -40,7 +44,7 @@ class NewPatient extends Component {
 
   renderSteps = (step, values) => {
     switch (step) {
-      case 2:
+      case 3:
         return (
           <GeneralForm nextStep={this.handleNext} handleChange={this.handleChange}
                        values={values}/>
@@ -50,12 +54,12 @@ class NewPatient extends Component {
           <RelativesForm prevStep={this.handleBack} nextStep={this.handleNext}
                          handleChange={this.handleChange} values={values}/>
         );
-      case 0:
+      case 2:
         return (
           <DetailsForm prevStep={this.handleBack} nextStep={this.handleNext}
             handleChange={this.handleChange} values={values}/>
         );
-      case 3:
+      case 0:
         return (
           <Confirmation prevStep={this.handleBack} nextStep={this.handleNext}
             handleChange={this.handleChange} values={values}/>

@@ -23,25 +23,19 @@ class DetailsForm extends Component {
     return (
       <div>
         <div>
-          <TextField name="cui" label="DPI" type="text"
-                     className={classes.textField} onChange={handleChange}/>
-          <TextField name="observations" label="Observaciones" type="text" multiline={true}
+          <TextField name="cui" label="DPI" type="number"
                      className={classes.textField} onChange={handleChange}/>
           <TextField name="job" label="Ocupación" type="text"
                      className={classes.textField} onChange={handleChange}/>
           <TextField name="civil_status" label="Estado Civil" type="text"
                      className={classes.textField} onChange={handleChange}/>
-          <TextField name="visit_reason" label="Motivo de Visita" type="text"
-                     className={classes.textField} onChange={handleChange}/>
+          <TextField name="observations" label="Observaciones" type="text" multiline={true}
+                     className={classes.textField} onChange={handleChange}/> <br/>
           <TextField name="insurance" label="Seguro" type="text"
                      className={classes.textField} onChange={handleChange}/>
           <TextField name="personal_doctor" label="Médico Personal" type="text"
                      className={classes.textField} onChange={handleChange}/>
           <TextField name="alergies" label="Alergias" type="text"
-                     className={classes.textField} onChange={handleChange}/>
-          <TextField name="referals" label="¿Quién lo refirió?" type="text"  multiline={true}
-                     className={classes.textField} onChange={handleChange}/>
-          <TextField name="notice" label="¿Cómo se enteró de nosotros?" type="text" multiline={true}
                      className={classes.textField} onChange={handleChange}/>
         </div>
 

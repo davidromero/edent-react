@@ -31,7 +31,7 @@ class DetailsForm extends Component {
                      className={classes.textField} onChange={handleChange}/>
           <TextField name="observations" label="Observaciones" type="text" multiline={true}
                      className={classes.textField} onChange={handleChange}/> <br/>
-          <TextField name="insurance" label="Seguro" type="text"
+          <TextField name="insurance" label="Seguro Médico" type="text"
                      className={classes.textField} onChange={handleChange}/>
           <TextField name="personal_doctor" label="Médico Personal" type="text"
                      className={classes.textField} onChange={handleChange}/>

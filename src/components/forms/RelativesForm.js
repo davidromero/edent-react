@@ -14,10 +14,10 @@ import styles from "./styles/FormsStyle";
 class RelativesForm extends Component {
 
   state = {
-    name: "",
-    phone_number: "",
-    email: "",
-    relative_type: "Padre",
+    relative_name: "",
+    relative_phone: "",
+    relative_email: "",
+    kinship: "Padre",
   };
 
   continue = e => {
@@ -37,9 +37,9 @@ class RelativesForm extends Component {
       <div>
         <div>
           <FormControl className={classes.selectControl}>
-            <InputLabel htmlFor="relative-helper">Parentezco</InputLabel>
+            <InputLabel htmlFor="kinship-helper">Parentezco</InputLabel>
             <Select className={classes.selectEmpty} value={this.state.relative_type}
-                    onChange={handleChange} input={<Input name="relative_type" id="relatives-helper"/>}>
+                    onChange={handleChange} input={<Input name="kinship" id="kinship-helper"/>}>
               <MenuItem value=""> <em>Ninguno</em> </MenuItem>
               <MenuItem value="Padre">Padre</MenuItem>
               <MenuItem value={"Madre"}>Madre</MenuItem>

@@ -73,8 +73,12 @@ class NewPatient extends Component {
     const {classes} = this.props;
     const steps = getSteps();
     const {step} = this.state;
-    const {first_name, last_name, birthday, sex, phone_number, address, email} = this.state;
-    const values = {first_name, last_name, birthday, sex, phone_number, address, email};
+    const {first_name, last_name, age, birthday, sex, phone_number, address, location, email, visit_reason,
+      kinship, relative_name, relative_phone, relative_email, cui, job, civil_status,
+      observations, insurance, personal_doctor, alergies,} = this.state;
+    const values = {first_name, last_name, age, birthday, sex, phone_number, address, location, email, visit_reason,
+      kinship, relative_name, relative_phone, relative_email,
+      cui, job, civil_status, observations, insurance, personal_doctor, alergies,};
 
     return (
       <Paper className={classes.paper} elevation={2} square={false}>

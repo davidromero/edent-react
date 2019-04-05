@@ -13,13 +13,6 @@ import styles from "./styles/FormsStyle";
 
 class RelativesForm extends Component {
 
-  state = {
-    relative_name: "",
-    relative_phone: "",
-    relative_email: "",
-    kinship: "Padre",
-  };
-
   continue = e => {
     e.preventDefault();
     this.props.nextStep();
@@ -31,14 +24,14 @@ class RelativesForm extends Component {
   };
 
   render() {
-    const {classes, handleChange} = this.props;
+    const {classes, values, handleChange} = this.props;
 
     return (
       <div>
         <div>
           <FormControl className={classes.selectControl}>
             <InputLabel htmlFor="kinship-helper">Parentezco</InputLabel>
-            <Select className={classes.selectEmpty} value={this.state.relative_type}
+            <Select className={classes.selectEmpty} value={values.kinship}
                     onChange={handleChange} input={<Input name="kinship" id="kinship-helper"/>}>
               <MenuItem value=""> <em>Ninguno</em> </MenuItem>
               <MenuItem value="Padre">Padre</MenuItem>
@@ -47,11 +40,11 @@ class RelativesForm extends Component {
               <MenuItem value={"Otro"}>Otro</MenuItem>
             </Select>
           </FormControl>
-          <TextField name="name" label="Nombre" type="text" required
+          <TextField name="relative_name" label="Nombre" type="text" required
                      className={classes.textField} onChange={handleChange} margin="normal"/>
-          <TextField name="phone_number" label="Número Telefónico" type="number"
+          <TextField name="relative_phone" label="Número Telefónico" type="number"
                      className={classes.textField} onChange={handleChange} margin="normal"/>
-          <TextField name="email" label="Correo Electrónico" type="email"
+          <TextField name="relative_email" label="Correo Electrónico" type="email"
                      className={classes.textField} onChange={handleChange} margin="normal"/>
         </div>
 

@@ -37,28 +37,28 @@ class Confirmation extends Component {
         <div className={classes.base}>
           <Avatar className={classes.avatar} src={this.state.avatar}/>
           <div className={classes.container}>
-            <Paper className={classes.item}>
+            <Paper className={classes.paper}>
               <p><b>Información Personal</b></p>
               <ListItemText primary={"Nombres y Apellidos"} secondary={first_name + " " + last_name}/>
               <ListItemText primary={"Fecha de Nacimiento"} secondary={birthday}/>
               <ListItemText primary={"Sexo"} secondary={sex}/>
               <ListItemText primary={"Dirección"} secondary={address}/>
             </Paper>
-            <Paper className={classes.item}>
+            <Paper className={classes.paper}>
               <p><b>Contacto Personal</b></p>
               <ListItemText primary={"Número Telefónico"} secondary={phone_number}/>
               <ListItemText primary={"Correo Electrónico"} secondary={email}/>
               <ListItemText primary={"Clínica"} secondary={location}/>
               <ListItemText primary={"Motivo de Visita"} secondary={visit_reason}/>
             </Paper>
-            <Paper className={classes.item}>
+            <Paper className={classes.paper}>
               <p><b>Contacto Familiar</b></p>
               <ListItemText primary={"Parentezco"} secondary={kinship}/>
               <ListItemText primary={"Nombre del Familiar"} secondary={relative_name}/>
               <ListItemText primary={"Número Telefónico"} secondary={relative_phone}/>
               <ListItemText primary={"Correo Electrónico"} secondary={relative_email}/>
             </Paper>
-            <Paper className={classes.item}>
+            <Paper className={classes.paper}>
               <p><b>Detalles Adicionales</b></p>
               <ListItemText primary={"DPI"} secondary={cui}/>
               <ListItemText primary={"Ocupación"} secondary={job}/>
@@ -75,7 +75,7 @@ class Confirmation extends Component {
           Atrás
         </Button>
         <Button className={classes.button} onClick={this.continue} variant="contained" color="primary">
-          Siguiente
+          Confirmar y Guardar
         </Button>
       </div>
     );
@@ -95,7 +95,7 @@ const styles = theme => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
   },
-  item: {
+  paper: {
     margin: theme.spacing.unit * 0.5,
     minWidth: "240px",
     display: "inline-block",

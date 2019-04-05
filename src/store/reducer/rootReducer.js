@@ -1,10 +1,10 @@
 import authReducer from './authReducer';
-import projectReducer from './projectReducer';
+import contactReducer from './contactReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  project: projectReducer,
+  contacts: contactReducer,
 });
 
 export default rootReducer;

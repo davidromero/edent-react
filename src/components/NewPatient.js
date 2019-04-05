@@ -44,7 +44,7 @@ class NewPatient extends Component {
 
   renderSteps = (step, values) => {
     switch (step) {
-      case 3:
+      case 0:
         return (
           <GeneralForm nextStep={this.handleNext} handleChange={this.handleChange}
                        values={values}/>
@@ -59,7 +59,7 @@ class NewPatient extends Component {
           <DetailsForm prevStep={this.handleBack} nextStep={this.handleNext}
             handleChange={this.handleChange} values={values}/>
         );
-      case 0:
+      case 3:
         return (
           <Confirmation prevStep={this.handleBack} nextStep={this.handleNext}
             handleChange={this.handleChange} values={values}/>
@@ -74,8 +74,8 @@ class NewPatient extends Component {
     const steps = getSteps();
     const {step} = this.state;
     const {first_name, last_name, age, birthday, sex, phone_number, address, location, email, visit_reason,
-      kinship, relative_name, relative_phone, relative_email, cui, job, civil_status,
-      observations, insurance, personal_doctor, alergies,} = this.state;
+      kinship, relative_name, relative_phone, relative_email,
+      cui, job, civil_status, observations, insurance, personal_doctor, alergies,} = this.state;
     const values = {first_name, last_name, age, birthday, sex, phone_number, address, location, email, visit_reason,
       kinship, relative_name, relative_phone, relative_email,
       cui, job, civil_status, observations, insurance, personal_doctor, alergies,};

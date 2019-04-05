@@ -4,11 +4,12 @@ import {withStyles} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import styles from "./styles/ContactsStyle";
+import { connect } from "react-redux"
 
 class Contacts extends Component {
 
   render() {
-    const {classes} = this.props;
+    const {classes, contactList } = this.props;
 
     return (
       <div className={classes.base}>
@@ -16,9 +17,16 @@ class Contacts extends Component {
           <Typography variant="h5" component="h3">
             Contactos
           </Typography>
-          <Typography component="p">
-            Contactos
-          </Typography>
+          {
+            contactList && contactList.map(contact => {
+              return (
+                <div>
+                  <Typography> { contact.first_name }</Typography>
+                </div>
+              )
+            })
+          }
+
         </Paper>
 
       </div>
@@ -30,4 +38,10 @@ Contacts.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Contacts);
+const mapStateToProps = (state) =>{
+  return {
+    contactList: state.contacts.contactList,
+  }
+};
+
+export default connect(mapStateToProps) (withStyles(styles) (Contacts));

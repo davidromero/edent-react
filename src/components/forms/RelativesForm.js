@@ -13,12 +13,12 @@ import styles from "./styles/FormsStyle";
 
 class RelativesForm extends Component {
 
-  continue = e => {
+  continue = (e) => {
     e.preventDefault();
     this.props.nextStep();
   };
 
-  back = e => {
+  back = (e) => {
     e.preventDefault();
     this.props.prevStep();
   };

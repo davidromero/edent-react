@@ -12,7 +12,7 @@ import styles from "./styles/FormsStyle";
 
 class GeneralForm extends Component {
 
-  continue = e => {
+  continue = (e) => {
     e.preventDefault();
     this.props.nextStep();
   };

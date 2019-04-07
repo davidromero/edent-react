@@ -11,12 +11,12 @@ class Confirmation extends Component {
     avatar: null,
   };
 
-  continue = e => {
+  continue = (e) => {
     e.preventDefault();
     this.props.nextStep();
   };
 
-  back = e => {
+  back = (e) => {
     e.preventDefault();
     this.props.prevStep();
   };

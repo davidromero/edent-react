@@ -4,6 +4,14 @@ import {BrowserRouter} from "react-router-dom"
 import fire from "../../config/Firebase";
 import Home from "./Home";
 
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: '#1595BD', contrastText: '#FAFAFA' },
+    secondary: { main: '#3F51B5' }
+  },
+  typography: { useNextVariants: true },
+});
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +35,6 @@ class App extends Component {
     });
   }
 
-
   render() {
     return (
       <BrowserRouter basename={process.env.PUBLIC_URL}>
@@ -38,13 +45,5 @@ class App extends Component {
     );
   }
 }
-
-const theme = createMuiTheme({
-  palette: {
-    primary: { main: '#1595BD', contrastText: '#FAFAFA' },
-    secondary: { main: '#3F51B5' }
-  },
-  typography: { useNextVariants: true },
-});
 
 export default (App);

@@ -25,7 +25,7 @@ class NewPatient extends Component {
   };
 
   componentDidMount(){
-    console.log("New Patient Mounted")
+
   }
 
   handleNext = () => {

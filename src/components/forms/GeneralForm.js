@@ -9,6 +9,11 @@ import Button from "@material-ui/core/Button";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import ImagePicker from "./ImagePicker"
 import styles from "./styles/FormsStyle";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import Input from "@material-ui/core/Input";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
 
 class GeneralForm extends Component {
 
@@ -36,7 +41,18 @@ class GeneralForm extends Component {
             <FormHelperText id="component-helper-text">Sexo *</FormHelperText>
             <FormControlLabel value="male" control={<Radio/>} label="Hombre"/>
             <FormControlLabel value="female" control={<Radio/>} label="Mujer"/>
-          </RadioGroup> <br/>
+          </RadioGroup>
+          <FormControl className={classes.selectControl}>
+            <InputLabel htmlFor="location-helper">Clínica</InputLabel>
+            <Select className={classes.selectEmpty} value={values.location}
+                    onChange={handleChange} input={<Input name="location" id="location-helper"/>}>
+              <MenuItem value="Chiquimula">Chiquimula</MenuItem>
+              <MenuItem value={"Jocotán"}>Jocotán</MenuItem>
+              <MenuItem value={"Amatitlán"}>Amatitlán</MenuItem>
+              <MenuItem value={"Guatemala"}>Guatemala</MenuItem>
+            </Select>
+          </FormControl>
+          <br/>
           <TextField name="phone_number" label="Número Telefónico" type="number"
                      className={classes.textField} onChange={handleChange}/>
           <TextField name="email" label="Correo Electrónico" type="email"

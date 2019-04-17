@@ -20,9 +20,11 @@ class Contacts extends Component {
           {
             contactList && contactList.map((contact) => {
               return (
-                <div>
-                  <Typography> {contact.first_name}</Typography>
-                </div>
+                <Paper className={classes.itemContainer}>
+                  <p><b>{contact.first_name + " " + contact.last_name}</b></p>
+                  <p>Teléfono: {contact.phone_number}</p>
+                  <p>Clínica: {contact.location}</p>
+                </Paper>
               );
             })
           }

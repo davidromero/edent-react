@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {withStyles} from "@material-ui/core/styles";
-import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
 import ListItemText from '@material-ui/core/ListItemText'
 import Button from "@material-ui/core/Button";
@@ -8,7 +7,6 @@ import Button from "@material-ui/core/Button";
 class Confirmation extends Component {
 
   state = {
-    avatar: null,
   };
 
   continue = (e) => {
@@ -35,7 +33,6 @@ class Confirmation extends Component {
     return (
       <div>
         <div className={classes.base}>
-          <Avatar className={classes.avatar} src={this.state.avatar}/>
           <div className={classes.container}>
             <Paper className={classes.paper}>
               <p><b>Información Personal</b></p>
@@ -100,11 +97,6 @@ const styles = theme => ({
     minWidth: "240px",
     display: "inline-block",
     padding: theme.spacing.unit ,
-  },
-  avatar: {
-    height: "150px",
-    width: "150px",
-    margin: theme.spacing.unit,
   },
   button: {
     margin: theme.spacing.unit * 2,

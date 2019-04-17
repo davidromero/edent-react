@@ -7,7 +7,6 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import FormHelperText from "@material-ui/core/FormHelperText";
-import ImagePicker from "./ImagePicker"
 import styles from "./styles/FormsStyle";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
@@ -27,8 +26,6 @@ class GeneralForm extends Component {
 
     return (
       <div>
-        <ImagePicker/>
-        <br/>
         <div>
           <TextField name="first_name" label="Nombres" type="text" required
                      className={classes.textField} onChange={handleChange}/>

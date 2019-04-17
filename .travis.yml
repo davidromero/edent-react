@@ -4,6 +4,10 @@ node_js:
 env:
   global:
     secure: Gn4d/k5mCRnYyur6eJbw2Rl3MY+87NbyNKYjIVU8XvFeTR9kGY0sR4QPweXrDpyyev+85dzBNWgPtC1rDQHDd48tPFoalQz4CRXulK92nEqe3ow/v/VBQUFozoctj3jG38RDoS0EpYy90gzM1fXXeSG0q5kiQSsIrC7tpN2C0j3BDfNrGYChzzoJJvKMlCw/65emSErOQUnpkZ2m06urRtQ73HuFhumIT32UK5tkgId07oQRK7K4KmHLAGhNt0iLMRyT1vvjD0656sAq3XrXMiULM0vCtNbpHrIM5QdrljBtnIdNZeBz7UZOmXllWR7K3Gdwn+n0MA1MV6AvyJFnzMPqYPrN2zraF/wZbqLKMA33VpeIgqV2v5tp+GnN1/kYidgaTkuERW7O3Z9jmTwmtp22FwINXAeGi55YteGKHTnM5O/OlkvC7l2i+dHaCgkYax5Y/nsPQGzDoxqi0fHNEc4jw6x2dVrZWiAoly1wb9ih51VarrrmGn2fsgI/hKvitE0kO1DCOrx0RI4cM4eib3IfekG7dUXr144wy5kh5BeKd6drHhJezyy3q6JvSw95ll3h4loL62/bJf/rfkqUpmF0HnqOHeC0lxCJHsbAn1EHRx4sPBQpWOpcR1TFyWorHJb0M+1wKalavEtWlGQPNp2dQvyW8vTRlALjO5emuCY=
+branches:
+  only:
+    - master
+    - stable
 cache:
   directories:
   - node_modules

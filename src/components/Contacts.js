@@ -14,7 +14,7 @@ class Contacts extends Component {
 
     return (
       <div className={classes.base}>
-        <Paper className={classes.paper} elevation={2} square={false}>
+        <Paper className={classes.paper} elevation={2}>
           <Typography variant="h5" component="h3">
             Contactos
           </Typography>

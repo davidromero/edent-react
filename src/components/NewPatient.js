@@ -53,27 +53,27 @@ class NewPatient extends Component {
     })
   };
 
-  renderSteps = (step, values) => {
+  renderSteps = (step, contact) => {
     switch (step) {
       case 0:
         return (
           <GeneralForm nextStep={this.handleNext} handleChange={this.handleChange}
-                       values={values}/>
+                       values={contact}/>
         );
       case 1:
         return (
           <RelativesForm prevStep={this.handleBack} nextStep={this.handleNext}
-                         handleChange={this.handleChange} values={values}/>
+                         handleChange={this.handleChange} values={contact}/>
         );
       case 2:
         return (
           <DetailsForm prevStep={this.handleBack} nextStep={this.handleNext}
-                       handleChange={this.handleChange} values={values}/>
+                       handleChange={this.handleChange} values={contact}/>
         );
       case 3:
         return (
           <Confirmation prevStep={this.handleBack} nextStep={this.handleSubmit}
-                        handleChange={this.handleChange} values={values}/>
+                        handleChange={this.handleChange} values={contact}/>
         );
       default:
         return null;

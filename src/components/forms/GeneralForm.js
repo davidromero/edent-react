@@ -28,11 +28,11 @@ class GeneralForm extends Component {
       <div>
         <div>
           <TextField name="first_name" label="Nombres" type="text" required
-                     className={classes.textField} onChange={handleChange}/>
+                     className={classes.textField} onChange={handleChange} value={values.first_name}/>
           <TextField name="last_name" label="Apellidos" type="text" required
-                     className={classes.textField} onChange={handleChange}/>
+                     className={classes.textField} onChange={handleChange} value={values.last_name}/>
           <TextField name="birthday" label="Fecha de Nacimiento MM/DD/AAAA" defaultValue="2000-12-31" required
-                     className={classes.datePicker} type="date" onChange={handleChange}
+                     className={classes.datePicker} type="date" onChange={handleChange} value={values.birthday}
                      InputLabelProps={{shrink: true,}}/>
           <RadioGroup className={classes.genderGroup} onChange={handleChange} name="sex" value={values.sex}>
             <FormHelperText id="component-helper-text">Sexo *</FormHelperText>
@@ -51,13 +51,13 @@ class GeneralForm extends Component {
           </FormControl>
           <br/>
           <TextField name="phone_number" label="Número Telefónico" type="number"
-                     className={classes.textField} onChange={handleChange}/>
+                     className={classes.textField} onChange={handleChange} value={values.phone_number}/>
           <TextField name="email" label="Correo Electrónico" type="email"
-                     className={classes.textField} onChange={handleChange}/>
+                     className={classes.textField} onChange={handleChange} value={values.email}/>
           <TextField name="address" label="Dirección" type="text"
-                     className={classes.textField} onChange={handleChange}/>
+                     className={classes.textField} onChange={handleChange} value={values.address}/>
           <TextField name="visit_reason" label="Motivo de Visita" type="text" multiline={true}
-                     className={classes.textField} onChange={handleChange}/>
+                     className={classes.textField} onChange={handleChange} value={values.visit_reason}/>
         </div>
 
         <Button className={classes.button} onClick={this.continue} variant="contained" color="primary">

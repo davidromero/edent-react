@@ -18,24 +18,24 @@ class DetailsForm extends Component {
   };
 
   render() {
-    const {classes, handleChange} = this.props;
+    const {classes, values, handleChange} = this.props;
 
     return (
       <div>
         <div>
-          <TextField name="cui" label="DPI" type="number"
+          <TextField name="cui" label="DPI" type="number" value={values.cui}
                      className={classes.textField} onChange={handleChange}/>
-          <TextField name="job" label="Ocupación" type="text"
+          <TextField name="job" label="Ocupación" type="text" value={values.job}
                      className={classes.textField} onChange={handleChange}/>
-          <TextField name="civil_status" label="Estado Civil" type="text"
+          <TextField name="civil_status" label="Estado Civil" type="text" value={values.civil_status}
                      className={classes.textField} onChange={handleChange}/>
-          <TextField name="observations" label="Observaciones" type="text" multiline={true}
+          <TextField name="observations" label="Observaciones" type="text" multiline={true} value={values.observations}
                      className={classes.textField} onChange={handleChange}/> <br/>
-          <TextField name="insurance" label="Seguro Médico" type="text"
+          <TextField name="insurance" label="Seguro Médico" type="text" value={values.insurance}
                      className={classes.textField} onChange={handleChange}/>
-          <TextField name="personal_doctor" label="Médico Personal" type="text"
+          <TextField name="personal_doctor" label="Médico Personal" type="text" value={values.personal_doctor}
                      className={classes.textField} onChange={handleChange}/>
-          <TextField name="alergies" label="Alergias" type="text"
+          <TextField name="allergies" label="Alergias" type="text" value={values.allergies}
                      className={classes.textField} onChange={handleChange}/>
         </div>
 

@@ -17,6 +17,7 @@ class Contacts extends Component {
           <Typography variant="h5" component="h3">
             Contactos
           </Typography>
+          <div className={classes.container}>
           {
             contactList && contactList.map((contact) => {
               return (
@@ -28,7 +29,7 @@ class Contacts extends Component {
               );
             })
           }
-
+          </div>
         </Paper>
 
       </div>

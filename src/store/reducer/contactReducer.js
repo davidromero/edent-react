@@ -10,7 +10,15 @@ const initState = {
 };
 
 const contactReducer = (state = initState, action) => {
-
+  switch(action.type){
+    case 'CREATE_CONTACT':
+      console.log('created contact', action.contact);
+      break;
+    case 'LIST_CONTACTS':
+      console.log('list contacts', action.contacts);
+      break;
+    default:
+  }
   return state
 };
 

@@ -9,13 +9,18 @@ export default (theme) => ({
     paddingBottom: theme.spacing.unit * 2,
     margin: theme.spacing.unit,
     minWidth: "250px",
-    width: "100%"
+    width: "100%",
+  },
+  container:{
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
   },
   itemContainer:{
-    display: 'inline-block',
-    alignContent: 'center',
-    paddingLeft: theme.spacing.unit * 2,
-    paddingRight: theme.spacing.unit * 2,
-    margin: theme.spacing.unit,
+    margin: theme.spacing.unit * 2,
+    minWidth: "240px",
+    display: "inline-block",
+    padding: theme.spacing.unit ,
   }
 });

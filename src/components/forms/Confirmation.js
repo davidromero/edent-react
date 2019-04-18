@@ -6,10 +6,7 @@ import Button from "@material-ui/core/Button";
 
 class Confirmation extends Component {
 
-  state = {
-  };
-
-  continue = (e) => {
+  submit = (e) => {
     e.preventDefault();
     this.props.nextStep();
   };
@@ -20,15 +17,12 @@ class Confirmation extends Component {
   };
 
   render() {
-    const {
+    const { classes,
       values: {
         first_name, last_name, sex, phone_number, email, birthday, location,
         address, visit_reason, kinship, relative_name, relative_phone, relative_email,
         cui, job, civil_status, observations, insurance, personal_doctor, alergies,
-      },
-      classes,
-    } = this.props;
-
+      },} = this.props;
 
     return (
       <div>
@@ -71,7 +65,7 @@ class Confirmation extends Component {
         <Button className={classes.button} onClick={this.back}>
           Atrás
         </Button>
-        <Button className={classes.button} onClick={this.continue} variant="contained" color="primary">
+        <Button className={classes.button} onClick={this.submit} variant="contained" color="primary">
           Confirmar y Guardar
         </Button>
       </div>

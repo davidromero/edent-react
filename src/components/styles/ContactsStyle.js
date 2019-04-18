@@ -18,9 +18,9 @@ export default (theme) => ({
     overflow: 'hidden',
   },
   itemContainer:{
-    margin: theme.spacing.unit * 2,
-    minWidth: "240px",
+    margin: theme.spacing.unit,
     display: "inline-block",
-    padding: theme.spacing.unit ,
-  }
+    padding: theme.spacing.unit * 2,
+    minWidth: "220px",
+  },
 });

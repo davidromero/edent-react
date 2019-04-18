@@ -14,8 +14,8 @@ const contactReducer = (state = initState, action) => {
     case 'CREATE_CONTACT':
       console.log('created contact', action.contact);
       break;
-    case 'LIST_CONTACTS':
-      console.log('list contacts', action.contacts);
+    case 'CREATE_CONTACT_ERROR':
+      console.log('error creating contact', action.error);
       break;
     default:
   }

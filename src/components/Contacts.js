@@ -4,6 +4,7 @@ import {withStyles} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import styles from "./styles/ContactsStyle";
+import { Link } from "react-router-dom"
 import {connect} from "react-redux";
 
 class Contacts extends Component {
@@ -21,11 +22,15 @@ class Contacts extends Component {
           {
             contactList && contactList.map((contact) => {
               return (
-                <Paper className={classes.itemContainer}>
-                  <p><b>{contact.first_name + " " + contact.last_name}</b></p>
-                  <p>Teléfono: {contact.phone_number}</p>
-                  <p>Clínica: {contact.location}</p>
-                </Paper>
+                <Link to={"contact/" + contact.uid}>
+                  <Paper className={classes.itemContainer}>
+                    <Typography>
+                      <b>{contact.first_name + " " + contact.last_name}</b><br/>
+                      Teléfono: {contact.phone_number}<br/>
+                      Clínica: {contact.location}
+                    </Typography>
+                  </Paper>
+                </Link>
               );
             })
           }

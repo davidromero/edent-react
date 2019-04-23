@@ -27,10 +27,6 @@ class NewPatient extends Component {
     contact: {}
   };
 
-  componentDidMount() {
-
-  }
-
   handleNext = () => {
     const {step} = this.state;
     this.setState({step: step + 1})

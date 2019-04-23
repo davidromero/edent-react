@@ -6,8 +6,9 @@ import Typography from "@material-ui/core/Typography";
 import styles from "./styles/ContactsStyle";
 import { Link } from "react-router-dom"
 import {connect} from "react-redux";
+import {fetchContactList} from "../store/actions/contactActions"
 
-class Contacts extends Component {
+class ContactList extends Component {
 
   render() {
     const {classes, contactList} = this.props;
@@ -42,7 +43,7 @@ class Contacts extends Component {
   }
 }
 
-Contacts.propTypes = {
+ContactList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
@@ -52,4 +53,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(Contacts));
+export default connect(mapStateToProps)(withStyles(styles)(ContactList));

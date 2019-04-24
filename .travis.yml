@@ -8,9 +8,6 @@ branches:
   only:
     - master
     - stable
-cache:
-  directories:
-  - node_modules
 script:
 - npm test
 - npm run build

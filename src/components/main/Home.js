@@ -4,7 +4,7 @@ import {withStyles} from "@material-ui/core/styles";
 import styles from "./styles/HomeStyle";
 import NavBar from "./NavBar";
 import Dashboard from "../Dashboard";
-import Contacts from "../Contacts";
+import ContactList from "../ContactList";
 import Today from "../Today";
 import Patients from "../Patients";
 import Exams from "../Exams";
@@ -38,7 +38,7 @@ class Home extends React.Component {
               <Route path={"/today"} component={Today}/>
               <Route path={"/patients"} component={Patients}/>
               <Route path={"/exams"} component={Exams}/>
-              <Route path={"/contacts"} component={Contacts}/>
+              <Route path={"/contacts"} component={ContactList}/>
               <Route path={"/createpatient"} component={PatientForm}/>
             </Switch>
           </div>

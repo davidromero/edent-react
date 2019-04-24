@@ -19,7 +19,7 @@ npm start
 | /today         | Today       | Display reminders of todays work              |
 | /patients      | Patients    | List of patients medical info for each clinic |
 | /exams         | Exams       | List of patients exams for each clinic        |
-| /contacts      | Contacts    | List of contacts                              |
+| /contacts      | ContactList | List of contacts                              |
 | /createpatient | NewPatient  | Form to fill new patients information         |
 | /user          | User        | Display logged in users information           |
 | /login         | Login       | Login page                                    |

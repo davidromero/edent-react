@@ -12,6 +12,8 @@ import DetailsForm from "./forms/DetailsForm";
 import RelativesForm from "./forms/RelativesForm";
 import Confirmation from "./forms/Confirmation";
 import styles from "./styles/NewPatientStyle";
+import { connect } from "react-redux"
+import { createContact } from "../store/actions/contactActions"
 
 
 function getSteps() {
@@ -22,11 +24,8 @@ class NewPatient extends Component {
 
   state = {
     step: 0,
+    contact: {}
   };
-
-  componentDidMount(){
-
-  }
 
   handleNext = () => {
     const {step} = this.state;
@@ -38,31 +37,39 @@ class NewPatient extends Component {
     this.setState({step: step - 1})
   };
 
-  handleChange = (e) => {
-    this.setState({[e.target.name]: e.target.value});
+  handleSubmit = () => {
+    const {step} = this.state;
+    this.setState({step: step + 1});
+    this.props.createContact(this.state.contact);
   };
 
-  renderSteps = (step, values) => {
+  handleChange = (e) => {
+    this.setState({
+      contact : {...this.state.contact, [e.target.name]: e.target.value}
+    })
+  };
+
+  renderSteps = (step, contact) => {
     switch (step) {
       case 0:
         return (
           <GeneralForm nextStep={this.handleNext} handleChange={this.handleChange}
-                       values={values}/>
+                       values={contact}/>
         );
       case 1:
         return (
           <RelativesForm prevStep={this.handleBack} nextStep={this.handleNext}
-                         handleChange={this.handleChange} values={values}/>
+                         handleChange={this.handleChange} values={contact}/>
         );
       case 2:
         return (
           <DetailsForm prevStep={this.handleBack} nextStep={this.handleNext}
-            handleChange={this.handleChange} values={values}/>
+                       handleChange={this.handleChange} values={contact}/>
         );
       case 3:
         return (
-          <Confirmation prevStep={this.handleBack} nextStep={this.handleNext}
-            handleChange={this.handleChange} values={values}/>
+          <Confirmation prevStep={this.handleBack} nextStep={this.handleSubmit}
+                        handleChange={this.handleChange} values={contact}/>
         );
       default:
         return null;
@@ -72,13 +79,7 @@ class NewPatient extends Component {
   render() {
     const {classes} = this.props;
     const steps = getSteps();
-    const {step} = this.state;
-    const {first_name, last_name, age, birthday, sex, phone_number, address, location, email, visit_reason,
-      kinship, relative_name, relative_phone, relative_email,
-      cui, job, civil_status, observations, insurance, personal_doctor, alergies,} = this.state;
-    const values = {first_name, last_name, age, birthday, sex, phone_number, address, location, email, visit_reason,
-      kinship, relative_name, relative_phone, relative_email,
-      cui, job, civil_status, observations, insurance, personal_doctor, alergies,};
+    const {step, contact} = this.state;
 
     return (
       <Paper className={classes.paper} elevation={2} square={false}>
@@ -91,7 +92,7 @@ class NewPatient extends Component {
                 </Typography>
               </StepLabel>
               <StepContent>
-                {this.renderSteps(index, values)}
+                {this.renderSteps(index, contact)}
               </StepContent>
             </Step>
           ))}
@@ -100,7 +101,6 @@ class NewPatient extends Component {
           <div className={classes.resultContainer}>
             <Typography component="h1" variant="h5">El paciente ha sido ingresado</Typography>
           </div>
-          //  TODO mostrar resultado
         )}
       </Paper>
     );
@@ -111,4 +111,10 @@ NewPatient.propTypes = {
   classes: PropTypes.object,
 };
 
-export default withStyles(styles)(NewPatient);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createContact: (contact) => dispatch(createContact(contact))
+  }
+};
+
+export default connect(null, mapDispatchToProps) (withStyles(styles)(NewPatient));

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import {BrowserRouter} from "react-router-dom"
-import fire from "../../config/Firebase";
+import fire from "../../config/FirebaseConfig";
 import Home from "./Home";
 
 const theme = createMuiTheme({

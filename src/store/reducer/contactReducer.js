@@ -26,7 +26,6 @@ const contactReducer = (state = initState, action) => {
       console.log('error fetching contacts', action.error);
       break;
     default:
-      return state;
   }
   return state;
 };

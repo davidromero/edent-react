@@ -47,11 +47,11 @@ ContactList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    // contactList: state.contacts.contactList,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     contactList: state.contacts.contactList,
+//   };
+// };
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -59,4 +59,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ContactList));
+export default connect(null, mapDispatchToProps)(withStyles(styles)(ContactList));

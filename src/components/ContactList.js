@@ -21,9 +21,9 @@ class ContactList extends Component {
           </Typography>
           <div className={classes.container}>
           {
-            contactList && contactList.map((contact) => {
+            contactList && contactList.map((contact, index) => {
               return (
-                <Link to={"contact/" + contact.uid}>
+                <Link to={"contact/" + contact.uid} key={index}>
                   <Paper className={classes.itemContainer}>
                     <Typography>
                       <b>{contact.first_name + " " + contact.last_name}</b><br/>
@@ -49,8 +49,14 @@ ContactList.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    contactList: state.contacts.contactList,
+    // contactList: state.contacts.contactList,
   };
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(ContactList));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    contactList: dispatch(fetchContactList())
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ContactList));

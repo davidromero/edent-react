@@ -1,36 +1,30 @@
 const axios = require('axios');
 
+const baseURL = 'https://i7f936vxqh.execute-api.us-east-1.amazonaws.com/edent-contacts-qa';
+
 export const createContact = (contact) => {
   return (dispatch, getState) => {
-    axios.post('/contacts', {
-      firstName: 'Fred',
-      lastName: 'Flintstone'
-    })
-      .then(function (response) {
-        console.log(response);
+    axios.post(baseURL + '/contacts', contact)
+      .then(response => {
+        dispatch({type: "CREATE_CONTACT", response})
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch(error => {
+        dispatch({type: 'CREATE_CONTACT_ERROR', error})
       });
-    dispatch({type: "CREATE_CONTACT", contact})
   }
 };
 
 export const fetchContactList = () => {
   return (dispatch, getState) => {
-    // axios.get('/user?ID=12345')
-    //   .then(function (response) {
-    //     // handle success
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     // handle error
-    //     console.log(error);
-    //   })
-    //   .then(function () {
-    //     // always executed
-    //   });
-
-    dispatch({type: "FETCH_CONTACTS"})
+    axios.get(baseURL + '/contacts')
+      .then(response => {
+        dispatch({type: "FETCH_CONTACTS", response})
+      })
+      .catch(error => {
+        dispatch({type: "FETCH_CONTACTS_ERROR", error})
+      })
+      .then(function () {
+        // always executed
+      });
   }
 };

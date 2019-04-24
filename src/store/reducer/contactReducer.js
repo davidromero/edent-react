@@ -20,9 +20,13 @@ const contactReducer = (state = initState, action) => {
       console.log('error creating contact', action.error);
       break;
     case 'FETCH_CONTACTS':
-      console.log('fetching contacts', action.type);
+      console.log('fetched contacts', action.response);
+      break;
+    case 'FETCH_CONTACTS_ERROR':
+      console.log('error fetching contacts', action.error);
       break;
     default:
+      return state;
   }
   return state;
 };

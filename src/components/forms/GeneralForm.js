@@ -40,7 +40,7 @@ class GeneralForm extends Component {
             <FormControlLabel value="female" control={<Radio/>} label="Mujer"/>
           </RadioGroup>
           <FormControl className={classes.selectControl}>
-            <InputLabel htmlFor="location-helper">Clínica</InputLabel>
+            <InputLabel htmlFor="location-helper">Clínica *</InputLabel>
             <Select className={classes.selectEmpty} value={values.location}
                     onChange={handleChange} input={<Input name="location" id="location-helper"/>}>
               <MenuItem value="Chiquimula">Chiquimula</MenuItem>

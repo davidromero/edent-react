@@ -1,14 +1,5 @@
 const initState = {
-  contactList: [
-    { uid: "0001", first_name: "First Name", last_name: "Last Name", sex: "male", phone_number: "01234567",
-      email: "email@mail.com", birthday: "1995-02-08", location: "Guatemala", address: "Guatemala", visit_reason: "Ortodoncia"},
-    { uid: "0002", first_name: "First Name", last_name: "Last Name", sex: "male", phone_number: "01234567",
-      email: "email@mail.com", birthday: "1995-02-08", location: "Jocotan", address: "Guatemala", visit_reason: "Odontología"},
-    { uid: "0004", first_name: "First Name", last_name: "Last Name", sex: "male", phone_number: "01234567",
-      email: "email@mail.com", birthday: "1995-02-08", location: "Chiquimula", address: "Guatemala", visit_reason: "Odontología"},
-    { uid: "0003", first_name: "First Name", last_name: "Last Name", sex: "male", phone_number: "01234567",
-      email: "email@mail.com", birthday: "1995-02-08", location: "Amatitlan", address: "Guatemala", visit_reason: "Ortodoncia"},
-  ]
+  contactList: [],
 };
 
 const contactReducer = (state = initState, action) => {
@@ -21,13 +12,15 @@ const contactReducer = (state = initState, action) => {
       break;
     case 'FETCH_CONTACTS':
       console.log('fetched contacts', action.response);
-      break;
+      const { payload } = action.response.data;
+      state.contactList = payload;
+      return {...state};
     case 'FETCH_CONTACTS_ERROR':
       console.log('error fetching contacts', action.error);
       break;
     default:
   }
-  return state;
+  return {...state};
 };
 
 export default contactReducer;

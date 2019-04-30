@@ -10,6 +10,10 @@ import {fetchContactList} from "../store/actions/contactActions"
 
 class ContactList extends Component {
 
+  componentDidMount() {
+    this.props.dispatch(fetchContactList());
+  }
+
   render() {
     const {classes, contactList} = this.props;
 
@@ -47,16 +51,10 @@ ContactList.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-// const mapStateToProps = (state) => {
-//   return {
-//     contactList: state.contacts.contactList,
-//   };
-// };
-
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
-    contactList: dispatch(fetchContactList())
-  }
+    contactList: state.contacts.contactList,
+  };
 };
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(ContactList));
+export default connect(mapStateToProps)(withStyles(styles)(ContactList));

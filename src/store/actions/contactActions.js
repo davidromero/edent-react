@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 const baseURL = 'https://i7f936vxqh.execute-api.us-east-1.amazonaws.com/edent-contacts-qa';
+// const baseURL = 'http://localhost:8000';
 
 export const createContact = (contact) => {
   return (dispatch, getState) => {
@@ -15,7 +16,7 @@ export const createContact = (contact) => {
 };
 
 export const fetchContactList = () => {
-  return (dispatch, getState) => {
+  return (dispatch, action) => {
     axios.get(baseURL + '/contacts')
       .then(response => {
         dispatch({type: "FETCH_CONTACTS", response})
@@ -23,8 +24,5 @@ export const fetchContactList = () => {
       .catch(error => {
         dispatch({type: "FETCH_CONTACTS_ERROR", error})
       })
-      .then(function () {
-        // always executed
-      });
   }
 };

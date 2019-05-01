@@ -1,5 +1,4 @@
 const initState = {
-  contactList: [],
 };
 
 const contactReducer = (state = initState, action) => {
@@ -14,7 +13,7 @@ const contactReducer = (state = initState, action) => {
       console.log('fetched contacts', action.response);
       const { payload } = action.response.data;
       state.contactList = payload;
-      return {...state};
+      break;
     case 'FETCH_CONTACTS_ERROR':
       console.log('error fetching contacts', action.error);
       break;

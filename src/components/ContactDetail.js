@@ -5,7 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import styles from "./styles/ContactDetailStyle";
-import {fetchContactList} from "../store/actions/contactActions"
+// import {fetchContactList} from "../store/actions/contactActions"
 import {connect} from "react-redux";
 
 class ContactDetail extends Component {

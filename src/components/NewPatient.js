@@ -14,7 +14,6 @@ import Confirmation from "./forms/Confirmation";
 import styles from "./styles/NewPatientStyle";
 import { connect } from "react-redux"
 import { createContact } from "../store/actions/contactActions"
-import {Link} from "react-router-dom";
 
 
 function getSteps() {

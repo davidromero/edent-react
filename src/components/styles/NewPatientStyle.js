@@ -1,12 +1,19 @@
 export default (theme) => ({
+  base: {
+    display: "flex",
+    flexFlow: "row wrap",
+  },
   paper: {
-    width: "100%",
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+    margin: theme.spacing.unit,
     minWidth: "250px",
-    padding: "2px",
-    textAlign: "center",
+    width: "100%",
   },
   stepper: {
-    padding: "12px",
+    padding: "2px",
+    textAlign: "center",
   },
   resultContainer: {
     padding: theme.spacing.unit,

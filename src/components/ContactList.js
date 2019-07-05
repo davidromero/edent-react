@@ -34,6 +34,9 @@ class ContactList extends Component {
                       Teléfono: {contact.phone_number}<br/>
                       Clínica: {contact.location}
                     </Typography>
+                    <Typography align="right" color="textSecondary">
+                      Última modificación: {contact.modified_timestamp}
+                    </Typography>
                   </Paper>
                 </Link>
               );

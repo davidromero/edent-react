@@ -9,6 +9,7 @@ import Today from "../Today";
 import Patients from "../Patients";
 import Exams from "../Exams";
 import PatientForm from "../NewPatient";
+import ContactDetail from "../ContactDetail";
 import {Route, Switch} from "react-router-dom";
 
 class Home extends React.Component {
@@ -39,6 +40,7 @@ class Home extends React.Component {
               <Route path={"/patients"} component={Patients}/>
               <Route path={"/exams"} component={Exams}/>
               <Route path={"/contacts"} component={ContactList}/>
+              <Route path={"/contact/:uid"} component={ContactDetail} />
               <Route path={"/createpatient"} component={PatientForm}/>
             </Switch>
           </div>

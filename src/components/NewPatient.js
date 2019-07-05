@@ -14,6 +14,7 @@ import Confirmation from "./forms/Confirmation";
 import styles from "./styles/NewPatientStyle";
 import { connect } from "react-redux"
 import { createContact } from "../store/actions/contactActions"
+import {Link} from "react-router-dom";
 
 
 function getSteps() {
@@ -82,27 +83,33 @@ class NewPatient extends Component {
     const {step, contact} = this.state;
 
     return (
-      <Paper className={classes.paper} elevation={2} square={false}>
-        <Stepper className={classes.stepper} activeStep={step} orientation="vertical">
-          {steps.map((label, index) => (
-            <Step key={label}>
-              <StepLabel>
-                <Typography component="h1" variant="h6">
-                  {label}
-                </Typography>
-              </StepLabel>
-              <StepContent>
-                {this.renderSteps(index, contact)}
-              </StepContent>
-            </Step>
-          ))}
-        </Stepper>
-        {step === steps.length && (
-          <div className={classes.resultContainer}>
-            <Typography component="h1" variant="h5">El paciente ha sido ingresado</Typography>
-          </div>
-        )}
-      </Paper>
+      <div className={classes.base}>
+        <Paper className={classes.paper} elevation={2} square={false}>
+          <Typography component="h2" variant="h5">
+            Nuevo Paciente
+          </Typography>
+          <Stepper className={classes.stepper} activeStep={step} orientation="vertical">
+            {steps.map((label, index) => (
+              <Step key={label}>
+                <StepLabel>
+                  <Typography component="h1" variant="h6">
+                    {label}
+                  </Typography>
+                </StepLabel>
+                <StepContent>
+                  {this.renderSteps(index, contact)}
+                </StepContent>
+              </Step>
+            ))}
+          </Stepper>
+          {step === steps.length && (
+            <div className={classes.resultContainer}>
+              <Typography component="h1" variant="h5">El paciente ha sido ingresado</Typography>
+            </div>
+          )}
+        </Paper>
+      </div>
+
     );
   }
 }

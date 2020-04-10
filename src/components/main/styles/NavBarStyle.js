@@ -1,105 +1,64 @@
-import {fade} from "@material-ui/core/styles/colorManipulator";
 
-const drawerWidth = 210;
+const drawerWidth = 240;
 
 export default (theme) => ({
-  appBarRoot: {
-    display: "flex",
+  root: {
+    display: 'flex',
   },
   appBar: {
-    position: "absolute",
     zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(["width", "margin"], {
+    transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
-  toolbar: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  toolbarIcon: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    padding: "0 8px",
-    ...theme.mixins.toolbar,
-  },
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
+    transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   menuButton: {
-    color: "inherit",
-    marginLeft: 12,
     marginRight: 36,
   },
-  menuButtonHidden: {
-    display: "none",
-    alignLeft: "true"
+  hide: {
+    display: 'none',
   },
-  drawerPaper: {
-    position: "relative",
-    whiteSpace: "nowrap",
+  drawer: {
     width: drawerWidth,
-    transition: theme.transitions.create("width", {
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+  },
+  drawerOpen: {
+    width: drawerWidth,
+    transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  drawerPaperClose: {
-    overflowX: "hidden",
-    transition: theme.transitions.create("width", {
+  drawerClose: {
+    transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing * 7,
-    [theme.breakpoints.up("sm")]: {
-      width: theme.spacing * 9,
+    overflowX: 'hidden',
+    width: theme.spacing.unit * 7 + 1,
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing.unit * 9 + 1,
     },
   },
-  searchBar: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing * 2,
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing * 3,
-      width: "50%",
-    },
+  toolbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: theme.spacing.unit * 1,
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
   },
-  searchIcon: {
-    width: theme.spacing * 9,
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing.unit * 3,
   },
-  inputRoot: {
-    color: "inherit",
-    width: "100%",
-  },
-  inputInput: {
-    paddingTop: theme.spacing,
-    paddingRight: theme.spacing,
-    paddingBottom: theme.spacing,
-    paddingLeft: theme.spacing * 10,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "100%",
-    },
-  }
 });

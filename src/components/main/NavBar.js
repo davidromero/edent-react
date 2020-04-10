@@ -1,127 +1,97 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import {withStyles} from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import SearchIcon from "@material-ui/icons/Search";
-import InputBase from "@material-ui/core/InputBase";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import MoreIcon from "@material-ui/icons/MoreVert";
+import React from 'react';
+import clsx from 'clsx';
+import {withStyles, useTheme} from "@material-ui/core/styles";
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
 import {mainListItems, secondaryListItems} from "./DrawerLinks";
 import styles from "./styles/NavBarStyle";
 
-const Link = require("react-router-dom").Link;
 
-class NavBar extends React.Component {
-  state = {
-    open: false,
-    anchorEl: null,
+const NavBar = (props) => {
+  const {classes}= props;
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
   };
 
-  handleDrawerOpen = () => {
-    this.setState({open: true});
+  const handleDrawerClose = () => {
+    setOpen(false);
   };
 
-  handleDrawerClose = () => {
-    this.setState({open: false});
-  };
-
-  handleMenu = (event) => {
-    this.setState({anchorEl: event.currentTarget});
-  };
-
-  handleClose = () => {
-    this.setState({anchorEl: null});
-  };
-
-  render() {
-    const {classes} = this.props;
-    const {anchorEl} = this.state;
-    const open = Boolean(anchorEl);
-
-    return (
-      <div className={classes.appBarRoot}>
-        <AppBar
-          className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
-          <Toolbar disableGutters={!this.state.open} className={classes.toolbar}>
-            <IconButton
-              onClick={this.handleDrawerOpen}
-              className={classNames(
-                classes.menuButton,
-                this.state.open && classes.menuButtonHidden,)}>
-              <MenuIcon/>
-            </IconButton>
-            <div className={classes.searchBar}>
-              <div className={classes.searchIcon}>
-                <SearchIcon/>
-              </div>
-              <InputBase
-                placeholder="Buscar"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}/>
-            </div>
-
-            <IconButton
-              aria-owns={open ? "menu-appbar" : null}
-              aria-haspopup="true"
-              onClick={this.handleMenu}
-              color="inherit"
-              className="accountButton">
-              <MoreIcon/>
-            </IconButton>
+  return (
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open,
+        })}
+      >
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            className={clsx(classes.menuButton, {
+              [classes.hide]: open,
+            })}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap>
+            Mini variant drawer
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <PermanentDrawer classes={classes} open={open} onClick={handleDrawerClose}/>
+    </div>
+  );
+};
 
 
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{vertical: "top", horizontal: "right",}}
-              transformOrigin={{vertical: "top", horizontal: "right",}}
-              open={open}
-              onClose={this.handleClose}>
-              <MenuItem onClick={this.handleClose} component={Link} to="/user">Mi Usuario</MenuItem>
-              <MenuItem onClick={this.handleClose} component={Link} to="/logout">Cerrar Sesión</MenuItem>
-            </Menu>
-          </Toolbar>
-        </AppBar>
+const PermanentDrawer = (props) => {
+  const {classes, open, onClick} = props;
 
-        <Drawer
-          variant="permanent"
-          classes={{
-            paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
-          }}
-          open={this.state.open}>
-          <div className={classes.toolbarIcon}>
-            <IconButton onClick={this.handleDrawerClose}>
-              <ChevronLeftIcon/>
-            </IconButton>
-          </div>
-          <Divider/>
-          <List>{mainListItems}</List>
-          <Divider/>
-          <List>{secondaryListItems}</List>
-        </Drawer>
-
+  return (
+    <Drawer
+      variant="permanent"
+      className={clsx(classes.drawer, {
+        [classes.drawerOpen]: open,
+        [classes.drawerClose]: !open,
+      })}
+      classes={{
+        paper: clsx({
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open,
+        }),
+      }}>
+      <div className={classes.toolbar}>
+        <IconButton onClick={onClick}>
+          <ChevronLeftIcon />
+        </IconButton>
       </div>
-    );
-  }
-}
-
-NavBar.propTypes = {
-  classes: PropTypes.object.isRequired,
+      <Divider/>
+      <List>{mainListItems}</List>
+      <Divider/>
+      <List>{secondaryListItems}</List>
+    </Drawer>
+  )
 };
 
 export default withStyles(styles)(NavBar);
-
-
-
-

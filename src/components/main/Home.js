@@ -1,7 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/core/styles";
-import styles from "./styles/HomeStyle";
+import styles from "./styles/PagesStyles.css";
 import NavBar from "./NavBar";
 import Dashboard from "../Dashboard";
 import ContactList from "../ContactList";
@@ -10,30 +9,15 @@ import Patients from "../Patients";
 import Exams from "../Exams";
 import PatientForm from "../NewPatient";
 import ContactDetail from "../ContactDetail";
-import {Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-class Home extends React.Component {
-  state = {
-    open: true,
-  };
-
-  handleDrawerOpen = () => {
-    this.setState({open: true});
-  };
-
-  handleDrawerClose = () => {
-    this.setState({open: false});
-  };
-
-  render() {
-    const {classes} = this.props;
-
-    return (
-      <div className={classes.homeRoot}>
+const Home = () => {
+  return (
+    <BrowserRouter>
+      <div style={{display: "flex"} }>
         <NavBar/>
-        <main className={classes.homeFrame}>
-          <div className={classes.appBarSpacer}/>
-          <div className={classes.homeContent}>
+        <main className={"homeFrame"}>
+          <div className={"homeContent"}>
             <Switch>
               <Route exact path={"/"} component={Dashboard}/>
               <Route path={"/today"} component={Today}/>
@@ -46,12 +30,9 @@ class Home extends React.Component {
           </div>
         </main>
       </div>
-    );
-  }
-}
-
-Home.propTypes = {
-  classes: PropTypes.object.isRequired,
+    </BrowserRouter>
+  );
 };
+
 
 export default withStyles(styles)(Home);

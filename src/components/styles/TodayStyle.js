@@ -4,10 +4,9 @@ export default (theme) => ({
     flexFlow: "row wrap",
   },
   paper:{
-    ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
-    margin: theme.spacing.unit,
+    paddingTop: theme.spacing * 2,
+    paddingBottom: theme.spacing * 2,
+    margin: theme.spacing,
     minWidth: "325px",
   },
 });

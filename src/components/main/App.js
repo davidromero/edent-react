@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import {BrowserRouter} from "react-router-dom"
-import fire from "../../config/FirebaseConfig";
 import Home from "./Home";
 
 const theme = createMuiTheme({
@@ -25,14 +24,6 @@ class App extends Component {
   }
 
   authListener() {
-    fire.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({user});
-      }
-      else {
-        this.setState({user: null});
-      }
-    });
   }
 
   render() {

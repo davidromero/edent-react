@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Stepper from "@material-ui/core/Stepper";
@@ -12,8 +11,6 @@ import DetailsForm from "./forms/DetailsForm";
 import RelativesForm from "./forms/RelativesForm";
 import Confirmation from "./forms/Confirmation";
 import styles from "./styles/NewPatientStyle";
-import { connect } from "react-redux"
-import { createContact } from "../store/actions/contactActions"
 
 
 function getSteps() {
@@ -113,14 +110,5 @@ class NewPatient extends Component {
   }
 }
 
-NewPatient.propTypes = {
-  classes: PropTypes.object,
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    createContact: (contact) => dispatch(createContact(contact))
-  }
-};
-
-export default connect(null, mapDispatchToProps) (withStyles(styles)(NewPatient));
+export default withStyles(styles(NewPatient));

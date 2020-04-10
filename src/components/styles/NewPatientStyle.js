@@ -4,10 +4,9 @@ export default (theme) => ({
     flexFlow: "row wrap",
   },
   paper: {
-    ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
-    margin: theme.spacing.unit,
+    paddingTop: theme.spacing * 2,
+    paddingBottom: theme.spacing * 2,
+    margin: theme.spacing,
     minWidth: "250px",
     width: "100%",
   },
@@ -16,6 +15,6 @@ export default (theme) => ({
     textAlign: "center",
   },
   resultContainer: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing,
   },
 });

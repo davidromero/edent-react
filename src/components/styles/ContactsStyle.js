@@ -4,10 +4,9 @@ export default (theme) => ({
     flexFlow: "row wrap",
   },
   paper:{
-    ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
-    margin: theme.spacing.unit,
+    paddingTop: theme.spacing * 2,
+    paddingBottom: theme.spacing * 2,
+    margin: theme.spacing,
     minWidth: "250px",
     width: "100%",
   },
@@ -18,9 +17,9 @@ export default (theme) => ({
     overflow: 'hidden',
   },
   itemContainer:{
-    margin: theme.spacing.unit,
+    margin: theme.spacing,
     display: "inline-block",
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing * 2,
     minWidth: "220px",
   },
 });

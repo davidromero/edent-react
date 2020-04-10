@@ -5,7 +5,7 @@ export default (theme) => ({
   appBarSpacer: theme.mixins.toolbar,
   homeFrame: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing * 2,
     height: "100vh",
     overflow: "auto",
   },

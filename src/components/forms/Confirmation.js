@@ -82,13 +82,13 @@ const styles = theme => ({
     overflow: 'hidden',
   },
   paper: {
-    margin: theme.spacing.unit * 0.5,
+    margin: theme.spacing * 0.5,
     minWidth: "240px",
     display: "inline-block",
-    padding: theme.spacing.unit ,
+    padding: theme.spacing ,
   },
   button: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing * 2,
   },
 });
 

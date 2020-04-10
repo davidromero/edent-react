@@ -9,7 +9,6 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import styles from "./styles/LoginStyle";
 import withStyles from "@material-ui/core/es/styles/withStyles";
-import firebase from "../config/FirebaseConfig";
 import logo from "../assets/img/edent-logo.png";
 
 class Login extends Component {
@@ -21,12 +20,6 @@ class Login extends Component {
 
   login(e) {
     e.preventDefault();
-    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-      .catch(function (error) {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // console.error(errorMessage);
-      });
   }
 
   handleChange = (e) => {

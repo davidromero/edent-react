@@ -48,7 +48,7 @@ const styles = theme => ({
   avatar: {
     height: "150px",
     width: "150px",
-    margin: theme.spacing.unit,
+    margin: theme.spacing,
   },
   input: {
     display: 'none',

@@ -1,18 +1,11 @@
 import React, {Component} from "react";
-import PropTypes from "prop-types";
 import {withStyles} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import styles from "./styles/ContactsStyle";
 import { Link } from "react-router-dom"
-import {connect} from "react-redux";
-import {fetchContactList} from "../store/actions/contactActions"
 
 class ContactList extends Component {
-
-  componentDidMount() {
-    this.props.dispatch(fetchContactList());
-  }
 
   render() {
     const {classes, contactList} = this.props;
@@ -50,14 +43,4 @@ class ContactList extends Component {
   }
 }
 
-ContactList.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => {
-  return {
-    contactList: state.contacts.contactList,
-  };
-};
-
-export default connect(mapStateToProps)(withStyles(styles)(ContactList));
+export default withStyles(styles)(ContactList);

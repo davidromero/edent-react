@@ -1,3 +1,4 @@
+import { fade } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
@@ -54,11 +55,43 @@ export default (theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: theme.spacing.unit * 1,
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing.unit * 3,
+    justifyContent: "center",
   },
+
+  searchBar: {
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: "rgba(206,193,205,0.41)",
+    marginRight: theme.spacing.unit * 2,
+    marginLeft: 0,
+    width: "50%",
+  },
+  searchIcon: {
+    width: theme.spacing.unit * 9,
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  inputRoot: {
+    color: "inherit",
+    width: "100%",
+  },
+  inputInput: {
+    paddingTop: theme.spacing.unit,
+    paddingRight: theme.spacing.unit,
+    paddingBottom: theme.spacing.unit,
+    paddingLeft: theme.spacing.unit * 10,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "100%",
+    },
+  }
 });

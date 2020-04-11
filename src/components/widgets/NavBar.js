@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 import clsx from 'clsx';
 import {withStyles} from "@material-ui/core/styles/index";
-import {MenuItem, Menu, List, Divider, CssBaseline, IconButton, Toolbar, AppBar, Drawer} from "@material-ui/core";
-import SearchIcon from "@material-ui/icons/Search";
-import InputBase from "@material-ui/core/InputBase";
-import {Link} from "react-router-dom";
-import {Menu as MenuIcon, ChevronLeft, MoreVert} from '@material-ui/icons';
+import {MenuItem, Menu, List, Divider, CssBaseline, IconButton, Toolbar, AppBar, Drawer, InputBase} from "@material-ui/core";
+import {Menu as MenuIcon, ChevronLeft, MoreVert, Search} from '@material-ui/icons';
 import {mainListItems, secondaryListItems} from "../main/DrawerLinks";
 import styles from "../main/styles/NavBarStyle";
+import {Link} from "react-router-dom";
 
 
 const NavBar = (props) => {
@@ -19,14 +17,13 @@ const NavBar = (props) => {
   };
 
   return (
-    <div className={classes.root}>
+    <div style={{display: 'flex'}}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
+      <AppBar position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: openDrawer,
         })}>
-        <Toolbar>
+        <Toolbar style={{paddingLeft: "5px"} }>
 
           <IconButton
             color="inherit"
@@ -51,6 +48,7 @@ const NavBar = (props) => {
   );
 };
 
+
 const SearchBar = (props) => {
   const {classes} = props;
 
@@ -58,7 +56,7 @@ const SearchBar = (props) => {
     <div className={classes.content} >
       <div className={classes.searchBar}>
         <div className={classes.searchIcon}>
-          <SearchIcon />
+          <Search />
         </div>
         <InputBase
           placeholder="Buscar…"
@@ -108,7 +106,6 @@ const SideMenu = () => {
     </>
   )
 };
-
 
 const PermanentDrawer = (props) => {
   const {classes, open, onClick} = props;

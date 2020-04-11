@@ -1,11 +1,6 @@
-import { fade } from '@material-ui/core/styles';
-
 const drawerWidth = 240;
 
 export default (theme) => ({
-  root: {
-    display: 'flex',
-  },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
@@ -54,7 +49,7 @@ export default (theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: theme.spacing.unit * 1,
+    paddingLeft: theme.spacing.unit * 1,
     ...theme.mixins.toolbar,
   },
   content: {

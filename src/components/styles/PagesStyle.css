@@ -1,0 +1,27 @@
+/*General*/
+.pageContainer {
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.simplePaper {
+  width: 30%;
+  padding: 8px;
+  margin: 4px;
+  min-width: 275px;
+}
+.simplePaper h2{
+  margin: 5px;
+}
+.simplePaper h3{
+  margin: 12px 5px;
+}
+.simplePaper p{
+  margin: 12px 5px;
+}
+/*Today*/
+.calendar{
+  height: 90vh;
+  width: 100%;
+}

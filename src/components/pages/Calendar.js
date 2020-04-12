@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/PagesStyle.css";
 
-const Today = (props) => {
+const Calendar = (props) => {
 
   return (
     <div className={"calendar"}>
@@ -10,4 +10,4 @@ const Today = (props) => {
   )
 };
 
-export {Today};
+export {Calendar};

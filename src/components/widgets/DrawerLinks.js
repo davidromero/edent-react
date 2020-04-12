@@ -1,45 +1,31 @@
 import React from "react";
-import ListItem from "@material-ui/core/ListItem/index";
-import ListItemIcon from "@material-ui/core/ListItemIcon/index";
-import ListItemText from "@material-ui/core/ListItemText/index";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import PeopleIcon from "@material-ui/icons/People";
-import TodayIcon from "@material-ui/icons/Today";
-import ContactsIcon from "@material-ui/icons/Contacts";
-import AssignmentIcon from "@material-ui/icons/Assignment";
-import CreateIcon from "@material-ui/icons/Create";
-
-const Link = require("react-router-dom").Link;
+import {ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
+import {Dashboard, People, Today, Contacts, Create} from "@material-ui/icons";
+import {Link} from "react-router-dom";
 
 export const mainListItems = (
   <div>
     <ListItem button component={Link} to="/">
       <ListItemIcon>
-        <DashboardIcon />
+        <Dashboard />
       </ListItemIcon>
       <ListItemText primary="Inicio" />
     </ListItem>
-    <ListItem button component={Link} to="/today">
+    <ListItem button component={Link} to="/calendar">
       <ListItemIcon>
-        <TodayIcon />
+        <Today />
       </ListItemIcon>
-      <ListItemText primary="Hoy" />
+      <ListItemText primary="Calendario" />
     </ListItem>
     <ListItem button component={Link} to="/patients">
       <ListItemIcon>
-        <PeopleIcon />
+        <People />
       </ListItemIcon>
       <ListItemText primary="Pacientes" />
     </ListItem>
-    <ListItem button component={Link} to="/exams">
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Exámenes" />
-    </ListItem>
     <ListItem button component={Link} to="/contacts">
       <ListItemIcon>
-        <ContactsIcon />
+        <Contacts />
       </ListItemIcon>
       <ListItemText primary="Contactos" />
     </ListItem>
@@ -50,9 +36,9 @@ export const secondaryListItems = (
   <div>
     <ListItem button component={Link} to="/createpatient">
       <ListItemIcon>
-        <CreateIcon />
+        <Create />
       </ListItemIcon>
-      <ListItemText primary="Nuevo Paciente" />
+      <ListItemText primary="Nuevo Paciente"/>
     </ListItem>
   </div>
 );

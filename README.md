@@ -16,7 +16,7 @@ npm start
 | Path           | Component   | Description                                   |
 |----------------|-------------|-----------------------------------------------|
 | /              | Dashboard   | Dashboard showing multiple KPIs and charts    |
-| /today         | Today       | Display reminders of todays work              |
+| /today         | Calendar       | Display reminders of todays work              |
 | /patients      | Patients    | List of patients medical info for each clinic |
 | /exams         | Exams       | List of patients exams for each clinic        |
 | /contacts      | ContactList | List of contacts                              |

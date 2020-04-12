@@ -1,17 +1,12 @@
 import React, {useState} from "react";
-import Paper from "@material-ui/core/Paper/index";
-import Stepper from "@material-ui/core/Stepper/index";
-import Step from "@material-ui/core/Step/index";
-import StepLabel from "@material-ui/core/StepLabel/index";
-import StepContent from "@material-ui/core/StepContent/index";
-import GeneralForm from "../forms/GeneralForm";
+import {Paper, Stepper, Step, StepLabel, StepContent} from "@material-ui/core";
+import {GeneralForm} from "../forms/GeneralForm";
 import DetailsForm from "../forms/DetailsForm";
 import RelativesForm from "../forms/RelativesForm";
 import Confirmation from "../forms/Confirmation";
 import "../styles/PagesStyle.css";
 
 const NewPatient = (props) => {
-  const {createPatient} = props;
 
   const [step, setStep] = useState(0);
   const [patient, setPatient] = useState({});
@@ -26,35 +21,23 @@ const NewPatient = (props) => {
 
   const handleSubmit = () => {
     setStep(step + 1);
-    createPatient(patient);
+    // createPatient(patient);
   };
 
   const handleChange = (e) => {
     setPatient({...patient, [e.target.name]: e.target.value})
   };
 
-  const renderSteps = (step, contact) => {
+  const renderSteps = (step, patient) => {
     switch (step) {
       case 0:
-        return (
-          <GeneralForm nextStep={handleNext} handleChange={handleChange}
-                       values={patient}/>
-        );
+        return <GeneralForm nextStep={handleNext} handleChange={handleChange} patient={patient}/>;
       case 1:
-        return (
-          <RelativesForm prevStep={handleBack} nextStep={handleNext}
-                         handleChange={handleChange} values={patient}/>
-        );
+        // return <RelativesForm prevStep={handleBack} nextStep={handleNext} handleChange={handleChange} values={patient}/>;
       case 2:
-        return (
-          <DetailsForm prevStep={handleBack} nextStep={handleNext}
-                       handleChange={handleChange} values={patient}/>
-        );
+        // return <DetailsForm prevStep={handleBack} nextStep={handleNext} handleChange={handleChange} values={patient}/>;
       case 3:
-        return (
-          <Confirmation prevStep={handleBack} nextStep={handleSubmit}
-                        handleChange={handleChange} values={patient}/>
-        );
+        // return <Confirmation prevStep={handleBack} nextStep={handleSubmit} handleChange={handleChange} values={patient}/>;
       default:
         return null;
     }
@@ -68,7 +51,7 @@ const NewPatient = (props) => {
         <h2>Nuevo Paciente</h2>
         <Stepper className={"stepper"} activeStep={step} orientation="vertical">
           {steps.map((label, index) => (
-            <Step key={label}>
+            <Step key={index}>
               <StepLabel>
                 <h3>{label}</h3>
               </StepLabel>

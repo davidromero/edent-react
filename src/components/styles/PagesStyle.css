@@ -33,6 +33,17 @@
   flex-wrap: wrap;
 }
 
+/*Forms*/
+.formContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+
 .simplePaper {
   width: 32%;
   min-width: 275px;
@@ -64,4 +75,7 @@
 .widePaper p{
   margin: 12px 5px;
 }
+
+
+
 

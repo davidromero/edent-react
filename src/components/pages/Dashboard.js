@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import Paper from "@material-ui/core/Paper/index";
 import "../styles/PagesStyle.css";
 
@@ -25,7 +25,7 @@ const Dashboard = (props) => {
       </Paper>
     </div>
   )
-}
+};
 
 
 export {Dashboard};

@@ -1,75 +1,52 @@
-import React, {Component} from "react";
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/core/styles";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import Radio from "@material-ui/core/Radio";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import styles from "./styles/FormsStyle";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import Input from "@material-ui/core/Input";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
+import React from "react";
+import {RadioGroup, Radio, FormControlLabel, TextField, Button, FormHelperText,
+  Select, Input, MenuItem, FormControl, InputLabel} from "@material-ui/core";
+import "../styles/PagesStyle.css"
 
-class GeneralForm extends Component {
+const GeneralForm = (props) => {
+  const {patient, handleChange, nextStep} = props;
 
-  continue = (e) => {
-    e.preventDefault();
-    this.props.nextStep();
-  };
+  return (
+    <div>
+      <div className={"formContainer"}>
+        <TextField style={{margin: "8px", width: "180px"}} label="Nombres" type="text" name={"first_name"}
+                   required onChange={handleChange} value={patient.first_name}/>
+        <TextField style={{margin: "8px", width: "180px"}} label="Apellidos" type="text" name={"last_name"}
+                   required onChange={handleChange} value={patient.last_name}/>
+        <TextField style={{margin: "8px", width: "180px"}} label="Fecha de Nacimiento" name={"birthday"}
+                   defaultValue="2000-12-31" type="date" required onChange={handleChange} value={patient.birthday}/>
+        <FormControl style={{margin: "8px", width: "180px"}} >
+          <InputLabel id="location">Clínica *</InputLabel>
+          <Select labelId={"location-label"} className={"selectEmpty"} value={patient.location ? patient.location : ""}
+                  onChange={handleChange} input={<Input name={"location"}/>}>
+            <MenuItem value={"Chiquimula"}>Chiquimula</MenuItem>
+            <MenuItem value={"Jocotán"}>Jocotán</MenuItem>
+            <MenuItem value={"Amatitlán"}>Amatitlán</MenuItem>
+            <MenuItem value={"Guatemala"}>Guatemala</MenuItem>
+          </Select>
+        </FormControl>
 
-  render() {
-    const {classes, values, handleChange} = this.props;
-
-    return (
-      <div>
-        <div>
-          <TextField name="first_name" label="Nombres" type="text" required
-                     className={classes.textField} onChange={handleChange} value={values.first_name}/>
-          <TextField name="last_name" label="Apellidos" type="text" required
-                     className={classes.textField} onChange={handleChange} value={values.last_name}/>
-          <TextField name="birthday" label="Fecha de Nacimiento MM/DD/AAAA" defaultValue="2000-12-31" required
-                     className={classes.datePicker} type="date" onChange={handleChange} value={values.birthday}
-                     InputLabelProps={{shrink: true,}}/>
-          <RadioGroup className={classes.genderGroup} onChange={handleChange} name="sex" value={values.sex}>
-            <FormHelperText id="component-helper-text">Sexo *</FormHelperText>
-            <FormControlLabel value="male" control={<Radio/>} label="Hombre"/>
-            <FormControlLabel value="female" control={<Radio/>} label="Mujer"/>
-          </RadioGroup>
-          <FormControl className={classes.selectControl}>
-            <InputLabel htmlFor="location-helper">Clínica *</InputLabel>
-            <Select className={classes.selectEmpty} value={values.location}
-                    onChange={handleChange} input={<Input name="location" id="location-helper"/>}>
-              <MenuItem value="Chiquimula">Chiquimula</MenuItem>
-              <MenuItem value={"Jocotán"}>Jocotán</MenuItem>
-              <MenuItem value={"Amatitlán"}>Amatitlán</MenuItem>
-              <MenuItem value={"Guatemala"}>Guatemala</MenuItem>
-            </Select>
-          </FormControl>
-          <br/>
-          <TextField name="phone_number" label="Número Telefónico" type="number"
-                     className={classes.textField} onChange={handleChange} value={values.phone_number}/>
-          <TextField name="email" label="Correo Electrónico" type="email"
-                     className={classes.textField} onChange={handleChange} value={values.email}/>
-          <TextField name="address" label="Dirección" type="text"
-                     className={classes.textField} onChange={handleChange} value={values.address}/>
-          <TextField name="visit_reason" label="Motivo de Visita" type="text" multiline={true}
-                     className={classes.textField} onChange={handleChange} value={values.visit_reason}/>
-        </div>
-
-        <Button className={classes.button} onClick={this.continue} variant="contained" color="primary">
-          Siguiente
-        </Button>
+        <RadioGroup style={{display: "inline-block", marginTop: "8px"}} onChange={handleChange} name="sex" value={patient.sex}>
+          <FormHelperText style={{margin: "0"}}>Sexo *</FormHelperText>
+          <FormControlLabel value="male" control={<Radio/>} label="Hombre"/>
+          <FormControlLabel value="female" control={<Radio/>} label="Mujer"/>
+        </RadioGroup>
+        <TextField style={{margin: "8px", width: "180px"}} name="phone_number"
+                   label="Número Telefónico" type="number" onChange={handleChange} value={patient.phone_number}/>
+        <TextField style={{margin: "8px", width: "180px"}} name="email"
+                   label="Correo Electrónico" type="email" onChange={handleChange} value={patient.email}/>
+        <TextField style={{margin: "8px", width: "180px"}} name="address"
+                   label="Dirección" type="text" onChange={handleChange} value={patient.address}/>
+        <TextField style={{margin: "8px", width: "180px"}} name="visit_reason"
+                   label="Motivo de Visita" type="text" multiline={true} onChange={handleChange} value={patient.visit_reason}/>
       </div>
-    );
-  }
-}
 
-GeneralForm.propTypes = {
-  classes: PropTypes.object.isRequired,
+      <Button className={"button"} onClick={nextStep} variant="contained" color="primary">
+        Siguiente
+      </Button>
+    </div>
+  )
 };
 
-export default withStyles(styles)(GeneralForm);
+
+export {GeneralForm};

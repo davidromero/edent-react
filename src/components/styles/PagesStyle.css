@@ -1,3 +1,30 @@
+/*Home*/
+.homeFrame {
+  flex-grow: 1;
+  padding: 10px;
+  height: 100vh;
+  overflow: auto;
+}
+.homeContent {
+  display: flex;
+  margin-top: 65px;
+  flex-flow: column wrap;
+}
+
+/*Today*/
+.calendar{
+  height: 90vh;
+  width: 100%;
+}
+
+/*Contacts*/
+.contactContainer {
+  min-width: 220px;
+  margin: 2px;
+  display: inline-block;
+  padding: 8px;
+}
+
 /*General*/
 .pageContainer {
   height: 100%;
@@ -5,11 +32,12 @@
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
 .simplePaper {
-  width: 30%;
+  width: 32%;
+  min-width: 275px;
   padding: 8px;
   margin: 4px;
-  min-width: 275px;
 }
 .simplePaper h2{
   margin: 5px;
@@ -20,8 +48,20 @@
 .simplePaper p{
   margin: 12px 5px;
 }
-/*Today*/
-.calendar{
-  height: 90vh;
+
+.widePaper {
   width: 100%;
+  padding: 8px;
+  margin: 4px;
+  min-width: 275px;
 }
+.widePaper h2{
+  margin: 5px;
+}
+.widePaper h3{
+  margin: 12px 5px;
+}
+.widePaper p{
+  margin: 12px 5px;
+}
+

@@ -1,15 +1,15 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import FormControl from "@material-ui/core/FormControl";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import styles from "./styles/LoginStyle";
+import Avatar from "@material-ui/core/Avatar/index";
+import Button from "@material-ui/core/Button/index";
+import FormControl from "@material-ui/core/FormControl/index";
+import Input from "@material-ui/core/Input/index";
+import InputLabel from "@material-ui/core/InputLabel/index";
+import Paper from "@material-ui/core/Paper/index";
+import Typography from "@material-ui/core/Typography/index";
+import styles from "../styles/LoginStyle";
 import withStyles from "@material-ui/core/es/styles/withStyles";
-import logo from "../assets/img/edent-logo.png";
+import logo from "../../assets/img/edent-logo.png";
 
 class Login extends Component {
 

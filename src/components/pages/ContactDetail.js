@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import {withStyles} from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Avatar from "@material-ui/core/Avatar";
-import Typography from "@material-ui/core/Typography";
-import styles from "./styles/ContactDetailStyle";
+import {withStyles} from "@material-ui/core/styles/index";
+import Paper from "@material-ui/core/Paper/index";
+import Avatar from "@material-ui/core/Avatar/index";
+import Typography from "@material-ui/core/Typography/index";
+import styles from "../styles/ContactDetailStyle";
 
 class ContactDetail extends Component {
 

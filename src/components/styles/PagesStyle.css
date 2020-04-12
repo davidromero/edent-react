@@ -1,0 +1,81 @@
+/*Home*/
+.homeFrame {
+  flex-grow: 1;
+  padding: 10px;
+  height: 100vh;
+  overflow: auto;
+}
+.homeContent {
+  display: flex;
+  margin-top: 65px;
+  flex-flow: column wrap;
+}
+
+/*Calendar*/
+.calendar{
+  height: 90vh;
+  width: 100%;
+}
+
+/*Contacts*/
+.contactContainer {
+  min-width: 220px;
+  margin: 2px;
+  display: inline-block;
+  padding: 8px;
+}
+
+/*General*/
+.pageContainer {
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+/*Forms*/
+.formContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+
+.simplePaper {
+  width: 32%;
+  min-width: 275px;
+  padding: 8px;
+  margin: 4px;
+}
+.simplePaper h2{
+  margin: 5px;
+}
+.simplePaper h3{
+  margin: 12px 5px;
+}
+.simplePaper p{
+  margin: 12px 5px;
+}
+
+.widePaper {
+  width: 100%;
+  padding: 8px;
+  margin: 4px;
+  min-width: 275px;
+}
+.widePaper h2{
+  margin: 5px;
+}
+.widePaper h3{
+  margin: 12px 5px;
+}
+.widePaper p{
+  margin: 12px 5px;
+}
+
+
+
+

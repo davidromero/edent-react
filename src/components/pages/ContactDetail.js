@@ -1,12 +1,9 @@
 import React, {Component} from "react";
-import PropTypes from "prop-types";
-import {withStyles} from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Avatar from "@material-ui/core/Avatar";
-import Typography from "@material-ui/core/Typography";
-import styles from "./styles/ContactDetailStyle";
-// import {fetchContactList} from "../store/actions/contactActions"
-import {connect} from "react-redux";
+import {withStyles} from "@material-ui/core/styles/index";
+import Paper from "@material-ui/core/Paper/index";
+import Avatar from "@material-ui/core/Avatar/index";
+import Typography from "@material-ui/core/Typography/index";
+import styles from "../styles/ContactDetailStyle";
 
 class ContactDetail extends Component {
 
@@ -63,16 +60,5 @@ class ContactDetail extends Component {
   }
 }
 
-ContactDetail.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
-const mapStateToProps = (state, ownProps) => {
-  const uid = ownProps.match.params.uid;
-  return {
-    contact: state.contacts.contactList.find(contact => contact.uid === uid)
-    // contact: "ye"
-  };
-};
-
-export default connect(mapStateToProps)(withStyles(styles)(ContactDetail));
+export default withStyles(styles)(ContactDetail);

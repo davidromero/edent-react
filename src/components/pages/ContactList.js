@@ -1,14 +1,24 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Paper from "@material-ui/core/Paper/index";
 import { Link } from "react-router-dom"
+import axios from 'axios/index';
 import "../styles/PagesStyle.css";
 
-const contactList = [
-  {first_name: "Aldo", last_name: "Gatica", phone_number: "31264249", location: "Guatemala", modified_timestamp: "11 Abril 2020"},
-  {first_name: "Aldo", last_name: "Gatica", phone_number: "31264249", location: "Guatemala", modified_timestamp: "11 Abril 2020"}
-  ];
 
 const ContactList = () => {
+  const [contactList, setContactList] =  useState([]);
+
+  useEffect(() => {
+    console.log("Fetching contacts...");
+    axios.get("http://localhost:8000/contacts/")
+      .then( (res) => {
+        console.log("Contacts fetched from API");
+        setContactList(res.data.payload);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }, []);
 
   return (
     <div className={"pageContainer"}>
@@ -24,7 +34,7 @@ const ContactList = () => {
                 <b>{contact.first_name + " " + contact.last_name}</b>
                 <p>
                   Teléfono: {contact.phone_number}<br/>
-                  Clínica: {contact.location}
+                  Clínica: {contact.clinic_location}
                 </p>
                 <small>Última modificación: {contact.modified_timestamp}</small>
               </Paper>

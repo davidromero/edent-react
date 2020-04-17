@@ -1,14 +1,25 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Paper from "@material-ui/core/Paper/index";
 import { Link } from "react-router-dom"
+import axios from 'axios/index';
+import {dateFormat, capitalize} from '../../utils'
 import "../styles/PagesStyle.css";
 
-const contactList = [
-  {first_name: "Aldo", last_name: "Gatica", phone_number: "31264249", location: "Guatemala", modified_timestamp: "11 Abril 2020"},
-  {first_name: "Aldo", last_name: "Gatica", phone_number: "31264249", location: "Guatemala", modified_timestamp: "11 Abril 2020"}
-  ];
 
 const ContactList = () => {
+  const [contactList, setContactList] =  useState([]);
+
+  useEffect(() => {
+    console.log("Fetching contacts...");
+    axios.get("https://9jtkflgqhe.execute-api.us-east-1.amazonaws.com/api/contacts/")
+      .then( (res) => {
+        console.log("Contacts fetched from API");
+        setContactList(res.data.payload);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }, []);
 
   return (
     <div className={"pageContainer"}>
@@ -21,12 +32,12 @@ const ContactList = () => {
           return (
             <Link to={"contact/" + contact.uid} key={index} style={{ textDecoration: 'none', color: 'inherit'}}>
               <Paper className={"simplePaper"}>
-                <b>{contact.first_name + " " + contact.last_name}</b>
                 <p>
+                  <b style={{textTransform: "capitalize", fontSize: "1.1em"}}>{contact.first_name + " " + contact.last_name}</b><br/><br/>
                   Teléfono: {contact.phone_number}<br/>
-                  Clínica: {contact.location}
+                  Clínica: {capitalize(contact.clinic_location)}<br/>
                 </p>
-                <small>Última modificación: {contact.modified_timestamp}</small>
+                <small><i>Última modificación: {dateFormat(contact.modified_timestamp)}</i></small>
               </Paper>
             </Link>
           )
@@ -35,5 +46,8 @@ const ContactList = () => {
     </div>
   )
 };
+
+
+
 
 export {ContactList};

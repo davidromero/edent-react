@@ -45,8 +45,7 @@
 
 
 .simplePaper {
-  width: 32%;
-  min-width: 275px;
+  width: 280px;
   padding: 8px;
   margin: 4px;
 }
@@ -58,6 +57,10 @@
 }
 .simplePaper p{
   margin: 12px 5px;
+}
+.simplePaper small{
+  font-size: 0.7em;
+  padding-top: 12px;
 }
 
 .widePaper {
@@ -75,7 +78,6 @@
 .widePaper p{
   margin: 12px 5px;
 }
-
 
 
 

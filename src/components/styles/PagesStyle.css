@@ -58,6 +58,10 @@
 .simplePaper p{
   margin: 12px 5px;
 }
+.simplePaper small{
+  font-size: 0.7em;
+  padding-top: 12px;
+}
 
 .widePaper {
   width: 100%;
@@ -74,7 +78,6 @@
 .widePaper p{
   margin: 12px 5px;
 }
-
 
 
 

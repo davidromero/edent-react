@@ -18,7 +18,7 @@ npm start
 |----------------|-------------|-----------------------------------------------|
 | /              | Dashboard   | Dashboard showing multiple KPIs and charts    |
 | /calendar      | Calendar    | Display reminders of todays work              |
-| /patients      | Patients    | List of patients medical info for each clinic |
+| /patients      | PatientList | List of patients medical info for each clinic |
 | /exams         | Exams       | List of patients exams for each clinic        |
 | /contacts      | ContactList | List of contacts                              |
 | /createpatient | NewPatient  | Form to fill new patients information         |

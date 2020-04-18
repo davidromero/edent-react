@@ -23,7 +23,7 @@ const ContactList = () => {
 
   return (
     <div className={"pageContainer"}>
-      <Paper className={"widePaper"} elevation={2} square={false}>
+      <Paper className={"wide-paper"} elevation={2} square={false}>
         <h2>Contactos</h2>
         <h3>Lista de Contactos</h3>
       </Paper>

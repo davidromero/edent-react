@@ -13,6 +13,7 @@ const patientTemplate = {
 
 
 
+
 const dateFormat = (iso_date) => {
   const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
   let date = new Date(iso_date);

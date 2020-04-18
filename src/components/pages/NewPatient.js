@@ -23,12 +23,12 @@ const NewPatient = (props) => {
     setStep(step + 1);
     console.log(JSON.stringify(patient))
     axios.post('https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients',
-      {patient}, {headers:{'Content-Type': 'application/json'}})
+      JSON.stringify(patient), {headers:{'Content-Type': 'application/json'}})
       .then((response) => {
         console.log(response);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(JSON.stringify(error));
       });
   };
 

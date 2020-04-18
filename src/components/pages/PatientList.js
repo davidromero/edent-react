@@ -11,7 +11,7 @@ const PatientList = () => {
 
   useEffect(() => {
     console.log("Fetching contacts...");
-    axios.get("https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients/")
+    axios.get("https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients")
       .then( (res) => {
         console.log("Patients fetched from API");
         setPatientList(res.data.payload);
@@ -23,7 +23,7 @@ const PatientList = () => {
 
   return (
     <div className={"pageContainer"}>
-      <Paper className={"widePaper"} elevation={2} square={false}>
+      <Paper className={"wide-paper"} elevation={2} square={false}>
         <h2>Pacientes</h2>
         <h3>Lista de Pacientes</h3>
       </Paper>

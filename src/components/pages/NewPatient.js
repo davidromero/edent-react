@@ -1,15 +1,15 @@
 import React, {useState} from "react";
 import {Paper, Stepper, Step, StepLabel, StepContent} from "@material-ui/core";
-import {GeneralForm} from "../forms/GeneralForm";
-import DetailsForm from "../forms/DetailsForm";
-import RelativesForm from "../forms/RelativesForm";
-import Confirmation from "../forms/Confirmation";
+import {GeneralForm, ContactForm} from "../forms/PatientForm";
+// import Confirmation from "../forms/Confirmation";
+import {patientTemplate} from "../../utils";
+import axios from "axios";
 import "../styles/PagesStyle.css";
 
 const NewPatient = (props) => {
 
   const [step, setStep] = useState(0);
-  const [patient, setPatient] = useState({});
+  const [patient, setPatient] = useState(patientTemplate);
 
   const handleNext = () => {
     setStep(step + 1);
@@ -21,7 +21,15 @@ const NewPatient = (props) => {
 
   const handleSubmit = () => {
     setStep(step + 1);
-    // createPatient(patient);
+    console.log(JSON.stringify(patient))
+    axios.post('https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients',
+      {patient}, {headers:{'Content-Type': 'application/json'}})
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleChange = (e) => {
@@ -33,21 +41,17 @@ const NewPatient = (props) => {
       case 0:
         return <GeneralForm nextStep={handleNext} handleChange={handleChange} patient={patient}/>;
       case 1:
-        // return <RelativesForm prevStep={handleBack} nextStep={handleNext} handleChange={handleChange} values={patient}/>;
-      case 2:
-        // return <DetailsForm prevStep={handleBack} nextStep={handleNext} handleChange={handleChange} values={patient}/>;
-      case 3:
-        // return <Confirmation prevStep={handleBack} nextStep={handleSubmit} handleChange={handleChange} values={patient}/>;
+        return <ContactForm prevStep={handleBack} nextStep={handleSubmit} handleChange={handleChange} patient={patient}/>;
       default:
         return null;
     }
   };
 
-  const steps = ["Datos Generales", "Datos Familiares", "Detalles Adicionales", "Confirmación"];
+  const steps = ["Datos Generales", "Contacto"];
 
   return (
     <div className={"pageContainer"}>
-      <Paper className={"widePaper"} elevation={2} square={false}>
+      <Paper className={"wide-paper"} elevation={2} square={false}>
         <h2>Nuevo Paciente</h2>
         <Stepper className={"stepper"} activeStep={step} orientation="vertical">
           {steps.map((label, index) => (

@@ -2,13 +2,14 @@ import React, {useState} from "react";
 import {Paper, Stepper, Step, StepLabel, StepContent} from "@material-ui/core";
 import {GeneralForm, ContactForm} from "../forms/PatientForm";
 // import Confirmation from "../forms/Confirmation";
+import {patientTemplate} from "../../utils";
 import axios from "axios";
 import "../styles/PagesStyle.css";
 
 const NewPatient = (props) => {
 
   const [step, setStep] = useState(0);
-  const [patient, setPatient] = useState({});
+  const [patient, setPatient] = useState(patientTemplate);
 
   const handleNext = () => {
     setStep(step + 1);
@@ -20,9 +21,9 @@ const NewPatient = (props) => {
 
   const handleSubmit = () => {
     setStep(step + 1);
-    console.log(JSON.stringify(patient).toLowerCase())
+    console.log(JSON.stringify(patient))
     axios.post('https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients',
-      JSON.stringify(patient).toLowerCase())
+      {patient}, {headers:{'Content-Type': 'application/json'}})
       .then((response) => {
         console.log(response);
       })

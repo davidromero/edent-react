@@ -17,12 +17,12 @@ const GeneralForm = (props) => {
                    type="date" required onChange={handleChange} value={patient.birthday || "2000-12-31"}/>
         <FormControl style={{margin: "8px", width: "180px"}} >
           <InputLabel id="location">Clínica *</InputLabel>
-          <Select className={"selectEmpty"} value={patient.location ? patient.location : ""}
+          <Select className={"selectEmpty"} name={"clinic_location"} value={patient.clinic_location ? patient.clinic_location : ""}
                   onChange={handleChange} input={<Input name={"location"}/>}>
-            <MenuItem value={"Chiquimula"}>Chiquimula</MenuItem>
-            <MenuItem value={"Jocotán"}>Jocotán</MenuItem>
-            <MenuItem value={"Amatitlán"}>Amatitlán</MenuItem>
-            <MenuItem value={"Guatemala"}>Guatemala</MenuItem>
+            <MenuItem value={"chiquimula"}>Chiquimula</MenuItem>
+            <MenuItem value={"jocotan"}>Jocotán</MenuItem>
+            <MenuItem value={"amatitlan"}>Amatitlán</MenuItem>
+            <MenuItem value={"guatemala"}>Guatemala</MenuItem>
           </Select>
         </FormControl>
         <FormControl style={{margin: "8px"}} >
@@ -32,8 +32,14 @@ const GeneralForm = (props) => {
             <FormControlLabel value="female" control={<Radio/>} label="Mujer"/>
           </RadioGroup>
         </FormControl>
-        <TextField style={{margin: "8px", width: "180px"}} name="visit_reason"
-                   label="Motivo de Visita" type="text" multiline={true} onChange={handleChange} value={patient.visit_reason}/>
+        <FormControl style={{margin: "8px", width: "180px"}} >
+          <InputLabel id="location">Motivo de visita *</InputLabel>
+          <Select className={"selectEmpty"} name={"visit_reason"} value={patient.visit_reason ? patient.visit_reason : ""}
+                  onChange={handleChange} input={<Input name={"visit_reason"}/>}>
+            <MenuItem value={"odontologia"}>Odontología</MenuItem>
+            <MenuItem value={"ortodoncia"}>Ortodoncia</MenuItem>
+          </Select>
+        </FormControl>
       </div>
 
       <Button className={"button"} onClick={nextStep} variant="contained" color="primary">
@@ -50,7 +56,7 @@ const ContactForm = (props) => {
   return (
     <div>
       <div className={"form-container"}>
-        <TextField style={{margin: "8px", width: "180px"}} name="phone_number"
+        <TextField style={{margin: "8px", width: "180px"}} name="phone_number" required
                    label="Número Telefónico" type="number" onChange={handleChange} value={patient.phone_number || ""}/>
         <TextField style={{margin: "8px", width: "180px"}} name="email"
                    label="Correo Electrónico" type="email" onChange={handleChange} value={patient.email || ""}/>

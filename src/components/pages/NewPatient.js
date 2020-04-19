@@ -50,7 +50,7 @@ const NewPatient = (props) => {
   const steps = ["Datos Generales", "Contacto"];
 
   return (
-    <div className={"pageContainer"}>
+    <div className={"page-container"}>
       <Paper className={"wide-paper"} elevation={2} square={false}>
         <h2>Nuevo Paciente</h2>
         <Stepper className={"stepper"} activeStep={step} orientation="vertical">

@@ -22,7 +22,7 @@ const PatientList = () => {
   }, []);
 
   return (
-    <div className={"pageContainer"}>
+    <div className={"page-container"}>
       <Paper className={"wide-paper"} elevation={2} square={false}>
         <h2>Pacientes</h2>
         <h3>Lista de Pacientes</h3>
@@ -31,7 +31,7 @@ const PatientList = () => {
         patientList && patientList.map((patient, index) => {
           return (
             <Link to={"patient/" + patient.uid} key={index} style={{ textDecoration: 'none', color: 'inherit'}}>
-              <Paper className={"simplePaper"}>
+              <Paper className={"simple-paper"}>
                 <p>
                   <b style={{textTransform: "capitalize", fontSize: "1.1em"}}>{patient.first_name + " " + patient.last_name}</b><br/><br/>
                   Razón de visita: {capitalize(patient.visit_reason)}<br/>

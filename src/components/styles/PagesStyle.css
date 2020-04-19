@@ -1,11 +1,11 @@
 /*Home*/
-.homeFrame {
+.home-frame {
   flex-grow: 1;
   padding: 10px;
   height: 100vh;
   overflow: auto;
 }
-.homeContent {
+.home-content {
   display: flex;
   margin-top: 65px;
   flex-flow: column wrap;
@@ -16,24 +16,18 @@
   height: 90vh;
   width: 100%;
 }
-
-/*Contacts*/
-.contactContainer {
+.contact-container {
   min-width: 220px;
   margin: 2px;
   display: inline-block;
   padding: 8px;
 }
-
-/*General*/
-.pageContainer {
+.page-container {
   height: 100%;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
-
-/*Forms*/
 .form-container{
   width: 100%;
   display: flex;
@@ -44,21 +38,21 @@
 }
 
 
-.simplePaper {
+.simple-paper {
   width: 280px;
   padding: 8px;
   margin: 4px;
 }
-.simplePaper h2{
+.simple-paper h2{
   margin: 5px;
 }
-.simplePaper h3{
+.simple-paper h3{
   margin: 12px 5px;
 }
-.simplePaper p{
+.simple-paper p{
   margin: 12px 5px;
 }
-.simplePaper small{
+.simple-paper small{
   font-size: 0.7em;
   padding-top: 12px;
 }

@@ -14,8 +14,8 @@ const Home = () => {
   return (
     <div style={{display: "flex"} }>
       <NavBar/>
-      <main className={"homeFrame"}>
-        <div className={"homeContent"}>
+      <main className={"home-frame"}>
+        <div className={"home-content"}>
           <Switch>
             <Route exact path={"/"} component={Dashboard}/>
             <Route path={"/calendar"} component={Calendar}/>

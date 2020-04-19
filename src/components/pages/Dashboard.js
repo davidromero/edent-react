@@ -5,8 +5,8 @@ import "../styles/PagesStyle.css";
 const Dashboard = (props) => {
 
   return (
-    <div className={"pageContainer"}>
-      <Paper className={"simplePaper"} elevation={2} square={false}>
+    <div className={"page-container"}>
+      <Paper className={"simple-paper"} elevation={2} square={false}>
         <h2>Siguiente Paciente</h2>
         <p>
           <b>Aldo Gatica</b><br/>
@@ -14,12 +14,12 @@ const Dashboard = (props) => {
         </p>
       </Paper>
 
-      <Paper className={"simplePaper"} elevation={2} square={false}>
+      <Paper className={"simple-paper"} elevation={2} square={false}>
         <h2>Pacientes en espera</h2>
         <h3>10</h3>
       </Paper>
 
-      <Paper className={"simplePaper"} elevation={2} square={false}>
+      <Paper className={"simple-paper"} elevation={2} square={false}>
         <h2>Pacientes ingresados</h2>
         <h3>2</h3>
       </Paper>

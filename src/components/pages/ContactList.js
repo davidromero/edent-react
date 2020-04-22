@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import Paper from "@material-ui/core/Paper/index";
 import { Link } from "react-router-dom"
 import axios from 'axios/index';
-import {dateFormat, capitalize} from '../../utils'
+import {dateTimeFormat, capitalize} from '../../utils/utils'
 import "../styles/PagesStyle.css";
 
 
@@ -37,7 +37,7 @@ const ContactList = () => {
                   Teléfono: {contact.phone_number}<br/>
                   Clínica: {capitalize(contact.clinic_location)}<br/>
                 </p>
-                <small><i>Última modificación: {dateFormat(contact.modified_timestamp)}</i></small>
+                <small><i>Última modificación: {dateTimeFormat(contact.modified_timestamp)}</i></small>
               </Paper>
             </Link>
           )

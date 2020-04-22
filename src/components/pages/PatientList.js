@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Paper from "@material-ui/core/Paper/index";
 import {Link} from "react-router-dom";
-import {dateFormat, capitalize} from '../../utils'
+import {dateTimeFormat, capitalize} from '../../utils/utils'
 import axios from "axios";
 import "../styles/PagesStyle.css";
 
@@ -37,7 +37,7 @@ const PatientList = () => {
                   Razón de visita: {capitalize(patient.visit_reason)}<br/>
                   Clínica: {capitalize(patient.clinic_location)}<br/>
                 </p>
-                <small><i>Última modificación: {dateFormat(patient.modified_timestamp)}</i></small>
+                <small><i>Última modificación: {dateTimeFormat(patient.modified_timestamp)}</i></small>
               </Paper>
             </Link>
           )

@@ -27,6 +27,7 @@ const PatientList = () => {
         <h2>Pacientes</h2>
         <h3>Lista de Pacientes</h3>
       </Paper>
+      { patientList.length === 0 ? <h2>Cargando...</h2> : <div/>}
       {
         patientList && patientList.map((patient, index) => {
           return (

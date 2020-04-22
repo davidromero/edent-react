@@ -27,6 +27,7 @@ const ContactList = () => {
         <h2>Contactos</h2>
         <h3>Lista de Contactos</h3>
       </Paper>
+      { contactList.length === 0 ? <h2>Cargando...</h2> : <div/>}
       {
         contactList && contactList.map((contact, index) => {
           return (

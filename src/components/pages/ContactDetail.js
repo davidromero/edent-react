@@ -1,64 +1,42 @@
-import React, {Component} from "react";
-import {withStyles} from "@material-ui/core/styles/index";
-import Paper from "@material-ui/core/Paper/index";
-import Avatar from "@material-ui/core/Avatar/index";
-import Typography from "@material-ui/core/Typography/index";
-import styles from "../styles/ContactDetailStyle";
+import React, {useEffect, useState} from "react";
+import {Paper} from "@material-ui/core";
+import axios from "axios";
 
-class ContactDetail extends Component {
+const contactTemp = {
 
-  componentDidMount() {
-    const {contact} = this.props;
-    contact ?
-      console.log("truuee") :
-      console.log("falseee");
-  }
-
-  render() {
-    const {classes, contact} = this.props;
-    return (
-      contact ? (
-        <div className={classes.base}>
-          <Paper className={classes.paper} elevation={2}>
-
-            <div className={classes.avatarContainer}>
-              <Avatar className={classes.avatar}/>
-            </div>
-            <div className={classes.container}>
-              <Typography className={classes.typo} variant="h5" component="h3">
-                {"Paciente: " + contact.first_name + " " + contact.last_name}
-              </Typography>
-              <Typography className={classes.typo} variant="h5" component="h3">
-                {"Teléfono: " + contact.phone_number}
-              </Typography>
-              <Typography className={classes.typo} variant="h5" component="h3">
-                {"Email: " + contact.email}
-              </Typography>
-              <Typography className={classes.typo} variant="h5" component="h3">
-                {"Clínica: " + contact.location}
-              </Typography>
-            </div>
-            <div className={classes.container}>
-              <Typography className={classes.typo} variant="h5" component="h3">
-                {"Contacto Adicional: " + contact.additional_contact.relative_name}
-              </Typography>
-            </div>
-          </Paper>
-
-        </div>
-      ) : (
-        <div className={classes.base}>
-          <Paper className={classes.paper} elevation={2}>
-            <Typography variant="h5" component="h3">
-              Cargando...
-            </Typography>
-          </Paper>
-          {/*{this.props.dispatch(fetchContactList())}*/}
-        </div>
-      )
-    );
-  }
 }
 
 
-export default withStyles(styles)(ContactDetail);
+
+const ContactDetail = (props) => {
+  const {uid} = props.match.params
+  console.log("UID: " + uid);
+  const [contact, setContact] = useState(contactTemp);
+
+  useEffect(() => {
+    console.log("Fetching contact by id...");
+    // axios.get("https://9jtkflgqhe.execute-api.us-east-1.amazonaws.com/api/contacts/" + uid)
+    //   .then( (res) => {
+    //     console.log("Contact fetched from API");
+    //     setContact(res.data.payload);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   })
+  }, []);
+
+  return (
+    <div className={"page-container"}>
+      {contact !== {} &&
+        <Paper className={"wide-paper"} elevation={2}>
+          <h2>{contact.first_name}</h2>
+
+        </Paper>
+      }
+    </div>
+  );
+}
+
+
+
+export {ContactDetail};

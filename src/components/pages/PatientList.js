@@ -31,7 +31,7 @@ const PatientList = () => {
       {
         patientList && patientList.map((patient, index) => {
           return (
-            <Link to={"patient/" + patient.uid} key={index} style={{ textDecoration: 'none', color: 'inherit'}}>
+            <Link to={"patients/" + patient.uid} key={index} style={{ textDecoration: 'none', color: 'inherit'}}>
               <Paper className={"simple-paper"}>
                 <p>
                   <b style={{textTransform: "capitalize", fontSize: "1.1em"}}>{patient.first_name + " " + patient.last_name}</b><br/><br/>

@@ -1,14 +1,14 @@
 
 const patientTemplate = {
-  "first_name": "aldo roberto",
-  "last_name": "gatica ramirez",
-  "clinic_location": "guatemala",
+  "first_name": "",
+  "last_name": "",
+  "clinic_location": "",
   "birthday": "2000-12-31",
-  "sex": "male",
-  "visit_reason": "ortodoncia",
+  "sex": "",
+  "visit_reason": "",
   "address": "",
   "email": "",
-  "phone_number": "12341234"
+  "phone_number": ""
 }
 
 const dateTimeFormat = (iso_date) => {

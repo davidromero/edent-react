@@ -7,8 +7,9 @@ import {ContactList} from "../pages/ContactList";
 import {Calendar} from "../pages/Calendar";
 import {PatientList} from "../pages/PatientList";
 import {NewPatient} from "../pages/NewPatient";
-import ContactDetail from "../pages/ContactDetail";
+import {ContactDetail} from "../pages/ContactDetail";
 import {Route, Switch} from "react-router-dom";
+import {PatientDetail} from "../pages/PatientDetail";
 
 const Home = () => {
   return (
@@ -18,11 +19,12 @@ const Home = () => {
         <div className={"home-content"}>
           <Switch>
             <Route exact path={"/"} component={Dashboard}/>
-            <Route path={"/calendar"} component={Calendar}/>
-            <Route path={"/patients"} component={PatientList}/>
-            <Route path={"/contacts"} component={ContactList}/>
-            <Route path={"/contact/:uid"} component={ContactDetail} />
-            <Route path={"/createpatient"} component={NewPatient}/>
+            <Route exact path={"/calendar"} component={Calendar}/>
+            <Route exact path={"/patients"} component={PatientList}/>
+            <Route exact path={"/patients/:uid"} component={PatientDetail} />
+            <Route exact path={"/contacts"} component={ContactList}/>
+            <Route exact path={"/contacts/:uid"} component={ContactDetail} />
+            <Route exact path={"/createpatient"} component={NewPatient}/>
           </Switch>
         </div>
       </main>

@@ -31,7 +31,7 @@ const ContactList = () => {
       {
         contactList && contactList.map((contact, index) => {
           return (
-            <Link to={"contact/" + contact.uid} key={index} style={{ textDecoration: 'none', color: 'inherit'}}>
+            <Link to={"contacts/" + contact.uid} key={index} style={{ textDecoration: 'none', color: 'inherit'}}>
               <Paper className={"simple-paper"}>
                 <p>
                   <b style={{textTransform: "capitalize", fontSize: "1.1em"}}>{contact.first_name + " " + contact.last_name}</b><br/><br/>

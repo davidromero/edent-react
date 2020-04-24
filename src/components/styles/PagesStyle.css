@@ -25,7 +25,7 @@
 .page-container {
   height: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
 }
 .form-container{
@@ -73,5 +73,39 @@
   margin: 12px 5px;
 }
 
+.mid-paper {
+  width: 45vw;
+  min-width: 275px;
+  padding: 4px;
+  margin: 4px;
+}
+.mid-paper h2{
+  margin: 5px;
+}
+.mid-paper h3{
+  margin: 12px 5px;
+}
+.mid-paper p{
+  margin: 12px 5px;
+}
+.mid-paper button{
+  margin: 12px 5px;
+}
+
+.mid-paper-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.mid-paper-button {
+  width: 100%;
+  height: 40px;
+  font-size: 0.9em;
+  background-color: white;
+  border: 2px solid rgb(21, 149, 189);
+  border-radius: 10px;
+  outline: none;
+}
 
 

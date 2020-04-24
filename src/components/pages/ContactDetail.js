@@ -10,7 +10,6 @@ const contactTemp = {
 
 const ContactDetail = (props) => {
   const {uid} = props.match.params
-  console.log("UID: " + uid);
   const [contact, setContact] = useState(contactTemp);
 
   useEffect(() => {
@@ -28,10 +27,16 @@ const ContactDetail = (props) => {
   return (
     <div className={"page-container"}>
       {contact !== {} &&
-        <Paper className={"wide-paper"} elevation={2}>
+      <>
+        <Paper className={"mid-paper"} elevation={2}>
           <h2>{contact.first_name}</h2>
 
         </Paper>
+        <Paper className={"mid-paper"} elevation={2}>
+          <h2>{contact.first_name}</h2>
+
+        </Paper>
+      </>
       }
     </div>
   );

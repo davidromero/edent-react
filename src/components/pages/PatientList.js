@@ -10,7 +10,6 @@ const PatientList = () => {
   const [patientList, setPatientList] =  useState([]);
 
   useEffect(() => {
-    console.log("Fetching patients...");
     axios.get("https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients")
       .then( (res) => {
         console.log("Patients fetched from API");

@@ -10,7 +10,6 @@ const ContactList = () => {
   const [contactList, setContactList] =  useState([]);
 
   useEffect(() => {
-    console.log("Fetching contacts...");
     axios.get("https://9jtkflgqhe.execute-api.us-east-1.amazonaws.com/api/contacts/")
       .then( (res) => {
         console.log("Contacts fetched from API");
@@ -47,8 +46,6 @@ const ContactList = () => {
     </div>
   )
 };
-
-
 
 
 export {ContactList};

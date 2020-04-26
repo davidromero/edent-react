@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {Paper} from "@material-ui/core";
 import axios from "axios";
-import { useHistory } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import placeholder from "../../assets/img/profile_placeholder.png";
+import {ContactInfo} from "./ContactDetail";
 import {confirmPatient} from "../../utils/validations";
 import {dateTimeFormat} from "../../utils/utils";
 import Modal from 'react-modal';
@@ -31,7 +32,6 @@ const PatientDetail = (props) => {
   const [patient, setPatient] = useState(patientTemp);
 
   useEffect(() => {
-    console.log("Fetching patient by id...");
     const prettyPatient = confirmPatient(patient);
     setPatient(prettyPatient);
     axios.get("https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients/" + uid)
@@ -49,7 +49,9 @@ const PatientDetail = (props) => {
       {patient !== {} &&
       <>
         <GeneralInfo patient={patient}/>
-        <ContactInfo patient={patient}/>
+        <ContactInfo patient={patient}>
+          <PatientButtons patient={patient}/>
+        </ContactInfo>
       </>
       }
     </div>
@@ -84,40 +86,13 @@ const GeneralInfo = (props) => {
   )
 }
 
-const ContactInfo = (props) => {
-  const {patient} = props;
-
-  return (
-    <Paper className={"mid-paper"}
-           style={{display: "flex", flexDirection: "column",justifyContent: "space-between"}} elevation={2}>
-      <div className={"mid-paper-container"}>
-        <div style={{width: "200px"}}>
-        <h3><b>Estado</b></h3>
-        <p><b>Número Telefónico</b></p>
-        <p>{patient.phone_number}</p>
-        <p><b>Correo Electrónico</b></p>
-        <p>{patient.email}</p>
-        <p><b>Dirección</b></p>
-        <p>{patient.address}</p>
-        </div>
-        <PatientButtons patient={patient}/>
-      </div>
-
-      <div className={"mid-paper-container"}>
-        <div style={{width: "100%", padding: "15px 15px", textAlign: "right"}}>
-          <small><i>Última modificación: {dateTimeFormat(patient.modified_timestamp)}</i></small>
-        </div>
-      </div>
-    </Paper>
-  )
-}
 
 const PatientButtons = (props) => {
   const {patient} = props;
 
   return(
     <div style={{width: "200px"}}>
-      <ContactButton patient={patient}/>
+      <ContactButton uid={patient.contact_uid}/>
       <button className="mid-paper-button">Editar</button>
       <DeleteButton patient={patient}/>
     </div>
@@ -128,7 +103,9 @@ const ContactButton = (props) => {
   const {uid} = props;
 
   return (
-    <button className="mid-paper-button">Contactar</button>
+    <Link to={"../contacts/" + uid} style={{ textDecoration: 'none', color: 'inherit'}}>
+      <button className="mid-paper-button">Contactar</button>
+    </Link>
   )
 }
 

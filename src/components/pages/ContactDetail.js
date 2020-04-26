@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {Paper} from "@material-ui/core";
-import axios from "axios";
 import {dateTimeFormat} from "../../utils/utils";
 import {confirmPatient} from "../../utils/validations";
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 const contactTemp = {
   first_name: "-",
@@ -92,9 +92,19 @@ const ContactsButtons = (props) => {
     <div style={{width: "200px"}}>
       <PatientButton uid={contact.patient_uid}/>
       <CallButton phone_number={contact.phone_number}/>
+      <WhatsappButton phone_number={contact.phone_number}/>
     </div>
   )
 };
+
+const WhatsappButton = (props) => {
+  const {phone_number} = props;
+
+  return(
+    <a href={'https://api.whatsapp.com/send?phone=' + phone_number} style={{ textDecoration: 'none', color: 'inherit'}}>
+      <button className="mid-paper-button">WhatsApp</button></a>
+  )
+}
 
 const PatientButton = (props) => {
   const {uid} = props;

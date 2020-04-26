@@ -1,27 +1,29 @@
 import React, {useEffect, useState} from "react";
 import {Paper} from "@material-ui/core";
 import axios from "axios";
+import { useHistory } from 'react-router-dom';
 import placeholder from "../../assets/img/profile_placeholder.png";
 import {confirmPatient} from "../../utils/validations";
 import {dateTimeFormat} from "../../utils/utils";
+import Modal from 'react-modal';
 
 const patientTemp = {
-  visit_reason: "odontologia",
-  sex: "female",
-  created_by: "local",
-  address: "san cristobal",
-  modified_by: "local",
+  first_name: "-",
+  last_name: "",
+  visit_reason: "-",
+  sex: "-",
+  address: "-",
   email: "-",
-  uid: "4cf72885-fe45",
+  uid: "-",
+  clinic_location: "-",
+  contact_uid: "-",
+  phone_number: "-",
   active: true,
-  clinic_location: "amatitlan",
-  last_name: "ramirez jimenez",
-  contact_uid: "4cf72885-fe45",
-  first_name: "consuelo",
-  phone_number: "55108273",
+  created_by: "local",
+  modified_by: "local",
   created_timestamp: "2020-04-18 17:21:25.340325-06:00",
   modified_timestamp: "2020-04-18 17:21:25.340325-06:00",
-  birthday: "1955-11-09"
+  birthday: "2000-1-1"
 }
 
 const PatientDetail = (props) => {
@@ -32,14 +34,14 @@ const PatientDetail = (props) => {
     console.log("Fetching patient by id...");
     const prettyPatient = confirmPatient(patient);
     setPatient(prettyPatient);
-    // axios.get("https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients/" + uid)
-    //   .then( (res) => {
-    //     console.log("Contact fetched from API");
-    //     setPatient(confirmPatient(res.data.payload));
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   })
+    axios.get("https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients/" + uid)
+      .then( (res) => {
+        console.log("Patient fetched from API");
+        setPatient(confirmPatient(res.data.payload));
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }, []);
 
   return (
@@ -53,7 +55,6 @@ const PatientDetail = (props) => {
     </div>
   );
 }
-
 
 const GeneralInfo = (props) => {
   const {patient} = props;
@@ -86,8 +87,6 @@ const GeneralInfo = (props) => {
 const ContactInfo = (props) => {
   const {patient} = props;
 
-
-
   return (
     <Paper className={"mid-paper"}
            style={{display: "flex", flexDirection: "column",justifyContent: "space-between"}} elevation={2}>
@@ -101,11 +100,7 @@ const ContactInfo = (props) => {
         <p><b>Dirección</b></p>
         <p>{patient.address}</p>
         </div>
-        <div style={{width: "200px"}}>
-          <button className="mid-paper-button">Contactar</button>
-          <button className="mid-paper-button">Editar</button>
-          <button className="mid-paper-button">Eliminar</button>
-        </div>
+        <PatientButtons patient={patient}/>
       </div>
 
       <div className={"mid-paper-container"}>
@@ -116,6 +111,76 @@ const ContactInfo = (props) => {
     </Paper>
   )
 }
+
+const PatientButtons = (props) => {
+  const {patient} = props;
+
+  return(
+    <div style={{width: "200px"}}>
+      <ContactButton patient={patient}/>
+      <button className="mid-paper-button">Editar</button>
+      <DeleteButton patient={patient}/>
+    </div>
+  )
+}
+
+const ContactButton = (props) => {
+  const {uid} = props;
+
+  return (
+    <button className="mid-paper-button">Contactar</button>
+  )
+}
+
+const DeleteButton = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const {patient} = props;
+  const history = useHistory();
+
+  const inactivatePatient = () => {
+    console.log("Delete " + patient.uid)
+    axios.delete("https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients/" + patient.uid)
+      .then( (res) => {
+        console.log("Patient deleted");
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    setIsOpen(false);
+    history.goBack();
+  }
+
+  const customStyles = {
+    content : {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      margin: 'auto',
+      transform: 'translate(-50%, -50%)'
+    }
+  };
+
+  return(
+    <>
+      <Modal
+        isOpen={isOpen}
+        style={customStyles}
+        ariaHideApp={false}
+        contentLabel="¿Estas seguro?">
+        <h3>¿Está seguro en realizar esta acción?</h3>
+        <div className={"modal-container"}>
+          <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
+                  onClick={inactivatePatient}>Aceptar</button>
+          <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
+                  onClick={() => {setIsOpen(false)}}>Cancelar</button>
+        </div>
+      </Modal>
+      <button className="mid-paper-button" onClick={() => {setIsOpen(true)}}>Eliminar</button>
+    </>
+  )
+}
+
 
 
 export {PatientDetail};

@@ -37,7 +37,7 @@
   justify-content: space-evenly;
 }
 
-
+/*Simple Paper*/
 .simple-paper {
   width: 280px;
   padding: 8px;
@@ -57,6 +57,7 @@
   padding-top: 12px;
 }
 
+/*Wide Paper*/
 .wide-paper {
   width: 100%;
   padding: 4px;
@@ -73,6 +74,7 @@
   margin: 12px 5px;
 }
 
+/*Mid Paper*/
 .mid-paper {
   width: 45vw;
   min-width: 275px;
@@ -92,12 +94,12 @@
   margin: 12px 5px;
 }
 
+/*Mid Paper*/
 .mid-paper-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-
 .mid-paper-button {
   width: 100%;
   height: 40px;
@@ -108,4 +110,19 @@
   outline: none;
 }
 
+/*Modal*/
+.modal-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
+.modal-button {
+  font-size: 1.2em;
+  color: white;
+  background-color: palevioletred;
+  padding: 8px;
+  margin: 4px;
+  border-radius: 10px;
+  outline: none;
+}

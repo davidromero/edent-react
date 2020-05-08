@@ -18,6 +18,7 @@ export default (theme) => ({
   },
   menuButton: {
     marginRight: 36,
+    marginLeft: 0,
   },
   hide: {
     display: 'none',
@@ -40,16 +41,16 @@ export default (theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: 'hidden',
-    width: theme.spacing.unit * 7 + 1,
+    width: theme.spacing(7)  + 1,
     [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * 9 + 1,
+      width: theme.spacing(9) + 1,
     },
   },
   toolbar: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    paddingLeft: theme.spacing.unit * 1,
+    paddingLeft: theme.spacing(1),
     ...theme.mixins.toolbar,
   },
   content: {
@@ -61,13 +62,13 @@ export default (theme) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: "rgba(206,193,205,0.41)",
-    marginRight: theme.spacing.unit * 2,
+    marginRight: theme.spacing(2),
     marginLeft: 0,
     width: "80%",
     maxWidth: "400px",
   },
   searchIcon: {
-    width: theme.spacing.unit * 5,
+    width: theme.spacing(5),
     height: "100%",
     position: "absolute",
     pointerEvents: "none",
@@ -80,10 +81,10 @@ export default (theme) => ({
     width: "100%",
   },
   inputInput: {
-    paddingTop: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
-    paddingLeft: theme.spacing.unit * 6,
+    paddingTop: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    paddingLeft: theme.spacing(6),
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {

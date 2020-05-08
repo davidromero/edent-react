@@ -40,6 +40,7 @@
 /*Simple Paper*/
 .simple-paper {
   width: 280px;
+  height: 155px;
   padding: 8px;
   margin: 4px;
 }
@@ -76,7 +77,7 @@
 
 /*Mid Paper*/
 .mid-paper {
-  width: 45vw;
+  width: 44vw;
   min-width: 275px;
   padding: 4px;
   margin: 4px;

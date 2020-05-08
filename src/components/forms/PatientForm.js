@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {RadioGroup, Radio, FormControlLabel, TextField, Button, FormLabel,
-  Select, Input, MenuItem, FormControl, InputLabel, Paper, ListItemText} from "@material-ui/core";
+  Select, Input, MenuItem, FormControl, InputLabel, Paper} from "@material-ui/core";
 import {validateContactsForm, validateGeneralForm, confirmPatient} from "../../utils/validations";
 import "../styles/PagesStyle.css"
 
@@ -112,7 +112,7 @@ const Confirmation = (props) => {
   useEffect(() => {
     const prettyPatient = confirmPatient(patient);
     setConfirmation(prettyPatient);
-  });
+  }, [patient]);
 
   return (
     <div>

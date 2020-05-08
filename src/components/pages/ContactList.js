@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import Paper from "@material-ui/core/Paper/index";
+import {Paper} from "@material-ui/core";
 import { Link } from "react-router-dom"
 import axios from 'axios/index';
 import {dateTimeFormat, capitalize} from '../../utils/utils'
@@ -12,7 +12,6 @@ const ContactList = () => {
   useEffect(() => {
     axios.get("https://9jtkflgqhe.execute-api.us-east-1.amazonaws.com/api/contacts/")
       .then( (res) => {
-        console.log("Contacts fetched from API");
         setContactList(res.data.payload);
       })
       .catch((error) => {

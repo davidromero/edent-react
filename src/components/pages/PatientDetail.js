@@ -6,7 +6,8 @@ import placeholder from "../../assets/img/profile_placeholder.png";
 import {ContactInfo} from "./ContactDetail";
 import {confirmPatient} from "../../utils/validations";
 import Modal from 'react-modal';
-import {dateTimeFormat} from "../../utils/utils";
+import {dateFormat, dateTimeFormat} from "../../utils/utils";
+import {ServiceDetail} from "../widgets/TreatmentCards";
 
 const PatientDetail = (props) => {
   const {uid} = props.match.params;
@@ -30,9 +31,10 @@ const PatientDetail = (props) => {
         <ContactInfo patient={patient}>
           <PatientButtons patient={patient}/>
         </ContactInfo>
-        <ServiceDetail>
-          <ServiceButtons patient={patient}/>
-        </ServiceDetail>
+        <ServiceDetail service_name={"Odontología Operatoria"} patient={patient}/>
+        <ServiceDetail service_name={"Endodoncia"} patient={patient}/>
+        <ServiceDetail service_name={"Cirugía"} patient={patient}/>
+        <ServiceDetail service_name={"Seguro"} patient={patient}/>
       </>
       }
     </div>
@@ -46,21 +48,23 @@ const GeneralInfo = (props) => {
     <Paper className={"mid-paper"} elevation={2}>
       <div className={"mid-paper-container"}>
         <div style={{padding: "15px 0"}}>
-          <img style={{objectFit: "cover", width: "200px", height: "280px", }}
+          <img style={{objectFit: "cover", width: "200px", height: "280px"}}
                src={placeholder} alt={"profile"}/>
+          <div className={"mid-paper-container"}>
+            <small><i>Fecha de ingreso: {dateFormat(patient.modified_timestamp)} </i></small>
+          </div>
         </div>
         <div>
           <h3><b>Información Personal</b></h3>
-          <p><b>Nombres y Apellidos</b></p>
-          <p>{patient.first_name + " " + patient.last_name}</p>
-          <p><b>Clínica</b></p>
-          <p>{patient.clinic_location}</p>
-          <p><b>Fecha de Nacimiento</b></p>
-          <p>{patient.birthday}</p>
-          <p><b>Sexo</b></p>
-          <p>{patient.sex}</p>
-          <p><b>Motivo de Visita</b></p>
-          <p>{patient.visit_reason}</p>
+          <p><b>Nombre del Paciente</b><br/>
+          {patient.first_name + " " + patient.last_name}</p>
+          <p><b>Clínica</b><br/>
+          {patient.clinic_location}</p>
+          <p><b>Fecha de Nacimiento</b><br/>
+          {patient.birthday}</p>
+          <p><b>Motivo de Visita</b><br/>
+          {patient.visit_reason}</p>
+
         </div>
       </div>
     </Paper>
@@ -73,7 +77,8 @@ const PatientButtons = (props) => {
   return(
     <div style={{width: "200px"}}>
       <ContactButton uid={patient.contact_uid}/>
-      <button className="mid-paper-button">Editar</button>
+      <AppointmentHistoryButton uid={patient.patient_uid}/>
+      <button className="mid-paper-button">Editar Información</button>
       <DeleteButton patient={patient}/>
     </div>
   )
@@ -88,6 +93,16 @@ const ContactButton = (props) => {
     </Link>
   )
 }
+
+const AppointmentHistoryButton = (props) => {
+  const {uid} = props;
+
+  return(
+    <Link to={"../history/" + uid} style={{ textDecoration: 'none', color: 'inherit'}} replace>
+      <button className="mid-paper-button">Ver historial de citas</button>
+    </Link>
+  )
+};
 
 const DeleteButton = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -125,7 +140,7 @@ const DeleteButton = (props) => {
         style={customStyles}
         ariaHideApp={false}
         contentLabel="¿Estas seguro?">
-        <h3>¿Está seguro en realizar esta acción?</h3>
+        <h3>¿Está seguro en eliminar este paciente?</h3>
         <div className={"modal-container"}>
           <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
                   onClick={inactivatePatient}>Aceptar</button>
@@ -133,77 +148,10 @@ const DeleteButton = (props) => {
                   onClick={() => {setIsOpen(false)}}>Cancelar</button>
         </div>
       </Modal>
-      <button className="mid-paper-button" onClick={() => {setIsOpen(true)}}>Eliminar</button>
+      <button className="mid-paper-button" onClick={() => {setIsOpen(true)}}>Eliminar Paciente</button>
     </>
   )
 }
-
-
-const ServiceDetail = (props) => {
-  const {patient} = props;
-
-  return (
-    <Paper className={"mid-paper"} style={{display: "flex", flexDirection: "column",justifyContent: "space-between"}} elevation={2}>
-      <h2 style={{textTransform: "capitalize", margin: "15px"}}><b>Odontología Operatoria</b></h2>
-      <div className={"mid-paper-container"}>
-        <div style={{width: "200px"}}>
-          <p><b>Siguiente cita: </b>20 May 2020</p>
-          <p><b>Última cita: </b>20 May 2019</p>
-          <p><b>Último tratamiento: </b>Prótesis Valpast Total</p>
-        </div>
-        {props.children}
-      </div>
-
-      <div className={"mid-paper-container"}>
-        <div style={{width: "100%", padding: "15px 15px", textAlign: "right"}}>
-          <small><i>Fecha de ingreso:  26 Abr 2020 </i></small>
-        </div>
-      </div>
-    </Paper>
-  )
-};
-
-
-const ServiceButtons = (props) => {
-  const {patient} = props;
-
-  return(
-    <div style={{width: "200px"}}>
-      <StartTreatmentButton uid={patient.patient_uid}/>
-      <AppointmentButton uid={patient.patient_uid}/>
-      <AppointmentHistoryButton uid={patient.patient_uid}/>
-    </div>
-  )
-};
-
-const StartTreatmentButton = (props) => {
-  const {uid} = props;
-
-  return(
-    <Link to={"../treatment/" + uid} style={{ textDecoration: 'none', color: 'inherit'}} replace>
-      <button className="mid-paper-button">Iniciar nuevo tratamiento</button>
-    </Link>
-  )
-};
-
-const AppointmentButton = (props) => {
-  const {uid} = props;
-
-  return(
-    <button className="mid-paper-button">Hacer cita</button>
-  )
-};
-
-const AppointmentHistoryButton = (props) => {
-  const {uid} = props;
-
-  return(
-    <Link to={"../history/" + uid} style={{ textDecoration: 'none', color: 'inherit'}} replace>
-      <button className="mid-paper-button">Ver historial de citas</button>
-    </Link>
-  )
-};
-
 
 
 export {PatientDetail};

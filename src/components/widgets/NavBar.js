@@ -54,19 +54,19 @@ const SearchBar = (props) => {
 
   return (
     <div className={classes.content} >
-      <div className={classes.searchBar}>
-        <div className={classes.searchIcon}>
-          <Search />
-        </div>
-        <InputBase
-          placeholder="Buscar…"
-          classes={{
-            root: classes.inputRoot,
-            input: classes.inputInput,
-          }}
-          inputProps={{ 'aria-label': 'search' }}
-        />
-      </div>
+      {/*<div className={classes.searchBar}>*/}
+      {/*  <div className={classes.searchIcon}>*/}
+      {/*    <Search />*/}
+      {/*  </div>*/}
+      {/*  <InputBase*/}
+      {/*    placeholder="Buscar…"*/}
+      {/*    classes={{*/}
+      {/*      root: classes.inputRoot,*/}
+      {/*      input: classes.inputInput,*/}
+      {/*    }}*/}
+      {/*    inputProps={{ 'aria-label': 'search' }}*/}
+      {/*  />*/}
+      {/*</div>*/}
     </div>
   )
 };

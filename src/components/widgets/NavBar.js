@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import clsx from 'clsx';
 import {withStyles} from "@material-ui/core/styles/index";
-import {MenuItem, Menu, List, Divider, CssBaseline, IconButton, Toolbar, AppBar, Drawer, InputBase} from "@material-ui/core";
-import {Menu as MenuIcon, ChevronLeft, MoreVert, Search} from '@material-ui/icons';
+import {MenuItem, Menu, List, Divider, CssBaseline, IconButton, Toolbar, AppBar, Drawer} from "@material-ui/core";
+import {Menu as MenuIcon, ChevronLeft, MoreVert} from '@material-ui/icons';
 import {mainListItems, secondaryListItems} from "./DrawerLinks";
 import styles from "../styles/NavBarStyle";
 import {Link} from "react-router-dom";

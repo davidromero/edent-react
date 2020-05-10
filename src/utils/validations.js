@@ -28,7 +28,7 @@ const confirmPatient = (patient) => {
   prettyPatient.last_name = capitalize(prettyPatient.last_name);
   prettyPatient.clinic_location = capitalize(prettyPatient.clinic_location);
   prettyPatient.visit_reason = capitalize(prettyPatient.visit_reason);
-  prettyPatient.birthday = dateFormat(prettyPatient.birthday);
+  prettyPatient.birthday = prettyPatient.birthday === "-" ? "-" : dateFormat(prettyPatient.birthday);
   prettyPatient.sex = prettyPatient.sex === "male" ? "Hombre" : "Mujer";
   prettyPatient.email = prettyPatient.email === "" ? "No tiene" : prettyPatient.email;
   prettyPatient.address = prettyPatient.address === "" ? "Sin dirección" : prettyPatient.address;

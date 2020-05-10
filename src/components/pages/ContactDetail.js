@@ -40,12 +40,12 @@ const ContactInfo = (props) => {
         <h2 style={{textTransform: "capitalize", margin: "15px"}}><b>{patient.first_name + " " + patient.last_name}</b></h2> }
       <div className={"mid-paper-container"}>
         <div style={{width: "200px"}}>
-          <p><b>Número Telefónico</b></p>
-          <p>{patient.phone_number}</p>
-          <p><b>Correo Electrónico</b></p>
-          <p>{patient.email}</p>
-          <p><b>Dirección</b></p>
-          <p>{patient.address}</p>
+          <p><b>Número Telefónico</b><br/>
+          {patient.phone_number}</p>
+          <p><b>Correo Electrónico</b><br/>
+          {patient.email}</p>
+          <p><b>Dirección</b><br/>
+          {patient.address}</p>
         </div>
         {props.children}
       </div>

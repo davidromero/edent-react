@@ -55,7 +55,7 @@ const StartTreatmentButton = (props) => {
         style={customStyles}
         ariaHideApp={false}
         contentLabel="Qué tipo de tratamiento se iniciará?">
-        <h3>¿Está seguro en realizar esta acción?</h3>
+        <h3>¿Está seguro en empezar un nuevo tratamiento?</h3>
         <div className={"modal-container"}>
           <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
                   onClick={() => {}}>Aceptar</button>

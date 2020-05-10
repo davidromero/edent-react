@@ -6,7 +6,7 @@ import placeholder from "../../assets/img/profile_placeholder.png";
 import {ContactInfo} from "./ContactDetail";
 import {confirmPatient} from "../../utils/validations";
 import Modal from 'react-modal';
-import {dateFormat, dateTimeFormat} from "../../utils/utils";
+import {dateFormat} from "../../utils/utils";
 import {ServiceDetail} from "../widgets/TreatmentCards";
 
 const PatientDetail = (props) => {

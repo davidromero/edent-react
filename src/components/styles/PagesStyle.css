@@ -117,7 +117,6 @@
   flex-direction: row;
   justify-content: center;
 }
-
 .modal-button {
   font-size: 1.2em;
   color: white;
@@ -127,3 +126,42 @@
   border-radius: 10px;
   outline: none;
 }
+
+/*TreatmentMenu*/
+.lateral-paper {
+  width: 285px;
+  min-height: 155px;
+  display: table-cell;
+  text-align: center;
+  margin: 6px;
+  float: left;
+}
+.lateral-paper h2{
+  margin: 5px;
+}
+.lateral-paper h3{
+  margin: 12px 5px;
+}
+.lateral-paper p{
+  margin: 12px 5px;
+}
+
+.side-content {
+  display: table-cell;
+}
+.menu-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.menu-button {
+  width: 285px;
+  min-height: 120px;
+  margin: 6px;
+  padding: 35px 0;
+  text-align: center;
+}
+

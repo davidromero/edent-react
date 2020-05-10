@@ -119,7 +119,7 @@ const Confirmation = (props) => {
   return (
     <div>
       <div className={"form-container"}>
-        <Paper className={"simple-paper"}>
+        <Paper style={{width: "100%", maxWidth: "280px"}} className={"simple-paper"}>
           <h3><b>Información Personal</b></h3>
           <p><b>Nombres y Apellidos</b><br/>
           {confirmation.first_name + " " + confirmation.last_name}</p>
@@ -132,7 +132,7 @@ const Confirmation = (props) => {
           <p><b>Motivo de Visita</b><br/>
           {confirmation.visit_reason}</p>
         </Paper>
-        <Paper className={"simple-paper"}>
+        <Paper style={{width: "100%", maxWidth: "280px"}} className={"simple-paper"}>
           <h3><b>Contacto Personal</b></h3>
           <p><b>Número Telefónico</b><br/>
           {confirmation.phone_number}</p>

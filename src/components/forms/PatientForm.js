@@ -36,8 +36,6 @@ const GeneralForm = (props) => {
                   onChange={handleChange} input={<Input name={"location"}/>}>
             <MenuItem value={"chiquimula"}>Chiquimula</MenuItem>
             <MenuItem value={"jocotan"}>Jocotán</MenuItem>
-            <MenuItem value={"amatitlan"}>Amatitlán</MenuItem>
-            <MenuItem value={"guatemala"}>Guatemala</MenuItem>
           </Select>
         </FormControl>
         <FormControl style={{margin: "8px"}} >
@@ -113,6 +111,7 @@ const Confirmation = (props) => {
 
   useEffect(() => {
     const prettyPatient = confirmPatient(patient);
+    console.log(JSON.stringify(patient))
     setConfirmation(prettyPatient);
   }, [patient]);
 

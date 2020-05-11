@@ -31,7 +31,7 @@ const PatientDetail = (props) => {
         <ContactInfo patient={patient}>
           <PatientButtons patient={patient}/>
         </ContactInfo>
-        <ServiceDetail service_name={"Odontología Operatoria"} patient={patient}/>
+        <ServiceDetail service_name={"Operatoria"} patient={patient}/>
         <ServiceDetail service_name={"Endodoncia"} patient={patient}/>
         <ServiceDetail service_name={"Cirugía"} patient={patient}/>
         <ServiceDetail service_name={"Seguro"} patient={patient}/>

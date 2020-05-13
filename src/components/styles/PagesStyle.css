@@ -129,21 +129,13 @@
 
 /*TreatmentMenu*/
 .lateral-paper {
-  width: 285px;
-  min-height: 155px;
+  width: 98%;
+  max-width: 385px;
   display: table-cell;
   text-align: center;
-  margin: 6px;
+  padding: 12px;
+  margin: 4px;
   float: left;
-}
-.lateral-paper h2{
-  margin: 5px;
-}
-.lateral-paper h3{
-  margin: 12px 5px;
-}
-.lateral-paper p{
-  margin: 12px 5px;
 }
 
 .side-content {

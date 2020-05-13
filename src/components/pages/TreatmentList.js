@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Paper} from "@material-ui/core";
 import axios from 'axios/index';
 import "../styles/PagesStyle.css";
+import {Prompt} from "react-router-dom";
 
 const operatoriaMenu = [
   {treatment_uid: "123", treatment_name: "Resina"},
@@ -34,15 +35,26 @@ const cirugiaMenu = [
 ]
 
 const TreatmentList = (props) => {
-  const {uid} = props.match.params
-  const {patient} = props;
-  const treatmentType = "seguro";
+  const {uid} = props.match.params;
   const [treatmentMenu, setTreatmentMenu] = useState();
-  const [checkout, setCheckout] = useState();
+  const [checkout, setCheckout] = useState([]);
+  const [treatmentType, setTreatmentType] = useState();
+  const [patient, setPatient] = useState();
 
-  useEffect( () => {setMenu()}, [])
+  useEffect( () => {initValues()})
 
-  const setMenu = () => {
+  const initValues = () => {
+    const {TreatmentProp, Patient} = props.location;
+    if(TreatmentProp !== undefined){
+      localStorage.setItem("patient", JSON.stringify(Patient));
+      localStorage.setItem("treatment-type", TreatmentProp);
+      setTreatmentType(TreatmentProp);
+      setPatient(Patient);
+    }
+    else{
+      setPatient(JSON.parse(localStorage.getItem("patient")));
+      setTreatmentType(localStorage.getItem("treatment-type"));
+    }
     if (treatmentType === "operatoria") {
       setTreatmentMenu(operatoriaMenu);
     } else if (treatmentType === "seguro") {
@@ -54,28 +66,44 @@ const TreatmentList = (props) => {
     }
   };
 
-  const addTreatment = (treatment) => {
-    console.log(treatment)
-    setCheckout(treatment.treatment_name)
+  const addNewTreatment = (treatment) => {
+    if(checkout.length < 9){
+      setCheckout([...checkout, {id: checkout.length, name: treatment.treatment_name}]);
+    }
   };
+
+  const removeTreatment = (idx) => {
+    const temp = [...checkout];
+    if (temp.length > 1){
+      temp.splice(idx, 1);
+      setCheckout(temp);
+    }
+    else{
+      setCheckout([]);
+    }
+  };
+
 
   return (
     <div className={"page-container"}>
+      <Prompt
+        when={true}
+        message='Al salir el tratamiento se cancelará. ¿Está seguro?'
+      />
       <Paper className={"wide-paper"} elevation={2} square={false}>
         {patient ?
           <h2 style={{textTransform: "capitalize"}}>Nuevo Tratamiento: {patient.first_name + " " + patient.last_name}</h2> :
           <h2>Nuevo Tratamiento</h2>}
         <h3 style={{textTransform: "capitalize"}}>{treatmentType}</h3>
       </Paper>
-      <div style={{display: "table-column", width: "100%"}}>
-        <TreatmentCheckout checkout={checkout}/>
+      <div style={{display: "table-column", width: "100%", justifyContent: "center"}}>
+        <TreatmentCheckout checkout={checkout} remove={removeTreatment}/>
         <div className={"side-content"}>
           <div className={"menu-container"}>
             {
               treatmentMenu && treatmentMenu.map((treatment, index) => {
                 return (
-                  <Paper className={"menu-button"} key={index}
-                         onClick={() => {addTreatment(treatment)}}>
+                  <Paper className={"menu-button"} key={index} onClick={() => {addNewTreatment(treatment)}}>
                     <h2>{treatment.treatment_name}</h2>
                   </Paper>
                 )
@@ -89,16 +117,28 @@ const TreatmentList = (props) => {
 };
 
 const TreatmentCheckout = (props) => {
-  const {checkout} = props;
+  const {checkout, remove} = props;
 
   return (
     <Paper className={"lateral-paper"} elevation={2}>
-      <p><b>Tratamientos Agregados:</b></p>
-
-      {}
+      <h3><b>Tratamientos en Progreso:</b></h3>
+      {
+        checkout.map((treatment, idx) =>
+          <TreatmentItem key={idx} idx={idx} treatment={treatment} remove={remove}/>)
+      }
     </Paper>
   )
 }
 
+const TreatmentItem = (props) => {
+  const {idx, treatment, remove} = props;
+
+  return(
+    <div className={"participant-background"} key={idx}>
+      {treatment.name}
+      <button style={{width: "20%"}} className={"participant-button"} onClick={() => {remove(idx)}}>-</button>
+    </div>
+  )
+}
 
 export {TreatmentList};

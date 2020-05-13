@@ -111,7 +111,6 @@ const Confirmation = (props) => {
 
   useEffect(() => {
     const prettyPatient = confirmPatient(patient);
-    console.log(JSON.stringify(patient))
     setConfirmation(prettyPatient);
   }, [patient]);
 

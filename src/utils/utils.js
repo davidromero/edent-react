@@ -14,11 +14,17 @@ const patientTemplate = {
 const dateTimeFormat = (iso_date) => {
   const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
   let date = new Date(iso_date);
-  return date.getUTCDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + " - " +
+  return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + " - " +
     ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2) +":" + ("0" + date.getSeconds()).slice(-2);
 }
 
 const dateFormat = (iso_date) => {
+  const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+  let date = new Date(iso_date);
+  return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
+}
+
+const birthdayFormat = (iso_date) => {
   const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
   let date = new Date(iso_date);
   return date.getUTCDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
@@ -31,4 +37,4 @@ const capitalize = (word) => {
     .join(' ');
 }
 
-export {dateTimeFormat, dateFormat, capitalize, patientTemplate}
+export {dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate}

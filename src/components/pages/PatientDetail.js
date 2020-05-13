@@ -23,6 +23,7 @@ const PatientDetail = (props) => {
       })
   }, [uid]);
 
+
   return (
     <div className={"page-container"}>
       {patient &&
@@ -31,10 +32,10 @@ const PatientDetail = (props) => {
         <ContactInfo patient={patient}>
           <PatientButtons patient={patient}/>
         </ContactInfo>
-        <ServiceDetail service_name={"Operatoria"} patient={patient}/>
-        <ServiceDetail service_name={"Endodoncia"} patient={patient}/>
-        <ServiceDetail service_name={"Cirugía"} patient={patient}/>
-        <ServiceDetail service_name={"Seguro"} patient={patient}/>
+        <ServiceDetail service_name={"Operatoria"} treatment_id={"operatoria"} patient={patient}/>
+        <ServiceDetail service_name={"Endodoncia"} treatment_id={"endodoncia"} patient={patient}/>
+        <ServiceDetail service_name={"Cirugía"} treatment_id={"cirugia"} patient={patient}/>
+        <ServiceDetail service_name={"Seguro"} treatment_id={"seguro"} patient={patient}/>
       </>
       }
     </div>

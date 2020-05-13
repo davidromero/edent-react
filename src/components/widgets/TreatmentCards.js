@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import {Link} from "react-router-dom";
 
 const ServiceDetail = (props) => {
-  const {patient, service_name} = props;
+  const {patient, service_name, treatment_id} = props;
 
   return (
     <Paper className={"mid-paper"} style={{display: "flex", flexDirection: "column",justifyContent: "space-between"}} elevation={2}>
@@ -15,26 +15,26 @@ const ServiceDetail = (props) => {
           <p><b>Última cita: </b>20 May 2019</p>
           <p><b>Último tratamiento: </b>Prótesis Valpast Total</p>
         </div>
-          <ServiceButtons patient={patient}/>
+          <ServiceButtons patient={patient} treatment_id={treatment_id}/>
       </div>
     </Paper>
   )
 };
 
 const ServiceButtons = (props) => {
-  const {patient} = props;
+  const {patient, treatment_id} = props;
 
   return(
     <div style={{width: "200px"}}>
-      <StartTreatmentButton uid={patient.patient_uid}/>
-      <AppointmentButton uid={patient.patient_uid}/>
+      <StartTreatmentButton uid={patient.uid} treatment_id={treatment_id} patient={patient}/>
+      <AppointmentButton uid={patient.uid}/>
     </div>
   )
 };
 
 
 const StartTreatmentButton = (props) => {
-  const {uid} = props;
+  const {uid, treatment_id, patient} = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const customStyles = {
@@ -57,8 +57,10 @@ const StartTreatmentButton = (props) => {
         contentLabel="Qué tipo de tratamiento se iniciará?">
         <h3>¿Está seguro en empezar un nuevo tratamiento?</h3>
         <div className={"modal-container"}>
-          <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
-                  onClick={() => {}}>Aceptar</button>
+          <Link to={{pathname: "/treatments/" + uid, TreatmentProp: treatment_id.toLowerCase(), Patient: patient}}>
+            <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}>Aceptar</button>
+          </Link>
+
           <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
                   onClick={() => {setIsOpen(false)}}>Cancelar</button>
         </div>

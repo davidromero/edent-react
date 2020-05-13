@@ -24,7 +24,7 @@ const Home = () => {
             <Route exact path={"/contacts"} component={ContactList}/>
             <Route exact path={"/contacts/:uid"} component={ContactDetail} />
             <Route exact path={"/createpatient"} component={NewPatient}/>
-            <Route exact path={"/treatment/:uid"} component={TreatmentList}/>
+            <Route exact path={"/treatments/:uid"} component={TreatmentList}/>
           </Switch>
         </div>
       </main>

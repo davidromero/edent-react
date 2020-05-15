@@ -1,6 +1,6 @@
 import React from "react";
 import {ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
-import {Dashboard, People, Today, Contacts, Create} from "@material-ui/icons";
+import {Dashboard, People, Today, Contacts, Create, Payment} from "@material-ui/icons";
 import {Link} from "react-router-dom";
 
 export const mainListItems = (
@@ -39,6 +39,12 @@ export const secondaryListItems = (
         <Create />
       </ListItemIcon>
       <ListItemText primary="Nuevo Paciente"/>
+    </ListItem>
+    <ListItem button component={Link} to="/checkout">
+      <ListItemIcon>
+        <Payment />
+      </ListItemIcon>
+      <ListItemText primary="Pago" />
     </ListItem>
   </div>
 );

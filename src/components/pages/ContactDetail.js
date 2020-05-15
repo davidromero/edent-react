@@ -1,51 +1,26 @@
 import React, {useEffect, useState} from "react";
 import {Paper} from "@material-ui/core";
 import {dateTimeFormat} from "../../utils/utils";
-import {confirmPatient} from "../../utils/validations";
 import {Link} from "react-router-dom";
 import axios from "axios";
 
-const contactTemp = {
-  first_name: "-",
-  last_name: "",
-  visit_reason: "-",
-  sex: "-",
-  address: "-",
-  email: "-",
-  uid: "-",
-  clinic_location: "-",
-  patient_uid: "-",
-  phone_number: "-",
-  active: true,
-  created_by: "local",
-  modified_by: "local",
-  created_timestamp: "2020-04-18 17:21:25.340325-06:00",
-  modified_timestamp: "2020-04-18 17:21:25.340325-06:00",
-  birthday: "2000-1-1"
-}
-
-
-
 const ContactDetail = (props) => {
   const {uid} = props.match.params
-  const [contact, setContact] = useState(contactTemp);
+  const [contact, setContact] = useState({});
 
   useEffect(() => {
-    const prettyContact = confirmPatient(contact);
-    setContact(prettyContact);
     axios.get("https://9jtkflgqhe.execute-api.us-east-1.amazonaws.com/api/contacts/" + uid)
       .then( (res) => {
-        console.log("Contact fetched from API");
         setContact(res.data.payload);
       })
       .catch((error) => {
         console.log(error);
       })
-  }, []);
+  }, [uid]);
 
   return (
     <div className={"page-container"}>
-      {contact !== {} &&
+      {contact &&
       <>
         <ContactInfo patient={contact}>
           <ContactsButtons contact={contact}/>
@@ -60,17 +35,17 @@ const ContactInfo = (props) => {
   const {patient} = props;
 
   return (
-    <Paper className={"mid-paper"}
-           style={{display: "flex", flexDirection: "column",justifyContent: "space-between"}} elevation={2}>
+    <Paper className={"mid-paper"} style={{display: "flex", flexDirection: "column",justifyContent: "space-between"}} elevation={2}>
+      {!patient.patient_uid ? <></> :
+        <h2 style={{textTransform: "capitalize", margin: "15px"}}><b>{patient.first_name + " " + patient.last_name}</b></h2> }
       <div className={"mid-paper-container"}>
         <div style={{width: "200px"}}>
-          <h3><b>Estado</b></h3>
-          <p><b>Número Telefónico</b></p>
-          <p>{patient.phone_number}</p>
-          <p><b>Correo Electrónico</b></p>
-          <p>{patient.email}</p>
-          <p><b>Dirección</b></p>
-          <p>{patient.address}</p>
+          <p><b>Número Telefónico</b><br/>
+          {patient.phone_number}</p>
+          <p><b>Correo Electrónico</b><br/>
+          {patient.email}</p>
+          <p><b>Dirección</b><br/>
+          {patient.address}</p>
         </div>
         {props.children}
       </div>
@@ -83,7 +58,6 @@ const ContactInfo = (props) => {
     </Paper>
   )
 };
-
 
 const ContactsButtons = (props) => {
   const {contact} = props;
@@ -101,8 +75,10 @@ const WhatsappButton = (props) => {
   const {phone_number} = props;
 
   return(
-    <a href={'https://api.whatsapp.com/send?phone=' + phone_number} style={{ textDecoration: 'none', color: 'inherit'}}>
-      <button className="mid-paper-button">WhatsApp</button></a>
+    <a href={'https://api.whatsapp.com/send?phone=+502' + phone_number} target="_blank"
+       rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit'}}>
+      <button className="mid-paper-button">WhatsApp</button>
+    </a>
   )
 }
 
@@ -124,7 +100,6 @@ const CallButton = (props) => {
     <button className="mid-paper-button">Llamar</button></a>
   )
 };
-
 
 
 export {ContactDetail, ContactInfo};

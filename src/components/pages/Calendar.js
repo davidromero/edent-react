@@ -1,6 +1,5 @@
 import React from "react";
-import "../styles/PagesStyle.css";
-import Paper from "@material-ui/core/Paper";
+import {Paper} from "@material-ui/core";
 
 const Calendar = (props) => {
 

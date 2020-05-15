@@ -40,6 +40,7 @@
 /*Simple Paper*/
 .simple-paper {
   width: 280px;
+  min-height: 155px;
   padding: 8px;
   margin: 4px;
 }
@@ -76,7 +77,7 @@
 
 /*Mid Paper*/
 .mid-paper {
-  width: 45vw;
+  width: 44vw;
   min-width: 275px;
   padding: 4px;
   margin: 4px;
@@ -116,7 +117,6 @@
   flex-direction: row;
   justify-content: center;
 }
-
 .modal-button {
   font-size: 1.2em;
   color: white;
@@ -126,3 +126,55 @@
   border-radius: 10px;
   outline: none;
 }
+
+/*TreatmentMenu*/
+.lateral-paper {
+  width: 98%;
+  max-width: 385px;
+  display: table-cell;
+  text-align: center;
+  padding: 12px;
+  margin: 4px;
+  float: left;
+}
+.side-content {
+  display: table-cell;
+}
+.menu-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.menu-button {
+  width: 285px;
+  min-height: 120px;
+  margin: 6px;
+  padding: 35px 0;
+  text-align: center;
+}
+.treatment-item {
+  height: 50px;
+  padding: 8px;
+}
+.finish-treatment-button{
+  height: 40px;
+  font-size: 0.9em;
+  background-color: white;
+  border: 2px solid rgb(21, 149, 189);
+  border-radius: 10px;
+  outline: none;
+  margin: 12px;
+}
+.remove-treatment-button{
+  width: 30px;
+  height: 30px;
+  margin: 12px;
+  border-radius: 50px;
+  background: white;
+  font-size: 1.2em;
+  outline: none;
+}
+

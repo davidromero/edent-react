@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {RadioGroup, Radio, FormControlLabel, TextField, Button, FormLabel,
-  Select, Input, MenuItem, FormControl, InputLabel, Paper, ListItemText} from "@material-ui/core";
+  Select, Input, MenuItem, FormControl, InputLabel, Paper} from "@material-ui/core";
 import {validateContactsForm, validateGeneralForm, confirmPatient} from "../../utils/validations";
 import "../styles/PagesStyle.css"
 
@@ -36,8 +36,6 @@ const GeneralForm = (props) => {
                   onChange={handleChange} input={<Input name={"location"}/>}>
             <MenuItem value={"chiquimula"}>Chiquimula</MenuItem>
             <MenuItem value={"jocotan"}>Jocotán</MenuItem>
-            <MenuItem value={"amatitlan"}>Amatitlán</MenuItem>
-            <MenuItem value={"guatemala"}>Guatemala</MenuItem>
           </Select>
         </FormControl>
         <FormControl style={{margin: "8px"}} >
@@ -51,8 +49,10 @@ const GeneralForm = (props) => {
           <InputLabel id="location">Motivo de visita *</InputLabel>
           <Select className={"selectEmpty"} name={"visit_reason"} value={patient.visit_reason ? patient.visit_reason : ""}
                   onChange={handleChange} input={<Input name={"visit_reason"}/>}>
-            <MenuItem value={"odontologia"}>Odontología</MenuItem>
-            <MenuItem value={"ortodoncia"}>Ortodoncia</MenuItem>
+            <MenuItem value={"operatoria"}>Odontología Operatoria</MenuItem>
+            <MenuItem value={"endodoncia"}>Endodoncia</MenuItem>
+            <MenuItem value={"cirugia"}>Cirugía</MenuItem>
+            <MenuItem value={"seguro"}>Seguro</MenuItem>
           </Select>
         </FormControl>
       </div>
@@ -112,32 +112,32 @@ const Confirmation = (props) => {
   useEffect(() => {
     const prettyPatient = confirmPatient(patient);
     setConfirmation(prettyPatient);
-  });
+  }, [patient]);
 
   return (
     <div>
       <div className={"form-container"}>
-        <Paper className={"simple-paper"}>
+        <Paper style={{width: "100%", maxWidth: "280px"}} className={"simple-paper"}>
           <h3><b>Información Personal</b></h3>
-          <p><b>Nombres y Apellidos</b></p>
-          <p>{confirmation.first_name + " " + confirmation.last_name}</p>
-          <p><b>Clínica</b></p>
-          <p>{confirmation.clinic_location}</p>
-          <p><b>Fecha de Nacimiento</b></p>
-          <p>{confirmation.birthday}</p>
-          <p><b>Sexo</b></p>
-          <p>{confirmation.sex}</p>
-          <p><b>Motivo de Visita</b></p>
-          <p>{confirmation.visit_reason}</p>
+          <p><b>Nombres y Apellidos</b><br/>
+          {confirmation.first_name + " " + confirmation.last_name}</p>
+          <p><b>Clínica</b><br/>
+          {confirmation.clinic_location}</p>
+          <p><b>Fecha de Nacimiento</b><br/>
+          {confirmation.birthday}</p>
+          <p><b>Sexo</b><br/>
+          {confirmation.sex}</p>
+          <p><b>Motivo de Visita</b><br/>
+          {confirmation.visit_reason}</p>
         </Paper>
-        <Paper className={"simple-paper"}>
+        <Paper style={{width: "100%", maxWidth: "280px"}} className={"simple-paper"}>
           <h3><b>Contacto Personal</b></h3>
-          <p><b>Número Telefónico</b></p>
-          <p>{confirmation.phone_number}</p>
-          <p><b>Correo Electrónico</b></p>
-          <p>{confirmation.email}</p>
-          <p><b>Dirección</b></p>
-          <p>{confirmation.address}</p>
+          <p><b>Número Telefónico</b><br/>
+          {confirmation.phone_number}</p>
+          <p><b>Correo Electrónico</b><br/>
+          {confirmation.email}</p>
+          <p><b>Dirección</b><br/>
+          {confirmation.address}</p>
         </Paper>
       </div>
 

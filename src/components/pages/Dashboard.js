@@ -1,6 +1,5 @@
 import React from "react";
-import Paper from "@material-ui/core/Paper/index";
-import "../styles/PagesStyle.css";
+import {Paper} from "@material-ui/core";
 
 const Dashboard = (props) => {
 

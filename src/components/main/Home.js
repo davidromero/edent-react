@@ -1,6 +1,4 @@
 import React from "react";
-import {withStyles} from "@material-ui/core/styles";
-import styles from "../styles/PagesStyle.css";
 import NavBar from "../widgets/NavBar";
 import {Dashboard} from "../pages/Dashboard";
 import {ContactList} from "../pages/ContactList";
@@ -10,6 +8,7 @@ import {NewPatient} from "../pages/NewPatient";
 import {ContactDetail} from "../pages/ContactDetail";
 import {Route, Switch} from "react-router-dom";
 import {PatientDetail} from "../pages/PatientDetail";
+import {TreatmentList} from "../pages/TreatmentList"
 
 const Home = () => {
   return (
@@ -25,6 +24,7 @@ const Home = () => {
             <Route exact path={"/contacts"} component={ContactList}/>
             <Route exact path={"/contacts/:uid"} component={ContactDetail} />
             <Route exact path={"/createpatient"} component={NewPatient}/>
+            <Route exact path={"/treatments/:uid"} component={TreatmentList}/>
           </Switch>
         </div>
       </main>
@@ -33,4 +33,4 @@ const Home = () => {
 };
 
 
-export default withStyles(styles)(Home);
+export {Home};

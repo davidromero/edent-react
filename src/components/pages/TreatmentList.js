@@ -8,23 +8,20 @@ import Modal from "react-modal";
 
 const operatoriaMenu = [
   {
-    level3: "valplast",
-    price: "0",
-    uid: "22",
-    level1: "prótesis",
-    type: "operatoria",
-    level2: "removible unilateral"
+    "price": "0",
+    "uid": "22",
+    "level1": "prótesis unilateral",
+    "type": "operatoria",
+    "level2": "valplast"
   },
   {
-    "level3": "acrílico chiquimula",
     "price": "0",
     "uid": "18",
-    "level1": "prótesis",
+    "level1": "prótesis unilateral",
     "type": "operatoria",
-    "level2": "removible unilateral"
+    "level2": "acrílico chiquimula"
   },
   {
-    "level3": "",
     "price": "1500",
     "uid": "16",
     "level1": "coronas",
@@ -32,15 +29,6 @@ const operatoriaMenu = [
     "level2": ""
   },
   {
-    "level3": "",
-    "price": "75",
-    "uid": "40",
-    "level1": "limpieza",
-    "type": "seguro",
-    "level2": ""
-  },
-  {
-    "level3": "",
     "price": "300",
     "uid": "2",
     "level1": "recina",
@@ -48,7 +36,6 @@ const operatoriaMenu = [
     "level2": "grande"
   },
   {
-    "level3": "",
     "price": "300",
     "uid": "13",
     "level1": "limpieza con detrartraje",
@@ -56,7 +43,6 @@ const operatoriaMenu = [
     "level2": ""
   },
   {
-    "level3": "",
     "price": "200",
     "uid": "8",
     "level1": "exodoncia",
@@ -64,7 +50,6 @@ const operatoriaMenu = [
     "level2": "niño permanente"
   },
   {
-    "level3": "",
     "price": "50",
     "uid": "9",
     "level1": "exodoncia",
@@ -72,7 +57,6 @@ const operatoriaMenu = [
     "level2": "niño leche"
   },
   {
-    "level3": "",
     "price": "250",
     "uid": "1",
     "level1": "recina",
@@ -80,15 +64,13 @@ const operatoriaMenu = [
     "level2": "pequeña"
   },
   {
-    "level3": "cromo guatemala",
     "price": "0",
     "uid": "31",
-    "level1": "prótesis",
+    "level1": "prótesis total",
     "type": "operatoria",
-    "level2": "removible total"
+    "level2": "cromo guatemala"
   },
   {
-    "level3": "",
     "price": "200",
     "uid": "6",
     "level1": "amalgama",
@@ -96,45 +78,152 @@ const operatoriaMenu = [
     "level2": "grande"
   },
   {
-    "level3": "",
-    "price": "900",
-    "uid": "38",
-    "level1": "frenectomía",
-    "type": "cirugia",
-    "level2": "frenillo"
-  },
-  {
-    "level3": "acrílico chiquimula",
     "price": "0",
     "uid": "28",
-    "level1": "prótesis",
+    "level1": "prótesis total",
     "type": "operatoria",
-    "level2": "removible total"
+    "level2": "acrílico chiquimula"
   },
   {
-    "level3": "cromo chiquimula",
     "price": "0",
     "uid": "30",
-    "level1": "prótesis",
+    "level1": "prótesis total",
     "type": "operatoria",
-    "level2": "removible total"
+    "level2": "cromo chiquimula"
+  },
+  {
+    "price": "0",
+    "uid": "24",
+    "level1": "prótesis bilateral",
+    "type": "operatoria",
+    "level2": "acrílico guatemala"
+  },
+  {
+    "price": "0",
+    "uid": "27",
+    "level1": "prótesis bilateral",
+    "type": "operatoria",
+    "level2": "valplast"
+  },
+  {
+    "price": "150",
+    "uid": "5",
+    "level1": "amalgama",
+    "type": "operatoria",
+    "level2": "pequeña"
+  },
+  {
+    "price": "350",
+    "uid": "4",
+    "level1": "carilla",
+    "type": "operatoria",
+    "level2": "grande"
+  },
+  {
+    "price": "0",
+    "uid": "32",
+    "level1": "prótesis total",
+    "type": "operatoria",
+    "level2": "valplast"
+  },
+  {
+    "price": "0",
+    "uid": "23",
+    "level1": "prótesis bilateral",
+    "type": "operatoria",
+    "level2": "acrílico chiquimula"
+  },
+  {
+    "price": "0",
+    "uid": "19",
+    "level1": "prótesis unilateral",
+    "type": "operatoria",
+    "level2": "acrílico guatemala"
+  },
+  {
+    "price": "0",
+    "uid": "26",
+    "level1": "prótesis bilateral",
+    "type": "operatoria",
+    "level2": "cromo guatemala"
+  },
+  {
+    "price": "300",
+    "uid": "7",
+    "level1": "relleno blanco en cápsula",
+    "type": "operatoria",
+    "level2": ""
+  },
+  {
+    "price": "200",
+    "uid": "11",
+    "level1": "exodoncia",
+    "type": "operatoria",
+    "level2": "adulto superiores"
+  },
+  {
+    "price": "300",
+    "uid": "3",
+    "level1": "carilla",
+    "type": "operatoria",
+    "level2": "pequeña"
+  },
+  {
+    "price": "0",
+    "uid": "20",
+    "level1": "prótesis unilateral",
+    "type": "operatoria",
+    "level2": "cromo chiquimula"
+  },
+  {
+    "price": "0",
+    "uid": "29",
+    "level1": "prótesis total",
+    "type": "operatoria",
+    "level2": "acrílico guatemala"
+  },
+  {
+    "price": "0",
+    "uid": "21",
+    "level1": "prótesis unilateral",
+    "type": "operatoria",
+    "level2": "cromo guatemala"
+  },
+  {
+    "price": "0",
+    "uid": "25",
+    "level1": "prótesis bilateral",
+    "type": "operatoria",
+    "level2": "cromo chiquimula"
+  },
+  {
+    "price": "300",
+    "uid": "12",
+    "level1": "exodoncia",
+    "type": "operatoria",
+    "level2": "coidal superiores"
+  },
+  {
+    "price": "100",
+    "uid": "17",
+    "level1": "cementación de coronas",
+    "type": "operatoria",
+    "level2": ""
+  },
+  {
+    "price": "150",
+    "uid": "10",
+    "level1": "exodoncia",
+    "type": "operatoria",
+    "level2": "adulto anteriores"
+  },
+  {
+    "price": "300",
+    "uid": "14",
+    "level1": "blanqueamiento",
+    "type": "operatoria",
+    "level2": ""
   }
-]
-const seguroMenu = [
-  {treatment_uid: "123", treatment_name: "Evaluación"},
-  {treatment_uid: "124", treatment_name: "Limpieza"},
-  {treatment_uid: "125", treatment_name: "Amalgama"},
-  {treatment_uid: "126", treatment_name: "Exodoncia Leche"},
-  {treatment_uid: "126", treatment_name: "Exodoncia Adulto"},
-]
-const endodonciaMenu = [
-  {treatment_uid: "123", treatment_name: "TCR 1"},
-  {treatment_uid: "124", treatment_name: "TCR 2"},
-  {treatment_uid: "125", treatment_name: "TCR 3"},
-]
-const cirugiaMenu = [
-  {treatment_uid: "123", treatment_name: "Cordales"},
-  {treatment_uid: "124", treatment_name: "Frenectomía"},
 ]
 
 const TreatmentList = (props) => {
@@ -218,13 +307,13 @@ const TreatmentMenu = (props) => {
     console.log("click level " + level);
     console.log(treatment.name)
     if (treatment.parent || treatment.name === "atrás"){
-      let new_level = treatment.name !== "atrás" ? (level < 2 ? level + 1 : level) : level - 1;
+      let new_level = treatment.name === "atrás" ? 0 : 1;
       setLevel(new_level);
+      setClickedItem(treatment)
     }
     else{
       addNewTreatment(treatment)
     }
-    setClickedItem(treatment)
   }
 
   return(
@@ -234,7 +323,8 @@ const TreatmentMenu = (props) => {
           display && display.map((treatment, index) => {
             return (
               <Paper className={"menu-button"} key={index} onClick={() => {clickItem(treatment)}}>
-                <h2>{treatment.name + " " + (treatment.parent ? "" : "Q" +treatment.price)}</h2>
+                <h2 style={{textTransform: "capitalize"}}>{treatment.name}</h2>
+                <small>{treatment.parent || treatment.price === "" ? "" : "Q" + treatment.price}</small>
               </Paper>
             )
           })
@@ -308,12 +398,11 @@ const TreatmentCheckout = (props) => {
 
 const TreatmentItem = (props) => {
   const {idx, treatment, remove} = props;
-  console.log(JSON.stringify(treatment))
 
   return(
     <div className={"treatment-item"} key={idx}>
-      {treatment.name + " - Q" + treatment.price}
-      <button className={"remove-treatment-button"} onClick={() => {remove(idx)}}>x</button>
+      <text style={{textTransform: "capitalize"}}>{treatment.name + " - Q" + treatment.price}
+      <button className={"remove-treatment-button"} onClick={() => {remove(idx)}}>x</button></text>
     </div>
   )
 }

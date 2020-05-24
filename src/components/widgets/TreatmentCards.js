@@ -7,7 +7,8 @@ const ServiceDetail = (props) => {
   const {patient, service_name, treatment_id} = props;
 
   return (
-    <Paper className={"mid-paper"} style={{display: "flex", flexDirection: "column",justifyContent: "space-between"}} elevation={2}>
+    <Paper className={"mid-paper"} style={{display: "flex", flexDirection: "column", justifyContent: "space-between"}}
+           elevation={2}>
       <h2 style={{textTransform: "capitalize", margin: "15px"}}><b>{service_name}</b></h2>
       <div className={"mid-paper-container"}>
         <div style={{width: "200px"}}>
@@ -15,7 +16,7 @@ const ServiceDetail = (props) => {
           <p><b>Última cita: </b>20 May 2019</p>
           <p><b>Último tratamiento: </b>Prótesis Valpast Total</p>
         </div>
-          <ServiceButtons patient={patient} treatment_id={treatment_id}/>
+        <ServiceButtons patient={patient} treatment_id={treatment_id}/>
       </div>
     </Paper>
   )
@@ -24,7 +25,7 @@ const ServiceDetail = (props) => {
 const ServiceButtons = (props) => {
   const {patient, treatment_id} = props;
 
-  return(
+  return (
     <div style={{width: "200px"}}>
       <StartTreatmentButton uid={patient.uid} treatment_id={treatment_id} patient={patient}/>
       <AppointmentButton uid={patient.uid}/>
@@ -38,7 +39,7 @@ const StartTreatmentButton = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const customStyles = {
-    content : {
+    content: {
       top: '50%',
       left: '50%',
       right: 'auto',
@@ -48,7 +49,7 @@ const StartTreatmentButton = (props) => {
     }
   };
 
-  return(
+  return (
     <>
       <Modal
         isOpen={isOpen}
@@ -57,15 +58,26 @@ const StartTreatmentButton = (props) => {
         contentLabel="Qué tipo de tratamiento se iniciará?">
         <h3>¿Está seguro en empezar un nuevo tratamiento?</h3>
         <div className={"modal-container"}>
-          <Link to={{pathname: "/treatments/" + uid, TreatmentProp: treatment_id.toLowerCase(), Patient: patient}}>
+          <Link to={{
+            pathname: "/treatments/" + uid,
+            PatientId: uid,
+            TreatmentProp: treatment_id.toLowerCase(),
+            Patient: patient
+          }}>
             <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}>Aceptar</button>
           </Link>
 
           <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
-                  onClick={() => {setIsOpen(false)}}>Cancelar</button>
+                  onClick={() => {
+                    setIsOpen(false)
+                  }}>Cancelar
+          </button>
         </div>
       </Modal>
-      <button className="mid-paper-button" onClick={() => {setIsOpen(true)}}>Iniciar tratamiento</button>
+      <button className="mid-paper-button" onClick={() => {
+        setIsOpen(true)
+      }}>Iniciar tratamiento
+      </button>
     </>
   )
 
@@ -74,7 +86,7 @@ const StartTreatmentButton = (props) => {
 const AppointmentButton = (props) => {
   const {uid} = props;
 
-  return(
+  return (
     <button className="mid-paper-button">Hacer cita</button>
   )
 };

@@ -20,20 +20,24 @@ const TreatmentList = (props) => {
   const [checkout, setCheckout] = useState([]);
   const [treatmentType, setTreatmentType] = useState();
   const [patient, setPatient] = useState();
+  const [patientId, setPatientId] = useState();
   const [isOpen, setIsOpen] = useState();
   const [menu, setMenu] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
-    const {TreatmentProp, Patient} = props.location;
+    const {TreatmentProp, Patient, PatientId} = props.location;
     if (TreatmentProp !== undefined) {
       localStorage.setItem("patient", JSON.stringify(Patient));
       localStorage.setItem("treatment-type", TreatmentProp);
+      localStorage.setItem("patient-uid", PatientId);
       setTreatmentType(TreatmentProp);
       setPatient(Patient);
+      setPatientId(PatientId);
     } else {
       setPatient(JSON.parse(localStorage.getItem("patient")));
       setTreatmentType(localStorage.getItem("treatment-type"));
+      setPatientId(localStorage.getItem("patient-uid"));
     }
   }, [])
 
@@ -44,10 +48,8 @@ const TreatmentList = (props) => {
   }, [treatmentType])
 
   const getTreatmentRates = (type) => {
-    console.log(type)
     axios.get("https://hrtd76yb9b.execute-api.us-east-1.amazonaws.com/api/rates?type=" + type)
       .then((res) => {
-        console.log(res.data)
         setMenu(res.data.payload);
       })
       .catch((error) => {
@@ -57,7 +59,7 @@ const TreatmentList = (props) => {
 
   const addNewTreatment = (treatment) => {
     if (checkout.length < 9) {
-      setCheckout([...checkout, {id: checkout.length, name: treatment.complete_name, price: treatment.price}]);
+      setCheckout([...checkout, {uid: treatment.uid, name: treatment.complete_name.trim(), price: treatment.price}]);
     }
   };
 
@@ -115,7 +117,7 @@ const TreatmentList = (props) => {
         </div>
       </Paper>
       <div style={{display: "table-column", width: "100%", justifyContent: "center"}}>
-        <TreatmentCheckout checkout={checkout} patient={patient} remove={removeTreatment}/>
+        <TreatmentCheckout checkout={checkout} patient={patient} patient_uid={patientId} remove={removeTreatment}/>
         <TreatmentMenu treatmentMenu={menu} addNewTreatment={addNewTreatment}/>
       </div>
     </div>
@@ -129,7 +131,6 @@ const TreatmentMenu = (props) => {
   const [clickedItem, setClickedItem] = useState();
 
   useEffect(() => {
-    console.log(treatmentMenu.length)
     setDisplay(displayMenu(treatmentMenu, level, clickedItem));
   }, [treatmentMenu, level])
 
@@ -165,7 +166,6 @@ const TreatmentMenu = (props) => {
     </div>
   )
 }
-
 
 const displayMenu = (originalMenu, currentLevel, clickedItem) => {
   if (clickedItem && clickedItem.name === "atrás") {
@@ -209,14 +209,19 @@ const displayMenu = (originalMenu, currentLevel, clickedItem) => {
   return displayMenu;
 }
 
-
 const TreatmentCheckout = (props) => {
-  const {checkout, patient, remove} = props;
+  const {checkout, patient, remove, patient_uid} = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const finishTreatment = () => {
     setIsOpen(false);
-
+    const checkout_payload = {
+      checkout: checkout,
+      treatment_type: localStorage.getItem("treatment-type"),
+      patient: patient,
+      patient_uid: patient_uid,
+    }
+    console.log(checkout_payload)
   }
 
   const getTotal = (checkoutItems) => {

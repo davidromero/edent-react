@@ -17,7 +17,6 @@ const customStyles = {
 };
 
 const TreatmentList = (props) => {
-  const {uid} = props.match.params;
   const [checkout, setCheckout] = useState([]);
   const [treatmentType, setTreatmentType] = useState();
   const [patient, setPatient] = useState();
@@ -26,28 +25,6 @@ const TreatmentList = (props) => {
   const history = useHistory();
 
   useEffect(() => {
-    initValues();
-  }, [])
-
-  useEffect(() => {
-    if (treatmentType){
-      getTreatmentRates(treatmentType);
-    }
-  }, [treatmentType])
-
-  const getTreatmentRates = (type) => {
-    console.log(type)
-    axios.get("http://127.0.0.1:8000/rates?type=" + type)
-      .then((res) => {
-        console.log(res.data)
-        setMenu(res.data.payload);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
-
-  const initValues = () => {
     const {TreatmentProp, Patient} = props.location;
     if (TreatmentProp !== undefined) {
       localStorage.setItem("patient", JSON.stringify(Patient));
@@ -58,7 +35,25 @@ const TreatmentList = (props) => {
       setPatient(JSON.parse(localStorage.getItem("patient")));
       setTreatmentType(localStorage.getItem("treatment-type"));
     }
-  };
+  }, [])
+
+  useEffect(() => {
+    if (treatmentType) {
+      getTreatmentRates(treatmentType);
+    }
+  }, [treatmentType])
+
+  const getTreatmentRates = (type) => {
+    console.log(type)
+    axios.get("https://hrtd76yb9b.execute-api.us-east-1.amazonaws.com/api/rates?type=" + type)
+      .then((res) => {
+        console.log(res.data)
+        setMenu(res.data.payload);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
 
   const addNewTreatment = (treatment) => {
     if (checkout.length < 9) {
@@ -76,40 +71,42 @@ const TreatmentList = (props) => {
     }
   };
 
+  const cancelModal =
+    <Modal
+      isOpen={isOpen}
+      style={customStyles}
+      ariaHideApp={false}
+      contentLabel="¿Estas seguro?">
+      <h3>¿Está seguro en cancelar el tratamiento?</h3>
+      <div className={"modal-container"}>
+        <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
+                onClick={() => {
+                  history.goBack();
+                  setIsOpen(false)
+                }}>Aceptar
+        </button>
+        <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
+                onClick={() => {
+                  setIsOpen(false)
+                }}>Cancelar
+        </button>
+      </div>
+    </Modal>
+
 
   return (
     <div className={"page-container"}>
-
-      <Modal
-        isOpen={isOpen}
-        style={customStyles}
-        ariaHideApp={false}
-        contentLabel="¿Estas seguro?">
-        <h3>¿Está seguro en cancelar el tratamiento?</h3>
-        <div className={"modal-container"}>
-          <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
-                  onClick={() => {
-                    history.goBack();
-                    setIsOpen(false)
-                  }}>Aceptar
-          </button>
-          <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
-                  onClick={() => {
-                    setIsOpen(false)
-                  }}>Cancelar
-          </button>
-        </div>
-      </Modal>
+      {cancelModal}
       <Paper className={"wide-paper"} style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap"}}
              elevation={2} square={false}>
         <div>
           {patient ?
-            <h2 style={{textTransform: "capitalize"}}>Nuevo
-              Tratamiento: {patient.first_name + " " + patient.last_name}</h2> :
+            <h2 style={{textTransform: "capitalize"}}>Nuevo Tratamiento:
+              {patient.first_name + " " + patient.last_name}</h2> :
             <h2>Nuevo Tratamiento</h2>}
           <h3 style={{textTransform: "capitalize"}}>{treatmentType}</h3>
         </div>
-        <div style={{width: "315px", display: "flex", justifyContent: "center"}}>
+        <div style={{width: "285px", display: "flex", justifyContent: "center"}}>
           <button className={"finish-treatment-button"} style={{margin: "auto"}}
                   onClick={() => {
                     setIsOpen(true)
@@ -118,7 +115,7 @@ const TreatmentList = (props) => {
         </div>
       </Paper>
       <div style={{display: "table-column", width: "100%", justifyContent: "center"}}>
-        <TreatmentCheckout checkout={checkout} remove={removeTreatment}/>
+        <TreatmentCheckout checkout={checkout} patient={patient} remove={removeTreatment}/>
         <TreatmentMenu treatmentMenu={menu} addNewTreatment={addNewTreatment}/>
       </div>
     </div>
@@ -134,7 +131,7 @@ const TreatmentMenu = (props) => {
   useEffect(() => {
     console.log(treatmentMenu.length)
     setDisplay(displayMenu(treatmentMenu, level, clickedItem));
-  }, [treatmentMenu])
+  }, [treatmentMenu, level])
 
 
   const clickItem = (treatment) => {
@@ -149,20 +146,22 @@ const TreatmentMenu = (props) => {
 
   return (
     <div className={"side-content"}>
-      <div className={"menu-container"}>
-        {
-          display && display.map((treatment, index) => {
-            return (
-              <Paper className={"menu-button"} key={index} onClick={() => {
-                clickItem(treatment)
-              }}>
-                <h2 style={{textTransform: "capitalize"}}>{treatment.name}</h2>
-                <small>{treatment.parent || treatment.price === "" ? "" : "Q" + treatment.price}</small>
-              </Paper>
-            )
-          })
-        }
-      </div>
+      {treatmentMenu.length === 0 ? <h2>Cargando...</h2> :
+        <div className={"menu-container"}>
+          {
+            display && display.map((treatment, index) => {
+              return (
+                <Paper className={"menu-button"} key={index} onClick={() => {
+                  clickItem(treatment)
+                }}>
+                  <h2 style={{textTransform: "capitalize"}}>{treatment.name}</h2>
+                  <small>{treatment.parent || treatment.price === "" ? "" : "Q" + treatment.price}</small>
+                </Paper>
+              )
+            })
+          }
+        </div>
+      }
     </div>
   )
 }
@@ -173,7 +172,6 @@ const displayMenu = (originalMenu, currentLevel, clickedItem) => {
     clickedItem = undefined;
   }
   const displayMenu = [];
-  // add back button for inner navigation
   if (currentLevel > 0) {
     displayMenu.push({
       price: "",
@@ -213,11 +211,12 @@ const displayMenu = (originalMenu, currentLevel, clickedItem) => {
 
 
 const TreatmentCheckout = (props) => {
-  const {checkout, remove} = props;
+  const {checkout, patient, remove} = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const finishTreatment = () => {
     setIsOpen(false);
+
   }
 
   const getTotal = (checkoutItems) => {
@@ -237,26 +236,28 @@ const TreatmentCheckout = (props) => {
       </button>
     </>
 
+  const checkoutModal =
+    <Modal
+      isOpen={isOpen}
+      style={customStyles}
+      ariaHideApp={false}
+      contentLabel="¿Estas seguro?">
+      <h3>¿Está seguro en terminar el tratamiento?</h3>
+      <div className={"modal-container"}>
+        <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
+                onClick={finishTreatment}>Aceptar
+        </button>
+        <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
+                onClick={() => {
+                  setIsOpen(false)
+                }}>Cancelar
+        </button>
+      </div>
+    </Modal>
+
   return (
     <>
-      <Modal
-        isOpen={isOpen}
-        style={customStyles}
-        ariaHideApp={false}
-        contentLabel="¿Estas seguro?">
-        <h3>¿Está seguro en terminar el tratamiento?</h3>
-        <div className={"modal-container"}>
-          <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
-                  onClick={finishTreatment}>Aceptar
-          </button>
-          <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
-                  onClick={() => {
-                    setIsOpen(false)
-                  }}>Cancelar
-          </button>
-        </div>
-      </Modal>
-
+      {checkoutModal}
       <Paper className={"lateral-paper"} elevation={2}>
         <h3><b>Tratamientos en Progreso:</b></h3>
         {

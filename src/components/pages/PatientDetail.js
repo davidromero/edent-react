@@ -11,7 +11,7 @@ import {ServiceDetail} from "../widgets/TreatmentCards";
 
 const PatientDetail = (props) => {
   const {uid} = props.match.params;
-  const [patient, setPatient] = useState({});
+  const [patient, setPatient] = useState();
 
   useEffect(() => {
     axios.get("https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients/" + uid)
@@ -26,7 +26,7 @@ const PatientDetail = (props) => {
 
   return (
     <div className={"page-container"}>
-      {patient &&
+      {!patient ? <h2>Cargando...</h2> :
       <>
         <GeneralInfo patient={patient}/>
         <ContactInfo patient={patient}>

@@ -5,8 +5,8 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 
 const ContactDetail = (props) => {
-  const {uid} = props.match.params
-  const [contact, setContact] = useState({});
+  const {uid} = props.match.params;
+  const [contact, setContact] = useState();
 
   useEffect(() => {
     axios.get("https://9jtkflgqhe.execute-api.us-east-1.amazonaws.com/api/contacts/" + uid)
@@ -20,7 +20,7 @@ const ContactDetail = (props) => {
 
   return (
     <div className={"page-container"}>
-      {contact &&
+      {!contact ? <h2>Cargando...</h2> :
       <>
         <ContactInfo patient={contact}>
           <ContactsButtons contact={contact}/>

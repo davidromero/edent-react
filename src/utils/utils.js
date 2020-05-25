@@ -37,4 +37,6 @@ const capitalize = (word) => {
     .join(' ');
 }
 
+
+
 export {dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate}

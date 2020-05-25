@@ -9,6 +9,7 @@ import {ContactDetail} from "../pages/ContactDetail";
 import {Route, Switch} from "react-router-dom";
 import {PatientDetail} from "../pages/PatientDetail";
 import {TreatmentList} from "../pages/TreatmentList"
+import {CheckoutList} from "../pages/CheckoutList";
 
 const Home = () => {
   return (
@@ -25,6 +26,7 @@ const Home = () => {
             <Route exact path={"/contacts/:uid"} component={ContactDetail} />
             <Route exact path={"/createpatient"} component={NewPatient}/>
             <Route exact path={"/treatments/:uid"} component={TreatmentList}/>
+            <Route exact path={"/checkout"} component={CheckoutList}/>
           </Switch>
         </div>
       </main>

@@ -84,6 +84,7 @@ const TreatmentList = (props) => {
         <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
                 onClick={() => {
                   history.goBack();
+                  localStorage.clear();
                   setIsOpen(false)
                 }}>Aceptar
         </button>
@@ -212,6 +213,7 @@ const displayMenu = (originalMenu, currentLevel, clickedItem) => {
 const TreatmentCheckout = (props) => {
   const {checkout, patient, remove, patient_uid} = props;
   const [isOpen, setIsOpen] = useState(false);
+  const history = useHistory();
 
   const finishTreatment = () => {
     setIsOpen(false);
@@ -221,7 +223,17 @@ const TreatmentCheckout = (props) => {
       patient: patient,
       patient_uid: patient_uid,
     }
-    console.log(checkout_payload)
+    console.log(JSON.stringify(checkout_payload))
+    axios.post('https://219f9v9yfl.execute-api.us-east-1.amazonaws.com/api/checkout',
+      JSON.stringify(checkout_payload), {headers:{'Content-Type': 'application/json'}})
+      .then((response) => {
+        console.log(response);
+        localStorage.clear();
+        history.back();
+      })
+      .catch((error) => {
+        console.log(JSON.stringify(error));
+      });
   }
 
   const getTotal = (checkoutItems) => {

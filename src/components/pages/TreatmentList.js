@@ -112,7 +112,7 @@ const TreatmentList = (props) => {
         <div style={{width: "285px", display: "flex", justifyContent: "center"}}>
           <button className={"finish-treatment-button"} style={{margin: "auto"}}
                   onClick={() => {
-                    setIsOpen(true)
+                    setIsOpen(true);
                   }}>Cancelar Tratamiento
           </button>
         </div>
@@ -229,7 +229,7 @@ const TreatmentCheckout = (props) => {
       .then((response) => {
         console.log(response);
         localStorage.clear();
-        history.back();
+        history.goBack();
       })
       .catch((error) => {
         console.log(JSON.stringify(error));

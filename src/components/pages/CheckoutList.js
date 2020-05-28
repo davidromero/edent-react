@@ -28,7 +28,7 @@ const CheckoutList = () => {
       {
         checkoutList && checkoutList.map((checkout, index) => {
           return (
-            <CheckoutItem index={index} checkout={checkout} treatmentList={checkout.checkout}/>
+            <CheckoutItem key={index} index={index} checkout={checkout} treatmentList={checkout.checkout}/>
           )
         })
       }
@@ -46,13 +46,12 @@ const CheckoutItem = (props) => {
       total += parseInt(treatment.price)
     })
     setTotal(total)
-    console.log(JSON.stringify(treatmentList));
   }, [])
 
 
   return(
     <Paper className={"wide-paper"} style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap"}}>
-      <div>
+      <div style={{margin: "8px"}}>
         <h2>
           <b style={{textTransform: "capitalize", fontSize: "1.1em"}}>
             {checkout.patient.first_name + " " + checkout.patient.last_name}</b><br/>
@@ -60,7 +59,7 @@ const CheckoutItem = (props) => {
         {
           treatmentList && treatmentList.map((treatment, index) => {
             return (
-              <p key={index} style={{textTransform: "capitalize"}}>{treatment.name}</p>
+              <li key={index} style={{textTransform: "capitalize"}}>{treatment.name + ": Q" + treatment.price}</li>
             )
           })
         }
@@ -68,12 +67,12 @@ const CheckoutItem = (props) => {
 
       <div style={{width: "285px"}}>
         <h3>
-          Total: {total}
+          Total: Q{total}
         </h3>
         <button className={"finish-treatment-button"} style={{width: "120px"}}
                 onClick={() => {}}>Pagar
         </button><br/>
-        <small><i>Última modificación: {dateTimeFormat(checkout.modified_timestamp)}</i></small>
+        <small><i>Realizado en: {dateTimeFormat(checkout.modified_timestamp)}</i></small>
       </div>
     </Paper>
   )

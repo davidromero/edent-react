@@ -79,7 +79,7 @@ const PatientButtons = (props) => {
     <div style={{width: "200px"}}>
       <ContactButton uid={patient.contact_uid}/>
       <AppointmentHistoryButton uid={patient.patient_uid}/>
-      <button className="mid-paper-button">Editar Información</button>
+      {/*<button className="mid-paper-button">Editar Información</button>*/}
       <DeleteButton patient={patient}/>
     </div>
   )
@@ -114,7 +114,7 @@ const DeleteButton = (props) => {
     console.log("Delete " + patient.uid)
     axios.delete("https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients/" + patient.uid)
       .then( (res) => {
-        console.log("Patient deleted");
+        console.log("Patient deleted. " + res.data);
       })
       .catch((error) => {
         console.log(error);

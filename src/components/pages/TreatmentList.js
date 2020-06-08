@@ -213,7 +213,6 @@ const displayMenu = (originalMenu, currentLevel, clickedItem) => {
 const TreatmentCheckout = (props) => {
   const {checkout, patient, remove, patient_uid} = props;
   const [isOpen, setIsOpen] = useState(false);
-  const history = useHistory();
 
   const finishTreatment = () => {
     setIsOpen(false);
@@ -229,7 +228,7 @@ const TreatmentCheckout = (props) => {
       .then((response) => {
         console.log(response);
         localStorage.clear();
-        history.goBack();
+        window.location.href = '/checkout'
       })
       .catch((error) => {
         console.log(JSON.stringify(error));

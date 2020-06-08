@@ -1,6 +1,6 @@
 import React from "react";
 import {ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
-import {Dashboard, People, Today, Contacts, Create, Payment, Schedule} from "@material-ui/icons";
+import {Dashboard, People, Contacts, Create, Payment, Schedule} from "@material-ui/icons";
 import {Link} from "react-router-dom";
 
 export const mainListItems = (
@@ -16,12 +16,6 @@ export const mainListItems = (
         <Schedule />
       </ListItemIcon>
       <ListItemText primary="Citas" />
-    </ListItem>
-    <ListItem button component={Link} to="/calendar">
-      <ListItemIcon>
-        <Today />
-      </ListItemIcon>
-      <ListItemText primary="Calendario" />
     </ListItem>
     <ListItem button component={Link} to="/patients">
       <ListItemIcon>

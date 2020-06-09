@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Paper} from "@material-ui/core";
-import {dateTimeFormat, capitalize} from '../../utils/utils'
-import axios from "axios";
+import {dateTimeFormat} from '../../utils/utils'
 import "../styles/PagesStyle.css";
 
 
@@ -27,7 +26,7 @@ const AppointmentList = () => {
 };
 
 const AppointmentItem = (props) => {
-  const {index, checkout, treatmentList} = props;
+  const {checkout, treatmentList} = props;
   const [total, setTotal] = useState(0);
 
   useEffect( () => {

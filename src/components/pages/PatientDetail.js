@@ -5,9 +5,9 @@ import {Link, useHistory} from 'react-router-dom';
 import placeholder from "../../assets/img/profile_placeholder.png";
 import {ContactInfo} from "./ContactDetail";
 import {confirmPatient} from "../../utils/validations";
-import Modal from 'react-modal';
 import {dateFormat} from "../../utils/utils";
 import {ServiceDetail} from "../widgets/TreatmentCards";
+import {DeleteModal} from "../widgets/Modals";
 
 const PatientDetail = (props) => {
   const {uid} = props.match.params;
@@ -78,7 +78,7 @@ const PatientButtons = (props) => {
   return(
     <div style={{width: "200px"}}>
       <ContactButton uid={patient.contact_uid}/>
-      <AppointmentHistoryButton uid={patient.patient_uid}/>
+      <AppointmentButton uid={patient.uid}/>
       {/*<button className="mid-paper-button">Editar Información</button>*/}
       <DeleteButton patient={patient}/>
     </div>
@@ -105,6 +105,15 @@ const AppointmentHistoryButton = (props) => {
   )
 };
 
+
+const AppointmentButton = (props) => {
+  const {uid} = props;
+
+  return (
+    <button className="mid-paper-button">Hacer cita</button>
+  )
+};
+
 const DeleteButton = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const {patient} = props;
@@ -123,36 +132,13 @@ const DeleteButton = (props) => {
     history.goBack();
   }
 
-  const customStyles = {
-    content : {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      margin: 'auto',
-      transform: 'translate(-50%, -50%)'
-    }
-  };
 
   return(
     <>
-      <Modal
-        isOpen={isOpen}
-        style={customStyles}
-        ariaHideApp={false}
-        contentLabel="¿Estas seguro?">
-        <h3>¿Está seguro en eliminar este paciente?</h3>
-        <div className={"modal-container"}>
-          <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
-                  onClick={inactivatePatient}>Aceptar</button>
-          <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
-                  onClick={() => {setIsOpen(false)}}>Cancelar</button>
-        </div>
-      </Modal>
+      <DeleteModal isOpen={isOpen} closeModal={() => {setIsOpen(false)}} inactivatePatient={inactivatePatient}/>
       <button className="mid-paper-button" onClick={() => {setIsOpen(true)}}>Eliminar Paciente</button>
     </>
   )
 }
-
 
 export {PatientDetail};

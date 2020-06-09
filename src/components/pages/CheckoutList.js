@@ -3,8 +3,7 @@ import {Paper} from "@material-ui/core";
 import {dateTimeFormat} from '../../utils/utils'
 import axios from "axios";
 import "../styles/PagesStyle.css";
-import Modal from "react-modal";
-
+import {CheckoutModal} from "../widgets/Modals";
 
 const CheckoutList = () => {
   const [checkoutList, setCheckoutList] =  useState([]);
@@ -65,17 +64,6 @@ const CheckoutItem = (props) => {
     setIsOpen(false)
   }
 
-  const customStyles = {
-    content : {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      margin: 'auto',
-      transform: 'translate(-50%, -50%)'
-    }
-  };
-
   return(
     <Paper className={"wide-paper"} style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap"}}>
       <div style={{margin: "8px"}}>
@@ -92,19 +80,7 @@ const CheckoutItem = (props) => {
         }
       </div>
 
-      <Modal
-        isOpen={isOpen}
-        style={customStyles}
-        ariaHideApp={false}
-        contentLabel="¿Estas seguro?">
-        <h3>¿Está seguro en pagar esta cuenta?</h3>
-        <div className={"modal-container"}>
-          <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
-                  onClick={payTreatments}>Aceptar</button>
-          <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
-                  onClick={() => {setIsOpen(false)}}>Cancelar</button>
-        </div>
-      </Modal>
+      <CheckoutModal isOpen={isOpen} closeModal={() => {setIsOpen(false)}} payTreatments={payTreatments}/>
       <div style={{width: "285px"}}>
         <h3>
           Total: Q{total}

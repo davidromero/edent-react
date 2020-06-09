@@ -2,19 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Paper} from "@material-ui/core";
 import axios from 'axios/index';
 import "../styles/PagesStyle.css";
-import {useHistory} from "react-router-dom";
-import Modal from "react-modal";
-
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    margin: 'auto',
-    transform: 'translate(-50%, -50%)'
-  }
-};
+import {CancelModal, TreatmentModal} from "../widgets/Modals";
 
 const TreatmentList = (props) => {
   const [checkout, setCheckout] = useState([]);
@@ -23,7 +11,6 @@ const TreatmentList = (props) => {
   const [patientId, setPatientId] = useState();
   const [isOpen, setIsOpen] = useState();
   const [menu, setMenu] = useState([]);
-  const history = useHistory();
 
   useEffect(() => {
     const {TreatmentProp, Patient, PatientId} = props.location;
@@ -73,33 +60,10 @@ const TreatmentList = (props) => {
     }
   };
 
-  const cancelModal =
-    <Modal
-      isOpen={isOpen}
-      style={customStyles}
-      ariaHideApp={false}
-      contentLabel="¿Estas seguro?">
-      <h3>¿Está seguro en cancelar el tratamiento?</h3>
-      <div className={"modal-container"}>
-        <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
-                onClick={() => {
-                  history.goBack();
-                  localStorage.clear();
-                  setIsOpen(false)
-                }}>Aceptar
-        </button>
-        <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
-                onClick={() => {
-                  setIsOpen(false)
-                }}>Cancelar
-        </button>
-      </div>
-    </Modal>
-
 
   return (
     <div className={"page-container"}>
-      {cancelModal}
+      <CancelModal isOpen={isOpen} closeModal={() => {setIsOpen(false)}}/>
       <Paper className={"wide-paper"} style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap"}}
              elevation={2} square={false}>
         <div>
@@ -252,28 +216,10 @@ const TreatmentCheckout = (props) => {
       </button>
     </>
 
-  const checkoutModal =
-    <Modal
-      isOpen={isOpen}
-      style={customStyles}
-      ariaHideApp={false}
-      contentLabel="¿Estas seguro?">
-      <h3>¿Está seguro en terminar el tratamiento?</h3>
-      <div className={"modal-container"}>
-        <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
-                onClick={finishTreatment}>Aceptar
-        </button>
-        <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
-                onClick={() => {
-                  setIsOpen(false)
-                }}>Cancelar
-        </button>
-      </div>
-    </Modal>
 
   return (
     <>
-      {checkoutModal}
+      <TreatmentModal finishTreatment={finishTreatment} isOpen={isOpen} closeModal={() => {setIsOpen(false)}}/>
       <Paper className={"lateral-paper"} elevation={2}>
         <h3><b>Tratamientos en Progreso:</b></h3>
         {

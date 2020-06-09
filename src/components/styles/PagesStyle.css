@@ -111,6 +111,15 @@
   outline: none;
 }
 
+.small-paper {
+  display: flex;
+  padding: 8px;
+  margin: 4px;
+  min-width: 275px;
+  flex-direction: column;
+  align-items: center
+}
+
 /*Modal*/
 .modal-container {
   display: flex;

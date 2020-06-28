@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Modal from "react-modal";
 import {Link} from "react-router-dom";
 import {useHistory} from "react-router-dom";
+import {AppointmentForm} from "../forms/VariousForms";
 
 const customStyles = {
   content: {
@@ -132,5 +133,33 @@ const CheckoutModal = (props) => {
   )
 }
 
+const AppointmentModal = (props) => {
+  const {patient, isOpen, closeModal, makeAppointment} = props;
 
-export {NewTreatmentModal, CancelModal, TreatmentModal, DeleteModal, CheckoutModal};
+  const handleChange = () => {
+
+  }
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={closeModal}
+      style={customStyles}
+      ariaHideApp={false}
+      contentLabel="Hacer cita">
+      <h2>Agendar cita</h2>
+      <div className={"modal-container"}>
+        <AppointmentForm patient={patient} handleChange={handleChange}/>
+      </div>
+      <div className={"modal-container"}>
+        <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
+                onClick={makeAppointment}>Aceptar</button>
+        <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
+                onClick={closeModal}>Cancelar</button>
+      </div>
+    </Modal>
+  )
+}
+
+
+export {NewTreatmentModal, CancelModal, TreatmentModal, DeleteModal, CheckoutModal, AppointmentModal};

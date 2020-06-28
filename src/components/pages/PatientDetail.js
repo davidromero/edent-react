@@ -7,7 +7,7 @@ import {ContactInfo} from "./ContactDetail";
 import {confirmPatient} from "../../utils/validations";
 import {dateFormat} from "../../utils/utils";
 import {ServiceDetail} from "../widgets/TreatmentCards";
-import {DeleteModal} from "../widgets/Modals";
+import {AppointmentModal, DeleteModal} from "../widgets/Modals";
 
 const PatientDetail = (props) => {
   const {uid} = props.match.params;
@@ -65,7 +65,6 @@ const GeneralInfo = (props) => {
           {patient.birthday}</p>
           <p><b>Motivo de Visita</b><br/>
           {patient.visit_reason}</p>
-
         </div>
       </div>
     </Paper>
@@ -78,7 +77,7 @@ const PatientButtons = (props) => {
   return(
     <div style={{width: "200px"}}>
       <ContactButton uid={patient.contact_uid}/>
-      <AppointmentButton uid={patient.uid}/>
+      <AppointmentButton patient={patient}/>
       {/*<button className="mid-paper-button">Editar Información</button>*/}
       <DeleteButton patient={patient}/>
     </div>
@@ -105,12 +104,22 @@ const AppointmentHistoryButton = (props) => {
   )
 };
 
-
 const AppointmentButton = (props) => {
-  const {uid} = props;
+  const [isOpen, setIsOpen] = useState(false);
+  const {patient} = props;
+
+  const makeAppointment = () => {
+    console.log("Making appointment");
+    setIsOpen(false);
+  }
+
 
   return (
-    <button className="mid-paper-button">Hacer cita</button>
+    <>
+      <AppointmentModal patient={patient} isOpen={isOpen} closeModal={() => { setIsOpen(false) }}
+                        makeAppointment={makeAppointment}/>
+      <button className="mid-paper-button" onClick={() => setIsOpen(true)}>Agendar cita</button>
+    </>
   )
 };
 

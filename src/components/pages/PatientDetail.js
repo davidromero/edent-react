@@ -105,21 +105,18 @@ const AppointmentHistoryButton = (props) => {
 };
 
 const AppointmentButton = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
   const {patient} = props;
-
-  const makeAppointment = () => {
-    console.log("Making appointment");
-    setIsOpen(false);
-  }
-
+  const title = patient.first_name + " " + patient.last_name
+  const details = "Tel: " + patient.phone_number
+  const URL = "http://www.google.com/calendar/event?action=TEMPLATE&text=" + encodeURI(title) +
+    "&details=" + encodeURI(details)
 
   return (
-    <>
-      <AppointmentModal patient={patient} isOpen={isOpen} closeModal={() => { setIsOpen(false) }}
-                        makeAppointment={makeAppointment}/>
-      <button className="mid-paper-button" onClick={() => setIsOpen(true)}>Agendar cita</button>
-    </>
+    <a href={URL} target="_blank">
+      <button className="mid-paper-button">
+        Agendar cita
+      </button>
+    </a>
   )
 };
 

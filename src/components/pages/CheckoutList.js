@@ -14,7 +14,6 @@ const CheckoutList = () => {
         setCheckoutList(res.data.payload);
       })
       .catch((error) => {
-        console.log(error);
       })
   }, []);
 
@@ -52,14 +51,11 @@ const CheckoutItem = (props) => {
   //
 
   const payTreatments = () => {
-    console.log("Delete " + checkout.uid)
     axios.delete("https://219f9v9yfl.execute-api.us-east-1.amazonaws.com/api/checkout/" + checkout.uid)
       .then( (res) => {
-        console.log("Checkout deleted. " + res.data);
         window.location.reload();
       })
       .catch((error) => {
-        console.log(error);
       })
     setIsOpen(false)
   }

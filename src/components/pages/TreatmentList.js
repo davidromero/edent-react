@@ -40,7 +40,6 @@ const TreatmentList = (props) => {
         setMenu(res.data.payload);
       })
       .catch((error) => {
-        console.log(error);
       })
   }
 
@@ -186,16 +185,13 @@ const TreatmentCheckout = (props) => {
       patient: patient,
       patient_uid: patient_uid,
     }
-    console.log(JSON.stringify(checkout_payload))
     axios.post('https://219f9v9yfl.execute-api.us-east-1.amazonaws.com/api/checkout',
       JSON.stringify(checkout_payload), {headers:{'Content-Type': 'application/json'}})
       .then((response) => {
-        console.log(response);
         localStorage.clear();
         window.location.href = '/checkout'
       })
       .catch((error) => {
-        console.log(JSON.stringify(error));
       });
   }
 

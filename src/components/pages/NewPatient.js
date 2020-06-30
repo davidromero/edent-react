@@ -22,10 +22,8 @@ const NewPatient = (props) => {
     axios.post('https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients',
       JSON.stringify(patient), {headers:{'Content-Type': 'application/json'}})
       .then((response) => {
-        console.log(response);
       })
       .catch((error) => {
-        console.log(JSON.stringify(error));
       });
   };
 

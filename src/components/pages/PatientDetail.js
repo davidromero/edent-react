@@ -19,7 +19,6 @@ const PatientDetail = (props) => {
         setPatient(confirmPatient(res.data.payload));
       })
       .catch((error) => {
-        console.log(error);
       })
   }, [uid]);
 
@@ -126,13 +125,10 @@ const DeleteButton = (props) => {
   const history = useHistory();
 
   const inactivatePatient = () => {
-    console.log("Delete " + patient.uid)
     axios.delete("https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients/" + patient.uid)
       .then( (res) => {
-        console.log("Patient deleted. " + res.data);
       })
       .catch((error) => {
-        console.log(error);
       })
     setIsOpen(false);
     history.goBack();

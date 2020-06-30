@@ -16,7 +16,6 @@ const GeneralForm = (props) => {
       nextStep();
     }
     else{
-      console.log(errorMessage)
       setErrorMessage(errorMessage);
     }
   }
@@ -77,7 +76,6 @@ const ContactForm = (props) => {
       nextStep();
     }
     else{
-      console.log(errorMessage)
       setErrorMessage(errorMessage);
     }
   }

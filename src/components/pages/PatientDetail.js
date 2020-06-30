@@ -15,7 +15,7 @@ const PatientDetail = (props) => {
 
   useEffect(() => {
     axios.get("https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients/" + uid)
-      .then( (res) => {
+      .then((res) => {
         setPatient(confirmPatient(res.data.payload));
       })
       .catch((error) => {
@@ -26,20 +26,20 @@ const PatientDetail = (props) => {
   return (
     <div className={"page-container"}>
       {!patient ? <h2>Cargando...</h2> :
-      <>
-        <GeneralInfo patient={patient}/>
-        <ContactInfo patient={patient}>
-          <PatientButtons patient={patient}/>
-        </ContactInfo>
-        <ServiceDetail service_name={"Operatoria"} treatment_id={"operatoria"} patient={patient}/>
-        <ServiceDetail service_name={"Endodoncia"} treatment_id={"endodoncia"} patient={patient}/>
-        <ServiceDetail service_name={"Cirugía"} treatment_id={"cirugia"} patient={patient}/>
-        <ServiceDetail service_name={"Seguro"} treatment_id={"seguro"} patient={patient}/>
-      </>
+        <>
+          <GeneralInfo patient={patient}/>
+          <ContactInfo patient={patient}>
+            <PatientButtons patient={patient}/>
+          </ContactInfo>
+          <ServiceDetail service_name={"Operatoria"} treatment_id={"operatoria"} patient={patient}/>
+          <ServiceDetail service_name={"Endodoncia"} treatment_id={"endodoncia"} patient={patient}/>
+          <ServiceDetail service_name={"Cirugía"} treatment_id={"cirugia"} patient={patient}/>
+          <ServiceDetail service_name={"Seguro"} treatment_id={"seguro"} patient={patient}/>
+        </>
       }
     </div>
   );
-}
+};
 
 const GeneralInfo = (props) => {
   const {patient} = props;
@@ -57,50 +57,50 @@ const GeneralInfo = (props) => {
         <div>
           <h3><b>Información Personal</b></h3>
           <p><b>Nombre del Paciente</b><br/>
-          {patient.first_name + " " + patient.last_name}</p>
+            {patient.first_name + " " + patient.last_name}</p>
           <p><b>Clínica</b><br/>
-          {patient.clinic_location}</p>
+            {patient.clinic_location}</p>
           <p><b>Fecha de Nacimiento</b><br/>
-          {patient.birthday}</p>
+            {patient.birthday}</p>
           <p><b>Motivo de Visita</b><br/>
-          {patient.visit_reason}</p>
+            {patient.visit_reason}</p>
         </div>
       </div>
     </Paper>
-  )
-}
+  );
+};
 
 const PatientButtons = (props) => {
   const {patient} = props;
 
-  return(
+  return (
     <div style={{width: "200px"}}>
       <ContactButton uid={patient.contact_uid}/>
       <AppointmentButton patient={patient}/>
       {/*<button className="mid-paper-button">Editar Información</button>*/}
       <DeleteButton patient={patient}/>
     </div>
-  )
-}
+  );
+};
 
 const ContactButton = (props) => {
   const {uid} = props;
 
   return (
-    <Link to={"../contacts/" + uid} style={{ textDecoration: 'none', color: 'inherit'}}>
+    <Link to={"../contacts/" + uid} style={{textDecoration: 'none', color: 'inherit'}}>
       <button className="mid-paper-button">Contactar</button>
     </Link>
-  )
-}
+  );
+};
 
 const AppointmentHistoryButton = (props) => {
   const {uid} = props;
 
-  return(
-    <Link to={"../history/" + uid} style={{ textDecoration: 'none', color: 'inherit'}} replace>
+  return (
+    <Link to={"../history/" + uid} style={{textDecoration: 'none', color: 'inherit'}} replace>
       <button className="mid-paper-button">Ver historial de citas</button>
     </Link>
-  )
+  );
 };
 
 const AppointmentButton = (props) => {
@@ -116,7 +116,7 @@ const AppointmentButton = (props) => {
         Agendar cita
       </button>
     </a>
-  )
+  );
 };
 
 const DeleteButton = (props) => {
@@ -126,7 +126,7 @@ const DeleteButton = (props) => {
 
   const inactivatePatient = () => {
     axios.delete("https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients/" + patient.uid)
-      .then( (res) => {
+      .then((res) => {
       })
       .catch((error) => {
       })
@@ -135,12 +135,17 @@ const DeleteButton = (props) => {
   }
 
 
-  return(
+  return (
     <>
-      <DeleteModal isOpen={isOpen} closeModal={() => {setIsOpen(false)}} inactivatePatient={inactivatePatient}/>
-      <button className="mid-paper-button" onClick={() => {setIsOpen(true)}}>Eliminar Paciente</button>
+      <DeleteModal isOpen={isOpen} closeModal={() => {
+        setIsOpen(false)
+      }} inactivatePatient={inactivatePatient}/>
+      <button className="mid-paper-button" onClick={() => {
+        setIsOpen(true)
+      }}>Eliminar Paciente
+      </button>
     </>
-  )
-}
+  );
+};
 
 export {PatientDetail};

@@ -14,7 +14,7 @@ import {AppointmentList} from "../pages/AppointmentList";
 
 const Home = () => {
   return (
-    <div style={{display: "flex"} }>
+    <div style={{display: "flex"}}>
       <NavBar/>
       <main className={"home-frame"}>
         <div className={"home-content"}>
@@ -22,9 +22,9 @@ const Home = () => {
             <Route exact path={"/"} component={Dashboard}/>
             <Route exact path={"/calendar"} component={Calendar}/>
             <Route exact path={"/patients"} component={PatientList}/>
-            <Route exact path={"/patients/:uid"} component={PatientDetail} />
+            <Route exact path={"/patients/:uid"} component={PatientDetail}/>
             <Route exact path={"/contacts"} component={ContactList}/>
-            <Route exact path={"/contacts/:uid"} component={ContactDetail} />
+            <Route exact path={"/contacts/:uid"} component={ContactDetail}/>
             <Route exact path={"/createpatient"} component={NewPatient}/>
             <Route exact path={"/treatments/:uid"} component={TreatmentList}/>
             <Route exact path={"/checkout"} component={CheckoutList}/>

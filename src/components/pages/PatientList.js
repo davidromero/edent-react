@@ -7,11 +7,11 @@ import "../styles/PagesStyle.css";
 
 
 const PatientList = () => {
-  const [patientList, setPatientList] =  useState([]);
+  const [patientList, setPatientList] = useState([]);
 
   useEffect(() => {
     axios.get("https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients")
-      .then( (res) => {
+      .then((res) => {
         setPatientList(res.data.payload);
       })
       .catch((error) => {
@@ -24,14 +24,17 @@ const PatientList = () => {
         <h2>Pacientes</h2>
         <h3>Lista de Pacientes</h3>
       </Paper>
-      { patientList.length === 0 ? <h2>Cargando...</h2> : <></>}
+      {patientList.length === 0 ? <h2>Cargando...</h2> : <></>}
       {
         patientList && patientList.map((patient, index) => {
           return (
-            <Link to={"patients/" + patient.uid} key={index} style={{ textDecoration: 'none', color: 'inherit'}}>
+            <Link to={"patients/" + patient.uid} key={index} style={{textDecoration: 'none', color: 'inherit'}}>
               <Paper className={"simple-paper"}>
                 <p>
-                  <b style={{textTransform: "capitalize", fontSize: "1.1em"}}>{patient.first_name + " " + patient.last_name}</b><br/><br/>
+                  <b style={{
+                    textTransform: "capitalize",
+                    fontSize: "1.1em"
+                  }}>{patient.first_name + " " + patient.last_name}</b><br/><br/>
                   Razón de visita: {capitalize(patient.visit_reason)}<br/>
                   Clínica: {capitalize(patient.clinic_location)}<br/>
                 </p>
@@ -42,7 +45,7 @@ const PatientList = () => {
         })
       }
     </div>
-  )
+  );
 };
 
 export {PatientList}

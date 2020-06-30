@@ -62,7 +62,9 @@ const TreatmentList = (props) => {
 
   return (
     <div className={"page-container"}>
-      <CancelModal isOpen={isOpen} closeModal={() => {setIsOpen(false)}}/>
+      <CancelModal isOpen={isOpen} closeModal={() => {
+        setIsOpen(false)
+      }}/>
       <Paper className={"wide-paper"} style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap"}}
              elevation={2} square={false}>
         <div>
@@ -186,7 +188,7 @@ const TreatmentCheckout = (props) => {
       patient_uid: patient_uid,
     }
     axios.post('https://219f9v9yfl.execute-api.us-east-1.amazonaws.com/api/checkout',
-      JSON.stringify(checkout_payload), {headers:{'Content-Type': 'application/json'}})
+      JSON.stringify(checkout_payload), {headers: {'Content-Type': 'application/json'}})
       .then((response) => {
         localStorage.clear();
         window.location.href = '/checkout'
@@ -215,7 +217,9 @@ const TreatmentCheckout = (props) => {
 
   return (
     <>
-      <TreatmentModal finishTreatment={finishTreatment} isOpen={isOpen} closeModal={() => {setIsOpen(false)}}/>
+      <TreatmentModal finishTreatment={finishTreatment} isOpen={isOpen} closeModal={() => {
+        setIsOpen(false)
+      }}/>
       <Paper className={"lateral-paper"} elevation={2}>
         <h3><b>Tratamientos en Progreso:</b></h3>
         {
@@ -225,8 +229,8 @@ const TreatmentCheckout = (props) => {
         {checkout.length > 0 ? checkoutTotal : <></>}
       </Paper>
     </>
-  )
-}
+  );
+};
 
 const TreatmentItem = (props) => {
   const {idx, treatment, remove} = props;
@@ -240,7 +244,7 @@ const TreatmentItem = (props) => {
         </button>
       </p>
     </div>
-  )
-}
+  );
+};
 
 export {TreatmentList};

@@ -11,7 +11,7 @@ const ServiceDetail = (props) => {
       <h2 style={{textTransform: "capitalize", margin: "15px"}}><b>{service_name}</b></h2>
       <ServiceButtons patient={patient} treatment_id={treatment_id}/>
     </Paper>
-  )
+  );
 };
 
 const ServiceButtons = (props) => {
@@ -21,7 +21,7 @@ const ServiceButtons = (props) => {
     <div style={{width: "200px"}}>
       <StartTreatmentButton uid={patient.uid} treatment_id={treatment_id} patient={patient}/>
     </div>
-  )
+  );
 };
 
 
@@ -32,13 +32,15 @@ const StartTreatmentButton = (props) => {
   return (
     <>
       <NewTreatmentModal uid={uid} patient={patient} isOpen={isOpen}
-                         treatment_id={treatment_id} closeModal={() => {setIsOpen(false)}}/>
+                         treatment_id={treatment_id} closeModal={() => {
+        setIsOpen(false)
+      }}/>
       <button className="mid-paper-button" onClick={() => {
         setIsOpen(true)
       }}>Iniciar tratamiento
       </button>
     </>
-  )
+  );
 
 };
 

@@ -5,7 +5,7 @@ import "../styles/PagesStyle.css";
 
 
 const AppointmentList = () => {
-  const [checkoutList, setCheckoutList] =  useState([]);
+  const [checkoutList, setCheckoutList] = useState([]);
 
   return (
     <div className={"page-container"}>
@@ -13,7 +13,7 @@ const AppointmentList = () => {
         <h2>Citas Pendientes</h2>
         <h3>Lista de Citas</h3>
       </Paper>
-      { checkoutList.length === 0 ? <h2>Cargando...</h2> : <></>}
+      {checkoutList.length === 0 ? <h2>Cargando...</h2> : <></>}
       {
         checkoutList && checkoutList.map((checkout, index) => {
           return (
@@ -22,14 +22,14 @@ const AppointmentList = () => {
         })
       }
     </div>
-  )
+  );
 };
 
 const AppointmentItem = (props) => {
   const {checkout, treatmentList} = props;
   const [total, setTotal] = useState(0);
 
-  useEffect( () => {
+  useEffect(() => {
     let total = 0;
     treatmentList.map((treatment) => {
       total += parseInt(treatment.price)
@@ -38,7 +38,7 @@ const AppointmentItem = (props) => {
   }, [])
 
 
-  return(
+  return (
     <Paper className={"wide-paper"} style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap"}}>
       <div style={{margin: "8px"}}>
         <h2>
@@ -59,12 +59,14 @@ const AppointmentItem = (props) => {
           Total: Q{total}
         </h3>
         <button className={"finish-treatment-button"} style={{width: "120px"}}
-                onClick={() => {}}>Pagar
-        </button><br/>
+                onClick={() => {
+                }}>Pagar
+        </button>
+        <br/>
         <small><i>Realizado en: {dateTimeFormat(checkout.modified_timestamp)}</i></small>
       </div>
     </Paper>
-  )
-}
+  );
+};
 
 export {AppointmentList}

@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from "react";
-import {RadioGroup, Radio, FormControlLabel, TextField, Button, FormLabel,
-  Select, Input, MenuItem, FormControl, InputLabel, Paper} from "@material-ui/core";
+import {
+  RadioGroup, Radio, FormControlLabel, TextField, Button, FormLabel,
+  Select, Input, MenuItem, FormControl, InputLabel, Paper
+} from "@material-ui/core";
 import {validateContactsForm, validateGeneralForm, confirmPatient} from "../../utils/validations";
-import "../styles/PagesStyle.css"
+import "../styles/PagesStyle.css";
 
 
 const GeneralForm = (props) => {
@@ -11,11 +13,10 @@ const GeneralForm = (props) => {
 
   const validate = () => {
     const errorMessage = validateGeneralForm(patient);
-    if (errorMessage === ""){
+    if (errorMessage === "") {
       setErrorMessage("");
       nextStep();
-    }
-    else{
+    } else {
       setErrorMessage(errorMessage);
     }
   }
@@ -29,24 +30,26 @@ const GeneralForm = (props) => {
                    required onChange={handleChange} value={patient.last_name || ""}/>
         <TextField style={{margin: "8px", width: "180px"}} label="Fecha de Nacimiento" name={"birthday"}
                    type="date" required onChange={handleChange} value={patient.birthday || "2000-12-31"}/>
-        <FormControl style={{margin: "8px", width: "180px"}} >
+        <FormControl style={{margin: "8px", width: "180px"}}>
           <InputLabel id="location">Clínica *</InputLabel>
-          <Select className={"selectEmpty"} name={"clinic_location"} value={patient.clinic_location ? patient.clinic_location : ""}
+          <Select className={"selectEmpty"} name={"clinic_location"}
+                  value={patient.clinic_location ? patient.clinic_location : ""}
                   onChange={handleChange} input={<Input name={"location"}/>}>
             <MenuItem value={"chiquimula"}>Chiquimula</MenuItem>
             <MenuItem value={"jocotan"}>Jocotán</MenuItem>
           </Select>
         </FormControl>
-        <FormControl style={{margin: "8px"}} >
+        <FormControl style={{margin: "8px"}}>
           <FormLabel style={{fontSize: "0.8em", padding: "0"}}>Sexo *</FormLabel>
           <RadioGroup style={{display: "inline-block"}} onChange={handleChange} name="sex" value={patient.sex}>
             <FormControlLabel value="male" control={<Radio/>} label="Hombre"/>
             <FormControlLabel value="female" control={<Radio/>} label="Mujer"/>
           </RadioGroup>
         </FormControl>
-        <FormControl style={{margin: "8px", width: "180px"}} >
+        <FormControl style={{margin: "8px", width: "180px"}}>
           <InputLabel id="location">Motivo de visita *</InputLabel>
-          <Select className={"selectEmpty"} name={"visit_reason"} value={patient.visit_reason ? patient.visit_reason : ""}
+          <Select className={"selectEmpty"} name={"visit_reason"}
+                  value={patient.visit_reason ? patient.visit_reason : ""}
                   onChange={handleChange} input={<Input name={"visit_reason"}/>}>
             <MenuItem value={"operatoria"}>Odontología Operatoria</MenuItem>
             <MenuItem value={"endodoncia"}>Endodoncia</MenuItem>
@@ -71,11 +74,10 @@ const ContactForm = (props) => {
 
   const validate = () => {
     const errorMessage = validateContactsForm(patient);
-    if (errorMessage === ""){
+    if (errorMessage === "") {
       setErrorMessage("");
       nextStep();
-    }
-    else{
+    } else {
       setErrorMessage(errorMessage);
     }
   }
@@ -118,24 +120,24 @@ const Confirmation = (props) => {
         <Paper style={{width: "100%", maxWidth: "280px"}} className={"simple-paper"}>
           <h3><b>Información Personal</b></h3>
           <p><b>Nombres y Apellidos</b><br/>
-          {confirmation.first_name + " " + confirmation.last_name}</p>
+            {confirmation.first_name + " " + confirmation.last_name}</p>
           <p><b>Clínica</b><br/>
-          {confirmation.clinic_location}</p>
+            {confirmation.clinic_location}</p>
           <p><b>Fecha de Nacimiento</b><br/>
-          {confirmation.birthday}</p>
+            {confirmation.birthday}</p>
           <p><b>Sexo</b><br/>
-          {confirmation.sex}</p>
+            {confirmation.sex}</p>
           <p><b>Motivo de Visita</b><br/>
-          {confirmation.visit_reason}</p>
+            {confirmation.visit_reason}</p>
         </Paper>
         <Paper style={{width: "100%", maxWidth: "280px"}} className={"simple-paper"}>
           <h3><b>Contacto Personal</b></h3>
           <p><b>Número Telefónico</b><br/>
-          {confirmation.phone_number}</p>
+            {confirmation.phone_number}</p>
           <p><b>Correo Electrónico</b><br/>
-          {confirmation.email}</p>
+            {confirmation.email}</p>
           <p><b>Dirección</b><br/>
-          {confirmation.address}</p>
+            {confirmation.address}</p>
         </Paper>
       </div>
 

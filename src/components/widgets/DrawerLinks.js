@@ -7,27 +7,27 @@ export const mainListItems = (
   <div>
     <ListItem button component={Link} to="/">
       <ListItemIcon>
-        <Dashboard />
+        <Dashboard/>
       </ListItemIcon>
-      <ListItemText primary="Inicio" />
+      <ListItemText primary="Inicio"/>
     </ListItem>
     <ListItem button component={Link} to="/appointments">
       <ListItemIcon>
-        <Schedule />
+        <Schedule/>
       </ListItemIcon>
-      <ListItemText primary="Citas" />
+      <ListItemText primary="Citas"/>
     </ListItem>
     <ListItem button component={Link} to="/patients">
       <ListItemIcon>
-        <People />
+        <People/>
       </ListItemIcon>
-      <ListItemText primary="Pacientes" />
+      <ListItemText primary="Pacientes"/>
     </ListItem>
     <ListItem button component={Link} to="/contacts">
       <ListItemIcon>
-        <Contacts />
+        <Contacts/>
       </ListItemIcon>
-      <ListItemText primary="Contactos" />
+      <ListItemText primary="Contactos"/>
     </ListItem>
   </div>
 );
@@ -36,15 +36,15 @@ export const secondaryListItems = (
   <div>
     <ListItem button component={Link} to="/createpatient">
       <ListItemIcon>
-        <Create />
+        <Create/>
       </ListItemIcon>
       <ListItemText primary="Nuevo Paciente"/>
     </ListItem>
     <ListItem button component={Link} to="/checkout">
       <ListItemIcon>
-        <Payment />
+        <Payment/>
       </ListItemIcon>
-      <ListItemText primary="Pago" />
+      <ListItemText primary="Pago"/>
     </ListItem>
   </div>
 );

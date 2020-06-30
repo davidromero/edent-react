@@ -17,7 +17,7 @@ const customStyles = {
 const NewTreatmentModal = (props) => {
   const {uid, treatment_id, patient, closeModal, isOpen} = props;
 
-  return(
+  return (
     <Modal
       isOpen={isOpen}
       style={customStyles}
@@ -39,14 +39,14 @@ const NewTreatmentModal = (props) => {
         </button>
       </div>
     </Modal>
-  )
-}
+  );
+};
 
 const CancelModal = (props) => {
   const {closeModal, isOpen} = props;
   const history = useHistory();
 
-  return(
+  return (
     <Modal
       isOpen={isOpen}
       style={customStyles}
@@ -66,14 +66,14 @@ const CancelModal = (props) => {
         </button>
       </div>
     </Modal>
-  )
-}
+  );
+};
 
 
 const TreatmentModal = (props) => {
   const {closeModal, isOpen, finishTreatment} = props;
 
-  return(
+  return (
     <Modal
       isOpen={isOpen}
       style={customStyles}
@@ -89,8 +89,8 @@ const TreatmentModal = (props) => {
         </button>
       </div>
     </Modal>
-  )
-}
+  );
+};
 
 const DeleteModal = (props) => {
   const {closeModal, isOpen, inactivatePatient} = props;
@@ -104,13 +104,15 @@ const DeleteModal = (props) => {
       <h3>¿Está seguro en eliminar este paciente?</h3>
       <div className={"modal-container"}>
         <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
-                onClick={inactivatePatient}>Aceptar</button>
+                onClick={inactivatePatient}>Aceptar
+        </button>
         <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
-                onClick={closeModal}>Cancelar</button>
+                onClick={closeModal}>Cancelar
+        </button>
       </div>
     </Modal>
-  )
-}
+  );
+};
 
 const CheckoutModal = (props) => {
   const {closeModal, isOpen, payTreatments} = props;
@@ -124,12 +126,14 @@ const CheckoutModal = (props) => {
       <h3>¿Está seguro en pagar esta cuenta?</h3>
       <div className={"modal-container"}>
         <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
-                onClick={payTreatments}>Aceptar</button>
+                onClick={payTreatments}>Aceptar
+        </button>
         <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
-                onClick={closeModal}>Cancelar</button>
+                onClick={closeModal}>Cancelar
+        </button>
       </div>
     </Modal>
-  )
-}
+  );
+};
 
 export {NewTreatmentModal, CancelModal, TreatmentModal, DeleteModal, CheckoutModal};

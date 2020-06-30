@@ -29,10 +29,9 @@
   flex-wrap: wrap;
 }
 .form-container{
-  width: 385px;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  margin: 25px;
   align-items: flex-start;
   flex-wrap: wrap;
   justify-content: space-evenly;

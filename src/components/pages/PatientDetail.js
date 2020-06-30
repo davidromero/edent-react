@@ -7,7 +7,7 @@ import {ContactInfo} from "./ContactDetail";
 import {confirmPatient} from "../../utils/validations";
 import {dateFormat} from "../../utils/utils";
 import {ServiceDetail} from "../widgets/TreatmentCards";
-import {AppointmentModal, DeleteModal} from "../widgets/Modals";
+import {DeleteModal} from "../widgets/Modals";
 
 const PatientDetail = (props) => {
   const {uid} = props.match.params;
@@ -42,14 +42,25 @@ const PatientDetail = (props) => {
 };
 
 const GeneralInfo = (props) => {
+  const [image, setImage] = useState();
   const {patient} = props;
+
+  const handleImage = e => {
+    if (e.target.files[0] !== undefined){
+      setImage(URL.createObjectURL(e.target.files[0]))
+    }
+  }
 
   return (
     <Paper className={"mid-paper"} elevation={2}>
       <div className={"mid-paper-container"}>
         <div style={{padding: "15px 0"}}>
-          <img style={{objectFit: "cover", width: "200px", height: "280px"}}
-               src={placeholder} alt={"profile"}/>
+          <label htmlFor="upload-button">
+            <img style={{objectFit: "cover", width: "200px", height: "280px"}}
+                 src={image ? image : placeholder} alt={"profile"}/>
+            <input type="file" id="upload-button" onChange={handleImage}
+                   style={{display: "none"}}/>
+          </label>
           <div className={"mid-paper-container"}>
             <small><i>Fecha de ingreso: {dateFormat(patient.modified_timestamp)} </i></small>
           </div>

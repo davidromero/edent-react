@@ -42,11 +42,11 @@ const CheckoutItem = (props) => {
 
   useEffect(() => {
     let total = 0;
-    treatmentList.map((treatment) => {
+    treatmentList.forEach((treatment) => {
       total += parseInt(treatment.price)
     })
     setTotal(total);
-  }, []);
+  }, [treatmentList]);
 
 
   const payTreatments = () => {

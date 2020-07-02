@@ -113,16 +113,6 @@ const ContactButton = (props) => {
   );
 };
 
-const AppointmentHistoryButton = (props) => {
-  const {uid} = props;
-
-  return (
-    <Link to={"../history/" + uid} style={{textDecoration: 'none', color: 'inherit'}} replace>
-      <button className="mid-paper-button">Ver historial de citas</button>
-    </Link>
-  );
-};
-
 const AppointmentButton = (props) => {
   const {patient} = props;
   const title = patient.first_name + " " + patient.last_name
@@ -131,7 +121,7 @@ const AppointmentButton = (props) => {
     "&details=" + encodeURI(details)
 
   return (
-    <a href={URL} target="_blank">
+    <a href={URL} target="_blank" rel="noopener noreferrer">
       <button className="mid-paper-button">
         Agendar cita
       </button>

@@ -26,7 +26,7 @@ const TreatmentList = (props) => {
       setTreatmentType(localStorage.getItem("treatment-type"));
       setPatientId(localStorage.getItem("patient-uid"));
     }
-  }, [])
+  }, [props.location])
 
   useEffect(() => {
     if (treatmentType) {
@@ -98,7 +98,7 @@ const TreatmentMenu = (props) => {
 
   useEffect(() => {
     setDisplay(displayMenu(treatmentMenu, level, clickedItem));
-  }, [treatmentMenu, level])
+  }, [treatmentMenu, level, clickedItem])
 
 
   const clickItem = (treatment) => {
@@ -199,7 +199,7 @@ const TreatmentCheckout = (props) => {
 
   const getTotal = (checkoutItems) => {
     let total = 0;
-    checkoutItems.map((item) => {
+    checkoutItems.forEach((item) => {
       total += parseInt(item.price);
     })
     return total;

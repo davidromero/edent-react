@@ -22,14 +22,14 @@ const NewPatient = (props) => {
     axios.post('https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients',
       JSON.stringify(patient), {headers: {'Content-Type': 'application/json'}})
       .then((response) => {
-      //  TODO: go to new patient page
+        //  TODO: go to new patient page
       })
       .catch((error) => {
       });
   };
 
   const handleChange = (e) => {
-    setPatient({...patient, [e.target.name]: e.target.value})
+    setPatient({...patient, [e.target.name]: e.target.value});
   };
 
   const renderSteps = (step, patient) => {
@@ -39,7 +39,7 @@ const NewPatient = (props) => {
       case 1:
         return <ContactForm prevStep={handleBack} nextStep={handleNext} handleChange={handleChange} patient={patient}/>;
       case 2:
-        return <Confirmation prevStep={handleBack} nextStep={handleSubmit} patient={patient}/>
+        return <Confirmation prevStep={handleBack} nextStep={handleSubmit} patient={patient}/>;
       default:
         return null;
     }
@@ -72,6 +72,5 @@ const NewPatient = (props) => {
     </div>
   );
 };
-
 
 export {NewPatient};

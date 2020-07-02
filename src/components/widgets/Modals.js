@@ -15,7 +15,7 @@ const customStyles = {
 };
 
 const NewTreatmentModal = (props) => {
-  const {uid, treatment_id, patient, closeModal, isOpen} = props;
+  const {uid, treatmentId, patient, closeModal, isOpen} = props;
 
   return (
     <Modal
@@ -28,7 +28,7 @@ const NewTreatmentModal = (props) => {
         <Link to={{
           pathname: "/treatments/" + uid,
           PatientId: uid,
-          TreatmentProp: treatment_id.toLowerCase(),
+          TreatmentProp: treatmentId.toLowerCase(),
           Patient: patient
         }}>
           <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}>Aceptar</button>

@@ -5,11 +5,8 @@ import {
 } from "@material-ui/core";
 import {validateContactsForm, validateGeneralForm, confirmPatient} from "../../utils/validations";
 import "../styles/PagesStyle.css";
-import placeholder from "../../assets/img/profile_placeholder.png";
-
 
 const GeneralForm = (props) => {
-  const [image, setImage] = useState();
   const {patient, handleChange, nextStep} = props;
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -21,7 +18,7 @@ const GeneralForm = (props) => {
     } else {
       setErrorMessage(errorMessage);
     }
-  }
+  };
 
   return (
     <div>
@@ -66,7 +63,7 @@ const GeneralForm = (props) => {
         Siguiente
       </Button>
     </div>
-  )
+  );
 };
 
 
@@ -82,7 +79,7 @@ const ContactForm = (props) => {
     } else {
       setErrorMessage(errorMessage);
     }
-  }
+  };
 
   return (
     <div>
@@ -103,7 +100,7 @@ const ContactForm = (props) => {
         Siguiente
       </Button>
     </div>
-  )
+  );
 };
 
 
@@ -150,8 +147,8 @@ const Confirmation = (props) => {
         Confirmar y Guardar
       </Button>
     </div>
-  )
-}
+  );
+};
 
 const ValidationError = (props) => {
   const {message} = props;
@@ -161,7 +158,6 @@ const ValidationError = (props) => {
       <b>{message}</b>
     </div>
   );
-
-}
+};
 
 export {GeneralForm, ContactForm, Confirmation};

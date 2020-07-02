@@ -28,7 +28,7 @@ const CheckoutList = () => {
         checkoutList && checkoutList.map((checkout, index) => {
           return (
             <CheckoutItem key={index} index={index} checkout={checkout} treatmentList={checkout.checkout}/>
-          )
+          );
         })
       }
     </div>
@@ -45,10 +45,9 @@ const CheckoutItem = (props) => {
     treatmentList.map((treatment) => {
       total += parseInt(treatment.price)
     })
-    setTotal(total)
-  }, [])
+    setTotal(total);
+  }, []);
 
-  //
 
   const payTreatments = () => {
     axios.delete("https://219f9v9yfl.execute-api.us-east-1.amazonaws.com/api/checkout/" + checkout.uid)
@@ -57,8 +56,8 @@ const CheckoutItem = (props) => {
       })
       .catch((error) => {
       })
-    setIsOpen(false)
-  }
+    setIsOpen(false);
+  };
 
   return (
     <Paper className={"wide-paper"} style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap"}}>

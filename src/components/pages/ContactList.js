@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Paper} from "@material-ui/core";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
 import axios from 'axios/index';
-import {dateTimeFormat, capitalize} from '../../utils/utils'
+import {dateTimeFormat, capitalize} from '../../utils/utils';
 import "../styles/PagesStyle.css";
 
 
@@ -15,7 +15,7 @@ const ContactList = () => {
         setContactList(res.data.payload);
       })
       .catch((error) => {
-      })
+      });
   }, []);
 
   return (

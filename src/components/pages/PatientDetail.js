@@ -31,10 +31,10 @@ const PatientDetail = (props) => {
           <ContactInfo patient={patient}>
             <PatientButtons patient={patient}/>
           </ContactInfo>
-          <ServiceDetail service_name={"Operatoria"} treatment_id={"operatoria"} patient={patient}/>
-          <ServiceDetail service_name={"Endodoncia"} treatment_id={"endodoncia"} patient={patient}/>
-          <ServiceDetail service_name={"Cirugía"} treatment_id={"cirugia"} patient={patient}/>
-          <ServiceDetail service_name={"Seguro"} treatment_id={"seguro"} patient={patient}/>
+          <ServiceDetail serviceName={"Operatoria"} treatmentId={"operatoria"} patient={patient}/>
+          <ServiceDetail serviceName={"Endodoncia"} treatmentId={"endodoncia"} patient={patient}/>
+          <ServiceDetail serviceName={"Cirugía"} treatmentId={"cirugia"} patient={patient}/>
+          <ServiceDetail serviceName={"Seguro"} treatmentId={"seguro"} patient={patient}/>
         </>
       }
     </div>

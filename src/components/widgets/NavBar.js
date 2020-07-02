@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import clsx from 'clsx';
 import {withStyles} from "@material-ui/core/styles/index";
-import {MenuItem, Menu, List, Divider, CssBaseline, IconButton, Toolbar, AppBar, Drawer, InputBase} from "@material-ui/core";
-import {Menu as MenuIcon, ChevronLeft, MoreVert, Search} from '@material-ui/icons';
-import {mainListItems, secondaryListItems} from "../main/DrawerLinks";
-import styles from "../main/styles/NavBarStyle";
+import {MenuItem, Menu, List, Divider, CssBaseline, IconButton, Toolbar, AppBar, Drawer} from "@material-ui/core";
+import {Menu as MenuIcon, ChevronLeft, MoreVert} from '@material-ui/icons';
+import {mainListItems, secondaryListItems} from "./DrawerLinks";
+import styles from "../styles/NavBarStyle";
 import {Link} from "react-router-dom";
 
 
 const NavBar = (props) => {
-  const {classes}= props;
+  const {classes} = props;
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -18,12 +18,12 @@ const NavBar = (props) => {
 
   return (
     <div style={{display: 'flex'}}>
-      <CssBaseline />
+      <CssBaseline/>
       <AppBar position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: openDrawer,
-        })}>
-        <Toolbar style={{paddingLeft: "5px"} }>
+              className={clsx(classes.appBar, {
+                [classes.appBarShift]: openDrawer,
+              })}>
+        <Toolbar style={{paddingLeft: "5px"}}>
 
           <IconButton
             color="inherit"
@@ -33,7 +33,7 @@ const NavBar = (props) => {
             className={clsx(classes.menuButton, {
               [classes.hide]: openDrawer,
             })}>
-            <MenuIcon />
+            <MenuIcon/>
           </IconButton>
 
           <SearchBar classes={classes}/>
@@ -53,20 +53,20 @@ const SearchBar = (props) => {
   const {classes} = props;
 
   return (
-    <div className={classes.content} >
-      <div className={classes.searchBar}>
-        <div className={classes.searchIcon}>
-          <Search />
-        </div>
-        <InputBase
-          placeholder="Buscar…"
-          classes={{
-            root: classes.inputRoot,
-            input: classes.inputInput,
-          }}
-          inputProps={{ 'aria-label': 'search' }}
-        />
-      </div>
+    <div className={classes.content}>
+      {/*<div className={classes.searchBar}>*/}
+      {/*  <div className={classes.searchIcon}>*/}
+      {/*    <Search />*/}
+      {/*  </div>*/}
+      {/*  <InputBase*/}
+      {/*    placeholder="Buscar…"*/}
+      {/*    classes={{*/}
+      {/*      root: classes.inputRoot,*/}
+      {/*      input: classes.inputInput,*/}
+      {/*    }}*/}
+      {/*    inputProps={{ 'aria-label': 'search' }}*/}
+      {/*  />*/}
+      {/*</div>*/}
     </div>
   )
 };
@@ -75,15 +75,14 @@ const SideMenu = () => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
-    if (anchorEl !== null){
+    if (anchorEl !== null) {
       setAnchorEl(null);
-    }
-    else{
+    } else {
       setAnchorEl(event.currentTarget);
     }
   };
 
-  return(
+  return (
     <>
       <IconButton
         aria-haspopup="true"
@@ -125,7 +124,7 @@ const PermanentDrawer = (props) => {
       }}>
       <div className={classes.toolbar}>
         <IconButton onClick={onClick}>
-          <ChevronLeft />
+          <ChevronLeft/>
         </IconButton>
       </div>
       <Divider/>

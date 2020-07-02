@@ -2,10 +2,10 @@ import {capitalize, birthdayFormat} from './utils'
 
 const validateGeneralForm = (patient) => {
   const {first_name, last_name, clinic_location, sex, visit_reason} = patient;
-  if (first_name.length < 3 || first_name.length > 99){
+  if (first_name.length < 3 || first_name.length > 99) {
     return "Los nombres solo pueden contener de 3 a 99 letras";
   }
-  if (last_name.length < 3 || last_name.length > 99){
+  if (last_name.length < 3 || last_name.length > 99) {
     return "Los apellidos solo pueden contener de 3 a 99 letras";
   }
   if (clinic_location === "" || sex === "" || visit_reason === "") {

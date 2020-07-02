@@ -20,12 +20,11 @@ const NewPatient = (props) => {
   const handleSubmit = () => {
     setStep(step + 1);
     axios.post('https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients',
-      JSON.stringify(patient), {headers:{'Content-Type': 'application/json'}})
+      JSON.stringify(patient), {headers: {'Content-Type': 'application/json'}})
       .then((response) => {
-        console.log(response);
+      //  TODO: go to new patient page
       })
       .catch((error) => {
-        console.log(JSON.stringify(error));
       });
   };
 
@@ -71,8 +70,7 @@ const NewPatient = (props) => {
         )}
       </Paper>
     </div>
-
-  )
+  );
 };
 
 

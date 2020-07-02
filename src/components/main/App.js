@@ -1,12 +1,12 @@
 import React from "react";
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import {Home} from "./Home";
 import {BrowserRouter} from "react-router-dom";
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: '#1595BD', contrastText: '#FAFAFA' },
-    secondary: { main: '#3F51B5' }
+    primary: {main: '#1595BD', contrastText: '#FAFAFA'},
+    secondary: {main: '#3F51B5'}
   },
 });
 

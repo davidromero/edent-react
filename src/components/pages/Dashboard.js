@@ -23,7 +23,7 @@ const Dashboard = (props) => {
         <h3>2</h3>
       </Paper>
     </div>
-  )
+  );
 };
 
 

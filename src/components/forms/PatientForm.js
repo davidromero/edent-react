@@ -23,22 +23,8 @@ const GeneralForm = (props) => {
     }
   }
 
-  const handleImage = e => {
-    if (e.target.files[0] !== undefined){
-      setImage(URL.createObjectURL(e.target.files[0]))
-    }
-  }
-
   return (
     <div>
-      <div style={{margin: "auto", display: "flex", justifyContent: "center"}}>
-        <label htmlFor="upload-button">
-          <img style={{objectFit: "cover", width: "140px", height: "180px", flexDirection: "column"}}
-               src={image ? image : placeholder} alt={"profile"}/>
-          <input type="file" id="upload-button" onChange={handleImage}
-                 style={{display: "none"}}/>
-        </label>
-      </div>
       <div className={"form-container"}>
         <TextField style={{margin: "8px", width: "180px"}} label="Nombres" type="text" name={"first_name"}
                    required onChange={handleChange} value={patient.first_name || ""}/>

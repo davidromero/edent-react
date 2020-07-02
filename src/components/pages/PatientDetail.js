@@ -47,7 +47,15 @@ const GeneralInfo = (props) => {
 
   const handleImage = e => {
     if (e.target.files[0] !== undefined){
-      setImage(URL.createObjectURL(e.target.files[0]))
+      setImage(URL.createObjectURL(e.target.files[0]));
+      axios.put('https://il2fc10cb6.execute-api.us-east-1.amazonaws.com/api/upload/' + patient.uid,
+        e.target.files[0], {headers: {'Content-Type': 'image/jpeg'}})
+        .then((response) => {
+          console.log('Success')
+        })
+        .catch((error) => {
+          console.log(error)
+        });
     }
   }
 
@@ -57,7 +65,8 @@ const GeneralInfo = (props) => {
         <div style={{padding: "15px 0"}}>
           <label htmlFor="upload-button">
             <img style={{objectFit: "cover", width: "200px", height: "280px"}}
-                 src={image ? image : placeholder} alt={"profile"}/>
+                 src={image ? image : "https://s3.amazonaws.com/images.edent.backend/" + patient.uid} alt={"profile"}
+                 onError={() => {setImage(placeholder)}}/>
             <input type="file" id="upload-button" onChange={handleImage}
                    style={{display: "none"}}/>
           </label>

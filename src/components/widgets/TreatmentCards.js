@@ -4,12 +4,12 @@ import {NewTreatmentModal} from "./Modals";
 
 
 const ServiceDetail = (props) => {
-  const {patient, service_name, treatment_id} = props;
+  const {patient, serviceName, treatmentId} = props;
 
   return (
     <Paper className={"small-paper"} elevation={2}>
-      <h2 style={{textTransform: "capitalize", margin: "15px"}}><b>{service_name}</b></h2>
-      <ServiceButtons patient={patient} treatment_id={treatment_id}/>
+      <h2 style={{textTransform: "capitalize", margin: "15px"}}><b>{serviceName}</b></h2>
+      <ServiceButtons patient={patient} treatment_id={treatmentId}/>
     </Paper>
   );
 };
@@ -32,7 +32,7 @@ const StartTreatmentButton = (props) => {
   return (
     <>
       <NewTreatmentModal uid={uid} patient={patient} isOpen={isOpen}
-                         treatment_id={treatment_id} closeModal={() => {
+                         treatmentId={treatment_id} closeModal={() => {
         setIsOpen(false)
       }}/>
       <button className="mid-paper-button" onClick={() => {
@@ -41,7 +41,6 @@ const StartTreatmentButton = (props) => {
       </button>
     </>
   );
-
 };
 
 

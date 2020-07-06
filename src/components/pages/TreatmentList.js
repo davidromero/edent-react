@@ -26,7 +26,7 @@ const TreatmentList = (props) => {
       setTreatmentType(localStorage.getItem("treatment-type"));
       setPatientId(localStorage.getItem("patient-uid"));
     }
-  }, [])
+  }, [props.location])
 
   useEffect(() => {
     if (treatmentType) {
@@ -98,7 +98,7 @@ const TreatmentMenu = (props) => {
 
   useEffect(() => {
     setDisplay(displayMenu(treatmentMenu, level, clickedItem));
-  }, [treatmentMenu, level])
+  }, [treatmentMenu, level, clickedItem])
 
 
   const clickItem = (treatment) => {
@@ -148,8 +148,8 @@ const displayMenu = (originalMenu, currentLevel, clickedItem) => {
   }
 
   originalMenu.forEach(treatment => {
-    const levels = [treatment.level1, treatment.level2]
-    var index = displayMenu.findIndex(x => x.name === levels[currentLevel])
+    const levels = [treatment.level1, treatment.level2];
+    var index = displayMenu.findIndex(x => x.name === levels[currentLevel]);
     if (index === -1) {
       if (!clickedItem || (clickedItem && clickedItem["name"] === levels[0])) {
         if (levels[currentLevel + 1] !== "" && currentLevel === 0) {
@@ -198,9 +198,9 @@ const TreatmentCheckout = (props) => {
   }
 
   const getTotal = (checkoutItems) => {
-    let total = 0
-    checkoutItems.map((item) => {
-      total += parseInt(item.price)
+    let total = 0;
+    checkoutItems.forEach((item) => {
+      total += parseInt(item.price);
     })
     return total;
   }
@@ -209,7 +209,7 @@ const TreatmentCheckout = (props) => {
     <>
       <h3><b>Total: Q{getTotal(checkout)}</b></h3>
       <button className={"finish-treatment-button"} onClick={() => {
-        setIsOpen(true)
+        setIsOpen(true);
       }}>Finalizar tratamiento
       </button>
     </>

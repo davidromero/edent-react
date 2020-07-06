@@ -22,6 +22,11 @@ const Dashboard = (props) => {
         <h2>Pacientes ingresados</h2>
         <h3>2</h3>
       </Paper>
+
+      <Paper className={"simple-paper"} elevation={2} square={false}>
+        <h2>Caries encontradas</h2>
+        <h3>5</h3>
+      </Paper>
     </div>
   );
 };

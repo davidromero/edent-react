@@ -8,7 +8,7 @@ import {NewPatient} from "../pages/NewPatient";
 import {ContactDetail} from "../pages/ContactDetail";
 import {Route, Switch} from "react-router-dom";
 import {PatientDetail} from "../pages/PatientDetail";
-import {TreatmentList} from "../pages/TreatmentList"
+import {TreatmentList} from "../pages/TreatmentList";
 import {CheckoutList} from "../pages/CheckoutList";
 import {AppointmentList} from "../pages/AppointmentList";
 

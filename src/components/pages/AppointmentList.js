@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Paper} from "@material-ui/core";
-import {dateTimeFormat} from '../../utils/utils'
+import {dateTimeFormat} from '../../utils/utils';
 import "../styles/PagesStyle.css";
 
 
@@ -34,8 +34,8 @@ const AppointmentItem = (props) => {
     treatmentList.map((treatment) => {
       total += parseInt(treatment.price)
     })
-    setTotal(total)
-  }, [])
+    setTotal(total);
+  }, []);
 
 
   return (

@@ -5,7 +5,7 @@ import {Link, useHistory} from 'react-router-dom';
 import placeholder from "../../assets/img/profile_placeholder.png";
 import {ContactInfo} from "./ContactDetail";
 import {confirmPatient} from "../../utils/validations";
-import {dateFormat} from "../../utils/utils";
+import {dateFormat, getTodayDate} from "../../utils/utils";
 import {ServiceDetail} from "../widgets/TreatmentCards";
 import {DeleteModal} from "../widgets/Modals";
 
@@ -51,13 +51,13 @@ const GeneralInfo = (props) => {
       axios.put('https://il2fc10cb6.execute-api.us-east-1.amazonaws.com/api/upload/' + patient.uid,
         e.target.files[0], {headers: {'Content-Type': 'image/jpeg'}})
         .then((response) => {
-          console.log('Success')
+          console.log('Success');
         })
         .catch((error) => {
-          console.log(error)
+          console.log(error);
         });
     }
-  }
+  };
 
   return (
     <Paper className={"mid-paper"} elevation={2}>
@@ -66,7 +66,7 @@ const GeneralInfo = (props) => {
           <label htmlFor="upload-button">
             <img style={{objectFit: "cover", width: "200px", height: "280px"}}
                  src={image ? image : "https://s3.amazonaws.com/images.edent.backend/" + patient.uid} alt={"profile"}
-                 onError={() => {setImage(placeholder)}}/>
+                 onError={() => {setImage(placeholder);}}/>
             <input type="file" id="upload-button" onChange={handleImage}
                    style={{display: "none"}}/>
           </label>
@@ -118,8 +118,9 @@ const AppointmentButton = (props) => {
   const title = patient.first_name + " " + patient.last_name
   const details = "Tel: " + patient.phone_number
   const URL = "http://www.google.com/calendar/event?action=TEMPLATE&text=" + encodeURI(title) +
-    "&details=" + encodeURI(details)
+    "&details=" + encodeURI(details) + "&dates=" + getTodayDate();
 
+  console.log('Date: ' + getTodayDate());
   return (
     <a href={URL} target="_blank" rel="noopener noreferrer">
       <button className="mid-paper-button">
@@ -148,10 +149,10 @@ const DeleteButton = (props) => {
   return (
     <>
       <DeleteModal isOpen={isOpen} closeModal={() => {
-        setIsOpen(false)
+        setIsOpen(false);
       }} inactivatePatient={inactivatePatient}/>
       <button className="mid-paper-button" onClick={() => {
-        setIsOpen(true)
+        setIsOpen(true);
       }}>Eliminar Paciente
       </button>
     </>

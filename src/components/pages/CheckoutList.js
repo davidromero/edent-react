@@ -43,8 +43,8 @@ const CheckoutItem = (props) => {
   useEffect(() => {
     let total = 0;
     treatmentList.forEach((treatment) => {
-      total += parseInt(treatment.price)
-    })
+      total += parseInt(treatment.price);
+    });
     setTotal(total);
   }, [treatmentList]);
 
@@ -70,13 +70,13 @@ const CheckoutItem = (props) => {
           treatmentList && treatmentList.map((treatment, index) => {
             return (
               <li key={index} style={{textTransform: "capitalize"}}>{treatment.name + ": Q" + treatment.price}</li>
-            )
+            );
           })
         }
       </div>
 
       <CheckoutModal isOpen={isOpen} closeModal={() => {
-        setIsOpen(false)
+        setIsOpen(false);
       }} payTreatments={payTreatments}/>
       <div style={{width: "285px"}}>
         <h3>

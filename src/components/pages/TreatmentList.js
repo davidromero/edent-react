@@ -26,13 +26,7 @@ const TreatmentList = (props) => {
       setTreatmentType(localStorage.getItem("treatment-type"));
       setPatientId(localStorage.getItem("patient-uid"));
     }
-  }, [props.location])
-
-  useEffect(() => {
-    if (treatmentType) {
-      getTreatmentRates(treatmentType);
-    }
-  }, [treatmentType])
+  }, [props.location]);
 
   const getTreatmentRates = (type) => {
     axios.get("https://hrtd76yb9b.execute-api.us-east-1.amazonaws.com/api/rates?type=" + type)
@@ -41,7 +35,13 @@ const TreatmentList = (props) => {
       })
       .catch((error) => {
       })
-  }
+  };
+
+  useEffect(() => {
+    if (treatmentType) {
+      getTreatmentRates(treatmentType);
+    }
+  }, [treatmentType]);
 
   const addNewTreatment = (treatment) => {
     if (checkout.length < 9) {
@@ -58,7 +58,6 @@ const TreatmentList = (props) => {
       setCheckout([]);
     }
   };
-
 
   return (
     <div className={"page-container"}>
@@ -149,7 +148,7 @@ const displayMenu = (originalMenu, currentLevel, clickedItem) => {
 
   originalMenu.forEach(treatment => {
     const levels = [treatment.level1, treatment.level2];
-    var index = displayMenu.findIndex(x => x.name === levels[currentLevel]);
+    var index = displayMenu.findIndex(x => (x.name) === levels[currentLevel]);
     if (index === -1) {
       if (!clickedItem || (clickedItem && clickedItem["name"] === levels[0])) {
         if (levels[currentLevel + 1] !== "" && currentLevel === 0) {

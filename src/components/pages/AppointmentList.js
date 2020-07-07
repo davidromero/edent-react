@@ -33,7 +33,7 @@ const AppointmentItem = (props) => {
     let total = 0;
     treatmentList.map((treatment) => {
       total += parseInt(treatment.price)
-    })
+    });
     setTotal(total);
   }, []);
 
@@ -69,4 +69,4 @@ const AppointmentItem = (props) => {
   );
 };
 
-export {AppointmentList}
+export {AppointmentList};

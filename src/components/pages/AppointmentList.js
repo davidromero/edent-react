@@ -18,7 +18,7 @@ const AppointmentList = () => {
         checkoutList && checkoutList.map((checkout, index) => {
           return (
             <AppointmentItem key={index} index={index} checkout={checkout} treatmentList={checkout.checkout}/>
-          )
+          );
         })
       }
     </div>
@@ -32,7 +32,7 @@ const AppointmentItem = (props) => {
   useEffect(() => {
     let total = 0;
     treatmentList.map((treatment) => {
-      total += parseInt(treatment.price)
+      total += parseInt(treatment.price, 10)
     });
     setTotal(total);
   }, []);

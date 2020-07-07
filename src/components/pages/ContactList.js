@@ -41,7 +41,7 @@ const ContactList = () => {
                 <small><i>Última modificación: {dateTimeFormat(contact.modified_timestamp)}</i></small>
               </Paper>
             </Link>
-          )
+          );
         })
       }
     </div>

@@ -33,10 +33,10 @@ const StartTreatmentButton = (props) => {
     <>
       <NewTreatmentModal uid={uid} patient={patient} isOpen={isOpen}
                          treatmentId={treatment_id} closeModal={() => {
-        setIsOpen(false)
+        setIsOpen(false);
       }}/>
       <button className="mid-paper-button" onClick={() => {
-        setIsOpen(true)
+        setIsOpen(true);
       }}>Iniciar tratamiento
       </button>
     </>
@@ -44,4 +44,4 @@ const StartTreatmentButton = (props) => {
 };
 
 
-export {ServiceDetail}
+export {ServiceDetail};

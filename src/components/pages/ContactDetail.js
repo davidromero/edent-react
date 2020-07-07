@@ -14,7 +14,7 @@ const ContactDetail = (props) => {
         setContact(res.data.payload);
       })
       .catch((error) => {
-      })
+      });
   }, [uid]);
 
   return (
@@ -28,7 +28,7 @@ const ContactDetail = (props) => {
       }
     </div>
   );
-}
+};
 
 const ContactInfo = (props) => {
   const {patient} = props;

@@ -43,7 +43,7 @@ const getTodayDate = () => {
   const yyyy = today.getFullYear();
 
   today = yyyy + mm + dd + "T200000Z/" + yyyy + mm + dd + "T203000Z";
-  return today
+  return today;
 };
 
 export {dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, getTodayDate};

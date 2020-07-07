@@ -51,10 +51,8 @@ const GeneralInfo = (props) => {
       axios.put('https://il2fc10cb6.execute-api.us-east-1.amazonaws.com/api/upload/' + patient.uid,
         e.target.files[0], {headers: {'Content-Type': 'image/jpeg'}})
         .then((response) => {
-          console.log('Success');
         })
         .catch((error) => {
-          console.log(error);
         });
     }
   };
@@ -115,12 +113,11 @@ const ContactButton = (props) => {
 
 const AppointmentButton = (props) => {
   const {patient} = props;
-  const title = patient.first_name + " " + patient.last_name
-  const details = "Tel: " + patient.phone_number
+  const title = patient.first_name + " " + patient.last_name;
+  const details = "Tel: " + patient.phone_number;
   const URL = "http://www.google.com/calendar/event?action=TEMPLATE&text=" + encodeURI(title) +
     "&details=" + encodeURI(details) + "&dates=" + getTodayDate();
 
-  console.log('Date: ' + getTodayDate());
   return (
     <a href={URL} target="_blank" rel="noopener noreferrer">
       <button className="mid-paper-button">
@@ -143,7 +140,7 @@ const DeleteButton = (props) => {
       })
     setIsOpen(false);
     history.goBack();
-  }
+  };
 
 
   return (

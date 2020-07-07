@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Paper} from "@material-ui/core";
-import {dateTimeFormat} from '../../utils/utils'
+import {dateTimeFormat} from '../../utils/utils';
 import axios from "axios";
 import "../styles/PagesStyle.css";
 import {CheckoutModal} from "../widgets/Modals";
@@ -43,7 +43,7 @@ const CheckoutItem = (props) => {
   useEffect(() => {
     let total = 0;
     treatmentList.forEach((treatment) => {
-      total += parseInt(treatment.price);
+      total += parseInt(treatment.price, 10);
     });
     setTotal(total);
   }, [treatmentList]);
@@ -84,7 +84,7 @@ const CheckoutItem = (props) => {
         </h3>
         <button className={"finish-treatment-button"} style={{width: "120px"}}
                 onClick={() => {
-                  setIsOpen(true)
+                  setIsOpen(true);
                 }}>Pagar
         </button>
         <br/>

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Paper} from "@material-ui/core";
 import {Link} from "react-router-dom";
-import {dateTimeFormat, capitalize} from '../../utils/utils'
+import {dateTimeFormat, capitalize} from '../../utils/utils';
 import axios from "axios";
 import "../styles/PagesStyle.css";
 
@@ -15,7 +15,7 @@ const PatientList = () => {
         setPatientList(res.data.payload);
       })
       .catch((error) => {
-      })
+      });
   }, []);
 
   return (
@@ -41,11 +41,11 @@ const PatientList = () => {
                 <small><i>Última modificación: {dateTimeFormat(patient.modified_timestamp)}</i></small>
               </Paper>
             </Link>
-          )
+          );
         })
       }
     </div>
   );
 };
 
-export {PatientList}
+export {PatientList};

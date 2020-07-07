@@ -58,7 +58,7 @@ const CancelModal = (props) => {
                 onClick={() => {
                   history.goBack();
                   localStorage.clear();
-                  closeModal()
+                  closeModal();
                 }}>Aceptar
         </button>
         <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}

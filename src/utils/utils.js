@@ -10,21 +10,28 @@ const patientTemplate = {
   "phone_number": ""
 };
 
+const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+
 const dateTimeFormat = (isoDate) => {
-  const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
   let date = new Date(isoDate);
   return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + " - " +
     ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2) + ":" + ("0" + date.getSeconds()).slice(-2);
 };
 
+const appointmentFormat = (isoStart, isoEnd) => {
+  let startDate = new Date(isoStart);
+  let endDate = new Date(isoEnd);
+  return startDate.getDate() + " " + months[startDate.getMonth()] + " " + startDate.getFullYear() + ", " +
+    ("0" + startDate.getHours()).slice(-2) + ":" + ("0" + startDate.getMinutes()).slice(-2) + " - " +
+    ("0" + endDate.getHours()).slice(-2) + ":" + ("0" + endDate.getMinutes()).slice(-2);
+};
+
 const dateFormat = (isoDate) => {
-  const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
   let date = new Date(isoDate);
   return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
 };
 
 const birthdayFormat = (isoDate) => {
-  const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
   let date = new Date(isoDate);
   return date.getUTCDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
 };
@@ -46,4 +53,4 @@ const getTodayDate = () => {
   return today;
 };
 
-export {dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, getTodayDate};
+export {dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, getTodayDate, appointmentFormat};

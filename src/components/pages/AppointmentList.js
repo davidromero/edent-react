@@ -17,7 +17,6 @@ const AppointmentList = () => {
       })
   }, []);
 
-
   return (
     <div className={"page-container"}>
       <Paper className={"wide-paper"} elevation={2} square={false}>
@@ -38,16 +37,22 @@ const AppointmentList = () => {
 
 const AppointmentItem = (props) => {
   const {appointment} = props;
+  const attended = appointment.attended;
 
   return (
     <Paper className={"simple-paper"}>
-      <h3>{appointmentFormat(appointment.start, appointment.end)}<br/></h3>
+      <h3 style={attended ? {color: "black"} : {color: "red"}}>{appointmentFormat(appointment.start, appointment.end)}<br/></h3>
+      <h2>
+        {appointment.title}<br/>
+      </h2>
       <p>
-        <b style={{textTransform: "capitalize", fontSize: "1.1em"}}>
-          {appointment.title}<br/>
-        </b>
         {appointment.description}<br/><br/>
-        <button onClick={() => {console.log('Click')}}>Atender</button>
+        <a href={'/patients/'}>
+          <button className={'mid-paper-button'} style={{margin: "4px"}}>Ingresar a cita</button>
+        </a>
+        <a href={appointment.link} target="_blank" rel="noopener noreferrer">
+          <button className={'mid-paper-button'} style={{margin: "4px"}}>Abrir en calendario</button>
+        </a>
       </p>
     </Paper>
   );

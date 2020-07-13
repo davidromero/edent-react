@@ -114,7 +114,7 @@ const ContactButton = (props) => {
 const AppointmentButton = (props) => {
   const {patient} = props;
   const title = patient.first_name + " " + patient.last_name;
-  const details = "Tel: " + patient.phone_number;
+  const details = "ID: " + patient.uid + "\nTel: " + patient.phone_number;
   const URL = "http://www.google.com/calendar/event?action=TEMPLATE&text=" + encodeURI(title) +
     "&details=" + encodeURI(details) + "&dates=" + getTodayDate();
 

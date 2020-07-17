@@ -8,6 +8,9 @@ import {confirmPatient} from "../../utils/validations";
 import {dateFormat, getTodayDate} from "../../utils/utils";
 import {ServiceDetail} from "../widgets/TreatmentCards";
 import {DeleteModal} from "../widgets/Modals";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const PatientDetail = (props) => {
   const {uid} = props.match.params;
@@ -35,6 +38,7 @@ const PatientDetail = (props) => {
           <ServiceDetail serviceName={"Endodoncia"} treatmentId={"endodoncia"} patient={patient}/>
           <ServiceDetail serviceName={"Cirugía"} treatmentId={"cirugia"} patient={patient}/>
           <ServiceDetail serviceName={"Seguro"} treatmentId={"seguro"} patient={patient}/>
+          <PatientTreatmentList uid={uid}/>
         </>
       }
     </div>
@@ -153,6 +157,47 @@ const DeleteButton = (props) => {
       }}>Eliminar Paciente
       </button>
     </>
+  );
+};
+
+const PatientTreatmentList = (props) => {
+
+  const {uid} = props
+  const [patientList, setPatientList] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://hrtd76yb9b.execute-api.us-east-1.amazonaws.com/api/treatments/" + uid)
+      .then((res) => {
+        setPatientList(res.data.payload);
+      })
+      .catch((error) => {
+      });
+  }, []);
+  
+  return(
+    <Paper className={"mid-paper"} elevation={2} style={{maxHeight: 400, overflow: 'auto'}}>
+      <h2 style={{textTransform: "capitalize", margin: "15px"}}><b>Lista de Tratamientos</b></h2>
+      {patientList.length === 0 ? <h2>Sin Tratamientos</h2> : <div/>}
+      {
+        patientList && patientList.map((patient, index) => {
+          return (
+            <Paper className={"small-paper"} elevation={2} key={index}>
+              <h3 style={{textTransform: "capitalize", margin: "15px"}}><p>{patient.treatment_name}</p></h3>
+                <List component="nav" >
+                <ListItem>
+                <ListItemText primary="Precio: "/>
+                  <p>{patient.treatment_price}</p><br/>
+                  <ListItemText primary="Lugar: "/>
+                  <p>{patient.clinic_location}</p><br/>
+                  <ListItemText primary="Fecha Creacion: "/>
+                  <p>{patient.created_timestamp}</p><br/>
+                </ListItem>
+                </List>
+            </Paper>
+          );
+        })
+      }
+    </Paper>
   );
 };
 

@@ -8,10 +8,6 @@ import {confirmPatient} from "../../utils/validations";
 import {dateFormat, getTodayDate} from "../../utils/utils";
 import {ServiceDetail} from "../widgets/TreatmentCards";
 import {DeleteModal} from "../widgets/Modals";
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -179,41 +175,25 @@ const PatientTreatmentList = (props) => {
   }, []);
   
   return(
-    <Paper className={"mid-paper"} elevation={2}>
+    <Paper className={"mid-paper"} elevation={2} style={{maxHeight: 400, overflow: 'auto'}}>
       <h2 style={{textTransform: "capitalize", margin: "15px"}}><b>Lista de Tratamientos</b></h2>
       {patientList.length === 0 ? <h2>Sin Tratamientos</h2> : <div/>}
       {
         patientList && patientList.map((patient, index) => {
           return (
-            <Accordion square={false}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
+            <Paper className={"small-paper"} elevation={2} key={index}>
               <h3 style={{textTransform: "capitalize", margin: "15px"}}><p>{patient.treatment_name}</p></h3>
-              </AccordionSummary>
-              <AccordionDetails>
                 <List component="nav" >
-                <ListItem>
-                <ListItemText primary="Tipo de Tratamiento:"/>
-                  <p> {patient.treatment_type}</p><br/>
-                </ListItem>
                 <ListItem>
                 <ListItemText primary="Precio: "/>
                   <p>{patient.treatment_price}</p><br/>
-                </ListItem>
-                <ListItem>
-                <ListItemText primary="Lugar: "/>
+                  <ListItemText primary="Lugar: "/>
                   <p>{patient.clinic_location}</p><br/>
-                </ListItem>
-                <ListItem>
-                <ListItemText primary="Fecha Creacion: "/>
+                  <ListItemText primary="Fecha Creacion: "/>
                   <p>{patient.created_timestamp}</p><br/>
                 </ListItem>
                 </List>
-              </AccordionDetails>
-            </Accordion>
+            </Paper>
           );
         })
       }

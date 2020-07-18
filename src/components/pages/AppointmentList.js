@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Paper} from "@material-ui/core";
 import "../styles/PagesStyle.css";
 import axios from "axios";
-import {appointmentFormat} from "../../utils/utils";
+import {appointmentFormat, validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment} from "../../utils/utils";
 
 
 const AppointmentList = () => {
@@ -36,6 +36,7 @@ const AppointmentList = () => {
 };
 
 const AppointmentItem = (props) => {
+
   const {appointment} = props;
   const attended = appointment.attended;
 
@@ -45,15 +46,17 @@ const AppointmentItem = (props) => {
       <h2>
         {appointment.title}<br/>
       </h2>
+      <div>
       <p>
-        {appointment.description}<br/><br/>
-        <a href={'/patients/'}>
-          <button className={'mid-paper-button'} style={{margin: "4px"}}>Ingresar a cita</button>
+        {appointment.description}<br/><br/> 
+        <a href={'/patients/'+getUidPatientfromDescriptionAppointment(appointment.description)}>
+          {(validateNameAppointment(appointment.title) && validateDescriptAppointment(appointment.description)) ? (<button className={'mid-paper-button'} style={{margin: "4px"}}>Empezar tratamiento</button>) : (<button className={'mid-paper-button'} style={{margin: "4px"}}>Marcar como Atendido</button>) }   
         </a>
         <a href={appointment.link} target="_blank" rel="noopener noreferrer">
           <button className={'mid-paper-button'} style={{margin: "4px"}}>Abrir en calendario</button>
         </a>
       </p>
+      </div>
     </Paper>
   );
 };

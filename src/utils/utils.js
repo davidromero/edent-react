@@ -53,4 +53,31 @@ const getTodayDate = () => {
   return today;
 };
 
-export {dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, getTodayDate, appointmentFormat};
+const validateNameAppointment = (name) => {
+  // Regex nombres con tildes y ñ 
+  let letters = /^[A-Za-z\s]+$/;
+  return String(name).match(letters);
+};
+
+// If description contains "ID:" and "Tel:", before check lengths to avoid exception, test
+const validateDescriptAppointment = (description) => {
+  let itemsList = description.split(/\r?\n/);
+    return (description.split(/\r?\n/).length > 1 && itemsList[0].length > 1 && itemsList[1].length > 1 &&
+      itemsList[0].match(/\S+/g).length > 1 && itemsList[1].match(/\S+/g).length > 1) ?
+      (itemsList[0].match(/\S+/g).includes('ID:') && 
+      itemsList[1].match(/\S+/g).includes("Tel:") && 
+      validatePhoneNumber(itemsList[1].match(/\S+/g)[1]))
+    :
+  false;
+};
+
+const validatePhoneNumber = (number) => {
+  return (number.toString().length === 8);
+}
+
+const getUidPatientfromDescriptionAppointment = (description) => {
+  let itemsList = description.split(/\r?\n/);
+  return validateDescriptAppointment(description) ? itemsList[0].match(/\S+/g)[1] : "";
+}
+
+export {dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, getTodayDate, appointmentFormat, validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment};

@@ -1,7 +1,14 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Modal from "react-modal";
 import {Link} from "react-router-dom";
 import {useHistory} from "react-router-dom";
+import TextField from '@material-ui/core/TextField';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+
 
 const customStyles = {
   content: {
@@ -32,8 +39,8 @@ const NewTreatmentModal = (props) => {
           Patient: patient
         }}>
           <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}>Aceptar</button>
-        </Link>
 
+        </Link>
         <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
                 onClick={closeModal}>Cancelar
         </button>
@@ -115,7 +122,16 @@ const DeleteModal = (props) => {
 };
 
 const CheckoutModal = (props) => {
-  const {closeModal, isOpen, payTreatments} = props;
+  const {closeModal, isOpen, payTreatments, total} = props;
+
+  const [value, setValue] = React.useState('completo');
+
+  const handleChange = (event) => {
+    if(event.target.namevalue === "parcial"){
+
+    }
+    setValue(event.target.value);
+  };
 
   return (
     <Modal
@@ -126,8 +142,16 @@ const CheckoutModal = (props) => {
       <h3>¿Está seguro en pagar esta cuenta?</h3>
       <div className={"modal-container"}>
         <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
-                onClick={payTreatments}>Aceptar
+                onClick={payTreatments}>Pago
         </button>
+        <FormControl component="fieldset">
+        <FormLabel component="legend">Tipo de Pago</FormLabel>
+          <RadioGroup aria-label="tipodepago" name="tipodepago" value={value} onChange={handleChange}>
+            <FormControlLabel value="completo" control={<Radio />} label="Completo" />
+            <FormControlLabel value="parcial" control={<Radio />} label="Parcial" />
+          </RadioGroup>
+        </FormControl>
+        <TextField id="outlined-basic" label="Cantidad" variant="outlined"  defaultValue={total} />
         <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
                 onClick={closeModal}>Cancelar
         </button>

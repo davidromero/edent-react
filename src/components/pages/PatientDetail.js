@@ -10,7 +10,7 @@ import {ServiceDetail} from "../widgets/TreatmentCards";
 import {DeleteModal} from "../widgets/Modals";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import {dateTimeFormat} from '../../utils/utils';
 
 const PatientDetail = (props) => {
   const {uid} = props.match.params;
@@ -172,7 +172,7 @@ const PatientTreatmentList = (props) => {
       })
       .catch((error) => {
       });
-  }, []);
+  }, [uid]);
   
   return(
     <Paper className={"mid-paper"} elevation={2} style={{maxHeight: 400, overflow: 'auto'}}>
@@ -185,12 +185,12 @@ const PatientTreatmentList = (props) => {
               <h3 style={{textTransform: "capitalize", margin: "15px"}}><p>{patient.treatment_name}</p></h3>
                 <List component="nav" >
                 <ListItem>
-                <ListItemText primary="Precio: "/>
+                  <b>Precio: </b>
                   <p>{patient.treatment_price}</p><br/>
-                  <ListItemText primary="Lugar: "/>
+                  <b>Lugar: </b>
                   <p>{patient.clinic_location}</p><br/>
-                  <ListItemText primary="Fecha Creacion: "/>
-                  <p>{patient.created_timestamp}</p><br/>
+                  <b>Fecha Creacion: </b>
+                  <p>{dateTimeFormat(patient.created_timestamp)}</p><br/>
                 </ListItem>
                 </List>
             </Paper>

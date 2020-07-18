@@ -77,7 +77,7 @@ const CheckoutItem = (props) => {
 
       <CheckoutModal isOpen={isOpen} closeModal={() => {
         setIsOpen(false);
-      }} payTreatments={payTreatments}/>
+      }} payTreatments={payTreatments} total={total}/>
       <div style={{width: "285px"}}>
         <h3>
           Total: Q{total}

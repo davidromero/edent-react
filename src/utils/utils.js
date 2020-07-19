@@ -53,6 +53,17 @@ const getTodayDate = () => {
   return today;
 };
 
+const convertISO = (date) => {
+  let formatDate = new Date(date);
+  const hh = String(formatDate.getHours()).padStart(2, '0');
+  const minmin = String(formatDate.getMinutes()).padStart(2, '0');
+  const dd = String(formatDate.getDate()).padStart(2, '0');
+  const mm = String(formatDate.getMonth() + 1).padStart(2, '0');
+  const yyyy = formatDate.getFullYear();
+  formatDate = yyyy + mm + dd + hh + minmin ;
+  return formatDate;
+};
+
 const validateNameAppointment = (name) => {
   // Regex nombres con tildes y ñ 
   let letters = /^[A-Za-z\s]+$/;
@@ -80,4 +91,9 @@ const getUidPatientfromDescriptionAppointment = (description) => {
   return validateDescriptAppointment(description) ? itemsList[0].match(/\S+/g)[1] : "";
 }
 
-export {dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, getTodayDate, appointmentFormat, validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment};
+const isAppointmentDue = (date) =>{
+  console.log(convertISO(new Date()) > convertISO(date));
+  return (convertISO(new Date()) > convertISO(date));
+}
+
+export {dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, getTodayDate, appointmentFormat, validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment, isAppointmentDue};

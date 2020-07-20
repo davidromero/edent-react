@@ -68,7 +68,7 @@ const SearchBar = (props) => {
       {/*  />*/}
       {/*</div>*/}
     </div>
-  )
+  );
 };
 
 const SideMenu = () => {

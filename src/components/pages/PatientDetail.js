@@ -5,9 +5,12 @@ import {Link, useHistory} from 'react-router-dom';
 import placeholder from "../../assets/img/profile_placeholder.png";
 import {ContactInfo} from "./ContactDetail";
 import {confirmPatient} from "../../utils/validations";
-import {dateFormat} from "../../utils/utils";
+import {dateFormat, getTodayDate} from "../../utils/utils";
 import {ServiceDetail} from "../widgets/TreatmentCards";
 import {DeleteModal} from "../widgets/Modals";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import {dateTimeFormat} from '../../utils/utils';
 
 const PatientDetail = (props) => {
   const {uid} = props.match.params;
@@ -35,6 +38,7 @@ const PatientDetail = (props) => {
           <ServiceDetail serviceName={"Endodoncia"} treatmentId={"endodoncia"} patient={patient}/>
           <ServiceDetail serviceName={"Cirugía"} treatmentId={"cirugia"} patient={patient}/>
           <ServiceDetail serviceName={"Seguro"} treatmentId={"seguro"} patient={patient}/>
+          <PatientTreatmentList uid={uid}/>
         </>
       }
     </div>
@@ -51,13 +55,11 @@ const GeneralInfo = (props) => {
       axios.put('https://il2fc10cb6.execute-api.us-east-1.amazonaws.com/api/upload/' + patient.uid,
         e.target.files[0], {headers: {'Content-Type': 'image/jpeg'}})
         .then((response) => {
-          console.log('Success')
         })
         .catch((error) => {
-          console.log(error)
         });
     }
-  }
+  };
 
   return (
     <Paper className={"mid-paper"} elevation={2}>
@@ -66,7 +68,7 @@ const GeneralInfo = (props) => {
           <label htmlFor="upload-button">
             <img style={{objectFit: "cover", width: "200px", height: "280px"}}
                  src={image ? image : "https://s3.amazonaws.com/images.edent.backend/" + patient.uid} alt={"profile"}
-                 onError={() => {setImage(placeholder)}}/>
+                 onError={() => {setImage(placeholder);}}/>
             <input type="file" id="upload-button" onChange={handleImage}
                    style={{display: "none"}}/>
           </label>
@@ -115,10 +117,10 @@ const ContactButton = (props) => {
 
 const AppointmentButton = (props) => {
   const {patient} = props;
-  const title = patient.first_name + " " + patient.last_name
-  const details = "Tel: " + patient.phone_number
+  const title = patient.first_name + " " + patient.last_name;
+  const details = "ID: " + patient.uid + "\nTel: " + patient.phone_number;
   const URL = "http://www.google.com/calendar/event?action=TEMPLATE&text=" + encodeURI(title) +
-    "&details=" + encodeURI(details)
+    "&details=" + encodeURI(details) + "&dates=" + getTodayDate();
 
   return (
     <a href={URL} target="_blank" rel="noopener noreferrer">
@@ -142,19 +144,60 @@ const DeleteButton = (props) => {
       })
     setIsOpen(false);
     history.goBack();
-  }
+  };
 
 
   return (
     <>
       <DeleteModal isOpen={isOpen} closeModal={() => {
-        setIsOpen(false)
+        setIsOpen(false);
       }} inactivatePatient={inactivatePatient}/>
       <button className="mid-paper-button" onClick={() => {
-        setIsOpen(true)
+        setIsOpen(true);
       }}>Eliminar Paciente
       </button>
     </>
+  );
+};
+
+const PatientTreatmentList = (props) => {
+
+  const {uid} = props
+  const [patientList, setPatientList] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://hrtd76yb9b.execute-api.us-east-1.amazonaws.com/api/treatments/" + uid)
+      .then((res) => {
+        setPatientList(res.data.payload);
+      })
+      .catch((error) => {
+      });
+  }, [uid]);
+  
+  return(
+    <Paper className={"mid-paper"} elevation={2} style={{maxHeight: 400, overflow: 'auto'}}>
+      <h2 style={{textTransform: "capitalize", margin: "15px"}}><b>Lista de Tratamientos</b></h2>
+      {patientList.length === 0 ? <h2>Sin Tratamientos</h2> : <div/>}
+      {
+        patientList && patientList.map((patient, index) => {
+          return (
+            <Paper className={"small-paper"} elevation={2} key={index}>
+              <h3 style={{textTransform: "capitalize", margin: "15px"}}><p>{patient.treatment_name}</p></h3>
+                <List component="nav" >
+                <ListItem>
+                  <b>Precio: </b>
+                  <p>{patient.treatment_price}</p><br/>
+                  <b>Lugar: </b>
+                  <p>{patient.clinic_location}</p><br/>
+                  <b>Fecha Creacion: </b>
+                  <p>{dateTimeFormat(patient.created_timestamp)}</p><br/>
+                </ListItem>
+                </List>
+            </Paper>
+          );
+        })
+      }
+    </Paper>
   );
 };
 

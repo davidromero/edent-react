@@ -1,4 +1,4 @@
-import {capitalize, birthdayFormat} from './utils'
+import {capitalize, birthdayFormat} from './utils';
 
 const validateGeneralForm = (patient) => {
   const {first_name, last_name, clinic_location, sex, visit_reason} = patient;
@@ -12,7 +12,7 @@ const validateGeneralForm = (patient) => {
     return "Ningún campo debe estar en blanco"
   }
   return "";
-}
+};
 
 const validateContactsForm = (patient) => {
   const {phone_number} = patient;
@@ -20,7 +20,7 @@ const validateContactsForm = (patient) => {
     return "El teléfono no está bien escrito";
   }
   return "";
-}
+};
 
 const confirmPatient = (patient) => {
   const prettyPatient = Object.create(patient);
@@ -33,6 +33,6 @@ const confirmPatient = (patient) => {
   prettyPatient.email = prettyPatient.email === "" ? "No tiene" : prettyPatient.email;
   prettyPatient.address = prettyPatient.address === "" ? "Sin dirección" : prettyPatient.address;
   return prettyPatient;
-}
+};
 
 export {validateGeneralForm, validateContactsForm, confirmPatient};

@@ -1,11 +1,21 @@
 import React, {useEffect, useState} from "react";
 import {Paper} from "@material-ui/core";
-import {dateTimeFormat} from '../../utils/utils';
 import "../styles/PagesStyle.css";
+import axios from "axios";
+import {appointmentFormat, validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment, isAppointmentDue} from "../../utils/utils";
 
 
 const AppointmentList = () => {
-  const [checkoutList, setCheckoutList] = useState([]);
+  const [appointmentList, setAppointmentList] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://5ticjo0pz9.execute-api.us-east-1.amazonaws.com/api/appointments/")
+      .then((res) => {
+        setAppointmentList(res.data.payload);
+      })
+      .catch((error) => {
+      })
+  }, []);
 
   return (
     <div className={"page-container"}>
@@ -13,12 +23,12 @@ const AppointmentList = () => {
         <h2>Citas Pendientes</h2>
         <h3>Lista de Citas</h3>
       </Paper>
-      {checkoutList.length === 0 ? <h2>Cargando...</h2> : <></>}
+      {appointmentList.length === 0 ? <h2>Cargando...</h2> : <></>}
       {
-        checkoutList && checkoutList.map((checkout, index) => {
+        appointmentList && appointmentList.map((appointment, index) => {
           return (
-            <AppointmentItem key={index} index={index} checkout={checkout} treatmentList={checkout.checkout}/>
-          )
+            <AppointmentItem key={index} index={index} appointment={appointment}/>
+          );
         })
       }
     </div>
@@ -26,47 +36,37 @@ const AppointmentList = () => {
 };
 
 const AppointmentItem = (props) => {
-  const {checkout, treatmentList} = props;
-  const [total, setTotal] = useState(0);
 
-  useEffect(() => {
-    let total = 0;
-    treatmentList.map((treatment) => {
-      total += parseInt(treatment.price)
-    })
-    setTotal(total);
-  }, []);
+  const {appointment} = props;
+  const attended = appointment.attended;
 
+  const inactivateAppointment = () => {
+    axios.delete("https://5ticjo0pz9.execute-api.us-east-1.amazonaws.com/api/appointments/" + appointment.uid)
+      .then((res) => {
+      })
+      .catch((error) => {
+      })
+  };
 
   return (
-    <Paper className={"wide-paper"} style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap"}}>
-      <div style={{margin: "8px"}}>
-        <h2>
-          <b style={{textTransform: "capitalize", fontSize: "1.1em"}}>
-            {checkout.patient.first_name + " " + checkout.patient.last_name}</b><br/>
-        </h2>
-        {
-          treatmentList && treatmentList.map((treatment, index) => {
-            return (
-              <li key={index} style={{textTransform: "capitalize"}}>{treatment.name + ": Q" + treatment.price}</li>
-            )
-          })
-        }
-      </div>
-
-      <div style={{width: "285px"}}>
-        <h3>
-          Total: Q{total}
-        </h3>
-        <button className={"finish-treatment-button"} style={{width: "120px"}}
-                onClick={() => {
-                }}>Pagar
-        </button>
-        <br/>
-        <small><i>Realizado en: {dateTimeFormat(checkout.modified_timestamp)}</i></small>
+    <Paper className={"simple-paper"}>
+      <h3 style={(attended) ? ({color: "green"}) : (isAppointmentDue(appointment.end)) ? ({color: "red"}) : ({color: "black"})}>{appointmentFormat(appointment.start, appointment.end)}<br/></h3>
+      <h2>
+        {appointment.title}<br/>
+      </h2>
+      <div>
+      <p>
+        {appointment.description}<br/><br/> 
+        <a href={'/patients/'+getUidPatientfromDescriptionAppointment(appointment.description)}>
+          {(validateNameAppointment(appointment.title) && validateDescriptAppointment(appointment.description)) ? (<button className={'mid-paper-button'} style={{margin: "4px"}}>Empezar tratamiento</button>) : (<button className={'mid-paper-button'} style={{margin: "4px"}}>Marcar como Atendido</button>) }   
+        </a>
+        <a href={appointment.link} target="_blank" rel="noopener noreferrer">
+          <button className={'mid-paper-button'} style={{margin: "4px"}}>Abrir en calendario</button>
+        </a>
+      </p>
       </div>
     </Paper>
   );
 };
 
-export {AppointmentList}
+export {AppointmentList};

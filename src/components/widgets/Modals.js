@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Modal from "react-modal";
 import {Link} from "react-router-dom";
 import {useHistory} from "react-router-dom";
+import TextField from '@material-ui/core/TextField';
+
 
 const customStyles = {
   content: {
@@ -32,8 +34,8 @@ const NewTreatmentModal = (props) => {
           Patient: patient
         }}>
           <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}>Aceptar</button>
-        </Link>
 
+        </Link>
         <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
                 onClick={closeModal}>Cancelar
         </button>
@@ -58,7 +60,7 @@ const CancelModal = (props) => {
                 onClick={() => {
                   history.goBack();
                   localStorage.clear();
-                  closeModal()
+                  closeModal();
                 }}>Aceptar
         </button>
         <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
@@ -115,7 +117,14 @@ const DeleteModal = (props) => {
 };
 
 const CheckoutModal = (props) => {
-  const {closeModal, isOpen, payTreatments} = props;
+  const {closeModal, isOpen, payTreatments, total, paidAmount} = props;
+  const [paymentAmount, setPaymentAmount] = useState(0);
+  const [toBePayed, setToBePayed] = useState(0);
+
+  useEffect(() => {
+    setToBePayed(total-paidAmount);
+    setPaymentAmount(total-paidAmount);
+  }, [total]);
 
   return (
     <Modal
@@ -123,10 +132,15 @@ const CheckoutModal = (props) => {
       style={customStyles}
       ariaHideApp={false}
       contentLabel="¿Estas seguro?">
-      <h3>¿Está seguro en pagar esta cuenta?</h3>
+      <h3>¿Cuánto desea en pagar en esta cuenta?</h3>
+      <div className={"modal-container"} style={{marginBottom: "12px"}}>
+        <TextField id="payment-amount" label="Cantidad" variant="outlined" defaultValue={toBePayed}
+                   onChange={(e) => {setPaymentAmount(e.target.value);}}/>
+      </div>
+
       <div className={"modal-container"}>
         <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
-                onClick={payTreatments}>Aceptar
+                onClick={() => {payTreatments(paymentAmount)}}>Pagar
         </button>
         <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
                 onClick={closeModal}>Cancelar

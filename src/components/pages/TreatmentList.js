@@ -26,13 +26,7 @@ const TreatmentList = (props) => {
       setTreatmentType(localStorage.getItem("treatment-type"));
       setPatientId(localStorage.getItem("patient-uid"));
     }
-  }, [props.location])
-
-  useEffect(() => {
-    if (treatmentType) {
-      getTreatmentRates(treatmentType);
-    }
-  }, [treatmentType])
+  }, [props.location]);
 
   const getTreatmentRates = (type) => {
     axios.get("https://hrtd76yb9b.execute-api.us-east-1.amazonaws.com/api/rates?type=" + type)
@@ -40,8 +34,14 @@ const TreatmentList = (props) => {
         setMenu(res.data.payload);
       })
       .catch((error) => {
-      })
-  }
+      });
+  };
+
+  useEffect(() => {
+    if (treatmentType) {
+      getTreatmentRates(treatmentType);
+    }
+  }, [treatmentType]);
 
   const addNewTreatment = (treatment) => {
     if (checkout.length < 9) {
@@ -58,7 +58,6 @@ const TreatmentList = (props) => {
       setCheckout([]);
     }
   };
-
 
   return (
     <div className={"page-container"}>
@@ -87,7 +86,7 @@ const TreatmentList = (props) => {
         <TreatmentMenu treatmentMenu={menu} addNewTreatment={addNewTreatment}/>
       </div>
     </div>
-  )
+  );
 };
 
 const TreatmentMenu = (props) => {
@@ -98,16 +97,16 @@ const TreatmentMenu = (props) => {
 
   useEffect(() => {
     setDisplay(displayMenu(treatmentMenu, level, clickedItem));
-  }, [treatmentMenu, level, clickedItem])
+  }, [treatmentMenu, level, clickedItem]);
 
 
   const clickItem = (treatment) => {
     if (treatment.parent || treatment.name === "atrás") {
       let new_level = treatment.name === "atrás" ? 0 : 1;
       setLevel(new_level);
-      setClickedItem(treatment)
+      setClickedItem(treatment);
     } else {
-      addNewTreatment(treatment)
+      addNewTreatment(treatment);
     }
   }
 
@@ -135,7 +134,7 @@ const TreatmentMenu = (props) => {
 
 const displayMenu = (originalMenu, currentLevel, clickedItem) => {
   if (clickedItem && clickedItem.name === "atrás") {
-    clickedItem = undefined;
+    clickedItem = void 0;
   }
   const displayMenu = [];
   if (currentLevel > 0) {
@@ -144,12 +143,12 @@ const displayMenu = (originalMenu, currentLevel, clickedItem) => {
       uid: "0",
       name: "atrás",
       parent: false
-    })
+    });
   }
 
   originalMenu.forEach(treatment => {
     const levels = [treatment.level1, treatment.level2];
-    var index = displayMenu.findIndex(x => x.name === levels[currentLevel]);
+    var index = displayMenu.findIndex(x => (x.name === levels[currentLevel]));
     if (index === -1) {
       if (!clickedItem || (clickedItem && clickedItem["name"] === levels[0])) {
         if (levels[currentLevel + 1] !== "" && currentLevel === 0) {
@@ -159,7 +158,7 @@ const displayMenu = (originalMenu, currentLevel, clickedItem) => {
             complete_name: levels[0] + " " + levels[1],
             name: levels[currentLevel],
             parent: true,
-          })
+          });
         } else {
           displayMenu.push({
             price: treatment.price,
@@ -167,7 +166,7 @@ const displayMenu = (originalMenu, currentLevel, clickedItem) => {
             complete_name: levels[0] + " " + levels[1],
             name: levels[currentLevel],
             parent: false,
-          })
+          });
         }
       }
     }
@@ -186,12 +185,13 @@ const TreatmentCheckout = (props) => {
       treatment_type: localStorage.getItem("treatment-type"),
       patient: patient,
       patient_uid: patient_uid,
-    }
+    };
+
     axios.post('https://219f9v9yfl.execute-api.us-east-1.amazonaws.com/api/checkout',
       JSON.stringify(checkout_payload), {headers: {'Content-Type': 'application/json'}})
       .then((response) => {
         localStorage.clear();
-        window.location.href = '/checkout'
+        window.location.href = '/checkout';
       })
       .catch((error) => {
       });
@@ -200,7 +200,7 @@ const TreatmentCheckout = (props) => {
   const getTotal = (checkoutItems) => {
     let total = 0;
     checkoutItems.forEach((item) => {
-      total += parseInt(item.price);
+      total += parseInt(item.price, 10);
     })
     return total;
   }
@@ -239,7 +239,7 @@ const TreatmentItem = (props) => {
     <div className={"treatment-item"} key={idx}>
       <p style={{textTransform: "capitalize"}}>{treatment.name + " - Q" + treatment.price}
         <button className={"remove-treatment-button"} onClick={() => {
-          remove(idx)
+          remove(idx);
         }}>x
         </button>
       </p>

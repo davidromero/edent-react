@@ -36,6 +36,10 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+.multi-container {
+  width: 100%;
+  display: flex;
+}
 
 /*Simple Paper*/
 .simple-paper {

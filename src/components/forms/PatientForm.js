@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from "react";
 import {
   RadioGroup, Radio, FormControlLabel, TextField, Button, FormLabel,
-  Select, Input, MenuItem, FormControl, InputLabel, Paper
+  Select, Input, MenuItem, FormControl, InputLabel, Paper, Checkbox, ListItemText
 } from "@material-ui/core";
 import {validateContactsForm, validateGeneralForm, confirmPatient} from "../../utils/validations";
 import "../styles/PagesStyle.css";
+import {doctor_names} from "../../utils/utils";
 
 const GeneralForm = (props) => {
   const {patient, handleChange, nextStep} = props;
@@ -24,18 +25,33 @@ const GeneralForm = (props) => {
     <div>
       <div className={"form-container"}>
         <TextField style={{margin: "8px", width: "180px"}} label="Nombres" type="text" name={"first_name"}
-                   required onChange={handleChange} value={patient.first_name || ""}/>
+                   onChange={handleChange} value={patient.first_name || ""}/>
         <TextField style={{margin: "8px", width: "180px"}} label="Apellidos" type="text" name={"last_name"}
-                   required onChange={handleChange} value={patient.last_name || ""}/>
+                   onChange={handleChange} value={patient.last_name || ""}/>
         <TextField style={{margin: "8px", width: "180px"}} label="Fecha de Nacimiento" name={"birthday"}
-                   type="date" required onChange={handleChange} value={patient.birthday || "2000-12-31"}/>
+                   type="date" onChange={handleChange} value={patient.birthday || "2000-12-31"}/>
         <FormControl style={{margin: "8px", width: "180px"}}>
-          <InputLabel id="location">Clínica *</InputLabel>
+          <InputLabel id="location">Clínica</InputLabel>
           <Select className={"selectEmpty"} name={"clinic_location"}
                   value={patient.clinic_location ? patient.clinic_location : ""}
                   onChange={handleChange} input={<Input name={"location"}/>}>
             <MenuItem value={"chiquimula"}>Chiquimula</MenuItem>
             <MenuItem value={"jocotan"}>Jocotán</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl className={"multi-container"} style={{margin: "8px", width: "180px"}}>
+          <InputLabel id="doctors">Doctores</InputLabel>
+          <Select className={"selectEmpty"} name={"doctor_names"} multiple
+            value={patient.doctor_names ? patient.doctor_names : ""}
+            onChange={handleChange}
+            input={<Input />}
+            renderValue={(selected) => selected.join(', ')}>
+            {doctor_names.map((name) => (
+              <MenuItem key={name} value={name}>
+                <Checkbox checked={patient.doctor_names.indexOf(name) > -1} />
+                <ListItemText primary={name} />
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         <FormControl style={{margin: "8px"}}>

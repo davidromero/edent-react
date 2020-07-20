@@ -134,7 +134,7 @@ const CheckoutModal = (props) => {
       contentLabel="¿Estas seguro?">
       <h3>¿Cuánto desea en pagar en esta cuenta?</h3>
       <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <TextField id="payment-amount" label="Cantidad" variant="outlined" defaultValue={toBePayed}
+        <TextField id="payment-amount" label="Cantidad" variant="outlined" type="number" defaultValue={toBePayed}
                    onChange={(e) => {setPaymentAmount(e.target.value);}}/>
       </div>
 

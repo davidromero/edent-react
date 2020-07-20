@@ -2,6 +2,7 @@ import React from "react";
 import Modal from "react-modal";
 import {Link} from "react-router-dom";
 import {useHistory} from "react-router-dom";
+import {useEffect, useState} from "react";
 import TextField from '@material-ui/core/TextField';
 
 
@@ -124,7 +125,7 @@ const CheckoutModal = (props) => {
   useEffect(() => {
     setToBePayed(total-paidAmount);
     setPaymentAmount(total-paidAmount);
-  }, [total]);
+  }, [total, paidAmount]);
 
   return (
     <Modal

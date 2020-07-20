@@ -46,7 +46,7 @@ const CheckoutItem = (props) => {
       total += parseInt(treatment.price, 10);
     });
     setTotal(total);
-  }, []);
+  }, [treatmentList]);
 
 
   const payTreatments = (payment_amount) => {

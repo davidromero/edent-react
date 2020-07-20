@@ -48,7 +48,12 @@ const AppointmentItem = (props) => {
     await axios.delete("https://5ticjo0pz9.execute-api.us-east-1.amazonaws.com/api/appointments/" + uid)
       .then((res) => {
         if(res.status === 204){
+          if(linkto === linkToPatients){
             history.push(linkto);
+          }
+          else{
+            window.open(linkto);
+          }
         }
       })
       .catch((error) => {

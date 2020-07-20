@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 import {dateTimeFormat, capitalize} from '../../utils/utils';
 import axios from "axios";
 import "../styles/PagesStyle.css";
-import TextField from '@material-ui/core/TextField';
 
 
 const PatientList = () => {

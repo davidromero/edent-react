@@ -92,7 +92,6 @@ const getUidPatientfromDescriptionAppointment = (description) => {
 }
 
 const isAppointmentDue = (date) =>{
-  console.log(convertISO(new Date()) > convertISO(date));
   return (convertISO(new Date()) > convertISO(date));
 }
 

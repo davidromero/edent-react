@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Paper} from "@material-ui/core";
 import "../styles/PagesStyle.css";
 import axios from "axios";
+import { useHistory } from 'react-router-dom';
 import {appointmentFormat, validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment, isAppointmentDue} from "../../utils/utils";
 
 
@@ -37,16 +38,45 @@ const AppointmentList = () => {
 
 const AppointmentItem = (props) => {
 
+  let history = useHistory();
   const {appointment} = props;
   const attended = appointment.attended;
+  const [correctFormat, setCorrectFormat] = useState(false);
+  const linkToPatients = '/patients/'+getUidPatientfromDescriptionAppointment(appointment.description);
 
-  const inactivateAppointment = () => {
-    axios.delete("https://5ticjo0pz9.execute-api.us-east-1.amazonaws.com/api/appointments/" + appointment.uid)
+  async function inactivateAppointment(uid, linkto) {
+    await axios.delete("https://5ticjo0pz9.execute-api.us-east-1.amazonaws.com/api/appointments/" + uid)
       .then((res) => {
+        if(res.status === 204){
+            history.push(linkto);
+        }
       })
       .catch((error) => {
+        console.error(error);
       })
   };
+
+  async function updateAppointment(uid, linkto){
+    await axios.get("https://5ticjo0pz9.execute-api.us-east-1.amazonaws.com/api/attendAppointment/" + uid)
+    .then((res) => {
+      if(res.status === 204){
+        history.push(linkto);
+    }
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+  };
+
+  useEffect(() => {
+    const correct = (validateNameAppointment(appointment.title) && validateDescriptAppointment(appointment.description));
+    setCorrectFormat(correct);
+  }, [appointment.title, appointment.description]);
+
+  const treatmentAppointmentButton = <button className={'mid-paper-button'} 
+  style={{margin: "4px"}} onClick={() => { updateAppointment(appointment.uid, linkToPatients)}}>Empezar tratamiento</button>;
+  const attendedAppointmentButton = <button className={'mid-paper-button'} 
+  style={{margin: "4px"}} onClick={() => { inactivateAppointment(appointment.uid, linkToPatients) }}>Marcar como Atendido</button>;
 
   return (
     <Paper className={"simple-paper"}>
@@ -57,16 +87,13 @@ const AppointmentItem = (props) => {
       <div>
       <p>
         {appointment.description}<br/><br/> 
-        <a href={'/patients/'+getUidPatientfromDescriptionAppointment(appointment.description)}>
-          {(validateNameAppointment(appointment.title) && validateDescriptAppointment(appointment.description)) ? (<button className={'mid-paper-button'} style={{margin: "4px"}}>Empezar tratamiento</button>) : (<button className={'mid-paper-button'} style={{margin: "4px"}}>Marcar como Atendido</button>) }   
-        </a>
-        <a href={appointment.link} target="_blank" rel="noopener noreferrer">
-          <button className={'mid-paper-button'} style={{margin: "4px"}}>Abrir en calendario</button>
-        </a>
+          {correctFormat ? (treatmentAppointmentButton) : (attendedAppointmentButton)}   
+          <button className={'mid-paper-button'} style={{margin: "4px"}} onClick={() => { inactivateAppointment(appointment.uid, appointment.link) }}>Abrir en calendario</button>
       </p>
       </div>
     </Paper>
   );
 };
+
 
 export {AppointmentList};

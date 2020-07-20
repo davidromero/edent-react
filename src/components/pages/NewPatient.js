@@ -22,7 +22,9 @@ const NewPatient = (props) => {
     axios.post('https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients',
       JSON.stringify(patient), {headers: {'Content-Type': 'application/json'}})
       .then((response) => {
-        //  TODO: go to new patient page
+        //TODO redirect to new patient
+        console.log(response.data);
+        // window.location.href = '/patients/';
       })
       .catch((error) => {
       });
@@ -31,6 +33,8 @@ const NewPatient = (props) => {
   const handleChange = (e) => {
     setPatient({...patient, [e.target.name]: e.target.value});
   };
+
+
 
   const renderSteps = (step, patient) => {
     switch (step) {

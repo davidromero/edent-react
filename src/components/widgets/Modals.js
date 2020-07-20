@@ -3,11 +3,6 @@ import Modal from "react-modal";
 import {Link} from "react-router-dom";
 import {useHistory} from "react-router-dom";
 import TextField from '@material-ui/core/TextField';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 
 
 const customStyles = {
@@ -122,16 +117,14 @@ const DeleteModal = (props) => {
 };
 
 const CheckoutModal = (props) => {
-  const {closeModal, isOpen, payTreatments, total} = props;
+  const {closeModal, isOpen, payTreatments, total, paidAmount} = props;
+  const [paymentAmount, setPaymentAmount] = useState(0);
+  const [toBePayed, setToBePayed] = useState(0);
 
-  const [value, setValue] = React.useState('completo');
-
-  const handleChange = (event) => {
-    if(event.target.namevalue === "parcial"){
-
-    }
-    setValue(event.target.value);
-  };
+  useEffect(() => {
+    setToBePayed(total-paidAmount);
+    setPaymentAmount(total-paidAmount);
+  }, [total]);
 
   return (
     <Modal
@@ -139,19 +132,16 @@ const CheckoutModal = (props) => {
       style={customStyles}
       ariaHideApp={false}
       contentLabel="¿Estas seguro?">
-      <h3>¿Está seguro en pagar esta cuenta?</h3>
+      <h3>¿Cuánto desea en pagar en esta cuenta?</h3>
+      <div className={"modal-container"} style={{marginBottom: "12px"}}>
+        <TextField id="payment-amount" label="Cantidad" variant="outlined" type="number" defaultValue={toBePayed}
+                   onChange={(e) => {setPaymentAmount(e.target.value);}}/>
+      </div>
+
       <div className={"modal-container"}>
         <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
-                onClick={payTreatments}>Pago
+                onClick={() => {payTreatments(paymentAmount)}}>Pagar
         </button>
-        <FormControl component="fieldset">
-        <FormLabel component="legend">Tipo de Pago</FormLabel>
-          <RadioGroup aria-label="tipodepago" name="tipodepago" value={value} onChange={handleChange}>
-            <FormControlLabel value="completo" control={<Radio />} label="Completo" />
-            <FormControlLabel value="parcial" control={<Radio />} label="Parcial" />
-          </RadioGroup>
-        </FormControl>
-        <TextField id="outlined-basic" label="Cantidad" variant="outlined"  defaultValue={total} />
         <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
                 onClick={closeModal}>Cancelar
         </button>

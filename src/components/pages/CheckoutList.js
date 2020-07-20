@@ -46,11 +46,15 @@ const CheckoutItem = (props) => {
       total += parseInt(treatment.price, 10);
     });
     setTotal(total);
-  }, [treatmentList]);
+  }, []);
 
 
-  const payTreatments = () => {
-    axios.delete("https://219f9v9yfl.execute-api.us-east-1.amazonaws.com/api/checkout/" + checkout.uid)
+  const payTreatments = (payment_amount) => {
+
+    axios.put("https://219f9v9yfl.execute-api.us-east-1.amazonaws.com/api/checkout/" + checkout.uid,
+      {
+        'payment_amount': payment_amount
+      })
       .then((res) => {
         window.location.reload();
       })
@@ -75,12 +79,14 @@ const CheckoutItem = (props) => {
         }
       </div>
 
-      <CheckoutModal isOpen={isOpen} closeModal={() => {
-        setIsOpen(false);
-      }} payTreatments={payTreatments} total={total}/>
+      <CheckoutModal isOpen={isOpen} closeModal={() => {setIsOpen(false);}}
+                     payTreatments={payTreatments} total={total} paidAmount={checkout.paid_amount}/>
       <div style={{width: "285px"}}>
         <h3>
           Total: Q{total}
+        </h3>
+        <h3>
+          Pagado: Q{checkout.paid_amount}
         </h3>
         <button className={"finish-treatment-button"} style={{width: "120px"}}
                 onClick={() => {

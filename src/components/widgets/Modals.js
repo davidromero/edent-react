@@ -4,8 +4,7 @@ import {Link} from "react-router-dom";
 import {useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import TextField from '@material-ui/core/TextField';
-import {FormControl, InputLabel, Select, Input, MenuItem, RadioGroup, Radio, FormControlLabel, FormLabel} from '@material-ui/core'
-
+import {FormControl, InputLabel, Select, Input, MenuItem, RadioGroup, Radio, FormControlLabel, FormLabel} from '@material-ui/core';
 
 const customStyles = {
   content: {
@@ -14,6 +13,7 @@ const customStyles = {
     right: 'auto',
     bottom: 'auto',
     margin: 'auto',
+    maxHeight: 600,
     transform: 'translate(-50%, -50%)'
   }
 };
@@ -173,22 +173,18 @@ const EditPatientModal = (props) =>{
       contentLabel="¿Estas seguro?">
       <h3>Editar Informacion del Paciente</h3>
       <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <p><b>Nombres</b></p><br/> 
         <TextField style={{margin: "8px", width: "180px"}} label="Nombres" type="text" name={"first_name"}
                 onChange={handleChange} value={confirmation ? confirmation.first_name : ""}/>
       </div>
       <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <p><b>Apellidos</b></p><br/> 
         <TextField style={{margin: "8px", width: "180px"}} label="Apellidos" type="text" name={"last_name"}
                 onChange={handleChange} value={confirmation ? confirmation.last_name  : ""}/>
       </div>
       <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <p><b>Fecha de Nacimiento</b></p><br/> 
         <TextField style={{margin: "8px", width: "180px"}} label="Fecha de Nacimiento" name={"birthday"}
                 type="date" onChange={handleChange} value={confirmation ? confirmation.birthday : "2000-12-31"}/>
       </div>
       <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <p><b>Clinica</b></p><br/> 
         <FormControl style={{margin: "8px", width: "180px"}}>
           <InputLabel id="location">Clínica</InputLabel>
           <Select className={"selectEmpty"} name={"clinic_location"}
@@ -208,6 +204,7 @@ const EditPatientModal = (props) =>{
           </RadioGroup>
         </FormControl> 
       </div>
+      <div className={"modal-container"} style={{marginBottom: "12px"}}>
         <FormControl style={{margin: "8px", width: "180px"}}>
           <InputLabel id="location">Motivo de visita *</InputLabel>
           <Select className={"selectEmpty"} name={"visit_reason"}
@@ -219,6 +216,19 @@ const EditPatientModal = (props) =>{
             <MenuItem value={"seguro"}>Seguro</MenuItem>
           </Select>
         </FormControl> 
+      </div>
+      <div className={"modal-container"} style={{marginBottom: "12px"}}>
+        <TextField style={{margin: "8px", width: "180px"}} name="phone_number" required
+                   label="Número Telefónico" type="number" onChange={handleChange} value={ confirmation ? confirmation.phone_number : ""}/>
+      </div>
+      <div className={"modal-container"} style={{marginBottom: "12px"}}>
+        <TextField style={{margin: "8px", width: "180px"}} name="email"
+                   label="Correo Electrónico" type="email" onChange={handleChange} value={ confirmation ? confirmation.email : ""}/>
+      </div>
+      <div className={"modal-container"} style={{marginBottom: "12px"}}>
+        <TextField style={{margin: "8px", width: "180px"}} name="address"
+                   label="Dirección" type="text" onChange={handleChange} value={confirmation ? confirmation.address : ""}/>
+      </div>
       <div className={"modal-container"} style={{marginBottom: "12px"}}>
         <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
                 onClick={() => {console.log(confirmation)}}>Guardar

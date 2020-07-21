@@ -18,10 +18,6 @@ const PatientList = () => {
       });
   }, []);
 
-  useEffect(() => {
-    console.log()
-  }, [patientList]);
-
   return (
     <div className={"page-container"}>
       <Paper className={"wide-paper"} elevation={2} square={false}>
@@ -41,6 +37,8 @@ const PatientList = () => {
                   }}>{patient.first_name + " " + patient.last_name}</b><br/><br/>
                   Razón de visita: {capitalize(patient.visit_reason)}<br/>
                   Clínica: {capitalize(patient.clinic_location)}<br/>
+                  Doctor(es): { patient.doctor_names !== undefined && Array.isArray(patient.doctor_names)
+                  ? capitalize(patient.doctor_names.join(", ")) : "No Asignado"}<br/>
                 </p>
                 <small><i>Última modificación: {dateTimeFormat(patient.modified_timestamp)}</i></small>
               </Paper>

@@ -108,7 +108,6 @@ const ContactForm = (props) => {
                    label="Dirección" type="text" onChange={handleChange} value={patient.address || ""}/>
       </div>
       {errorMessage === "" ? <div/> : <ValidationError message={errorMessage}/>}
-
       <Button className={"button"} style={{marginRight: "20px"}} onClick={prevStep}>
         Atrás
       </Button>
@@ -153,6 +152,8 @@ const Confirmation = (props) => {
             {confirmation.email}</p>
           <p><b>Dirección</b><br/>
             {confirmation.address}</p>
+          <p><b>Doctor(es)</b><br/>
+            {confirmation.doctor_names}</p>
         </Paper>
       </div>
 

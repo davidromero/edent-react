@@ -40,6 +40,7 @@ const PatientDetail = (props) => {
           <ServiceDetail serviceName={"Endodoncia"} treatmentId={"endodoncia"} patient={patient}/>
           <ServiceDetail serviceName={"Cirugía"} treatmentId={"cirugia"} patient={patient}/>
           <ServiceDetail serviceName={"Seguro"} treatmentId={"seguro"} patient={patient}/>
+          <ServiceDetail serviceName={"Ortodoncia"} treatmentId={"ortodoncia"} patient={patient}/>
           <PatientTreatmentList uid={uid}/>
         </>
       }

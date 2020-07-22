@@ -68,8 +68,8 @@ const TreatmentList = (props) => {
              elevation={2} square={false}>
         <div>
           {patient ?
-            <h2 style={{textTransform: "capitalize"}}>Nuevo Tratamiento:
-              {patient.first_name + " " + patient.last_name}</h2> :
+            <h2 style={{textTransform: "capitalize"}}>Nuevo Tratamiento: {patient.first_name + " "
+            + patient.last_name}</h2> :
             <h2>Nuevo Tratamiento</h2>}
           <h3 style={{textTransform: "capitalize"}}>{treatmentType}</h3>
         </div>

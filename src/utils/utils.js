@@ -2,6 +2,7 @@ const patientTemplate = {
   "first_name": "",
   "last_name": "",
   "clinic_location": "",
+  "doctor_names": [],
   "birthday": "2000-12-31",
   "sex": "",
   "visit_reason": "",
@@ -9,6 +10,12 @@ const patientTemplate = {
   "email": "",
   "phone_number": ""
 };
+
+
+const doctor_names = [
+  'Dra. Hilda Peralta',
+  'Dra. Rocio Peralta',
+];
 
 const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 
@@ -92,8 +99,7 @@ const getUidPatientfromDescriptionAppointment = (description) => {
 }
 
 const isAppointmentDue = (date) =>{
-  console.log(convertISO(new Date()) > convertISO(date));
   return (convertISO(new Date()) > convertISO(date));
 }
 
-export {dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, getTodayDate, appointmentFormat, validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment, isAppointmentDue};
+export {dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, doctor_names, getTodayDate, appointmentFormat, validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment, isAppointmentDue};

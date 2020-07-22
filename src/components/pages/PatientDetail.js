@@ -7,7 +7,7 @@ import {ContactInfo} from "./ContactDetail";
 import {confirmPatient} from "../../utils/validations";
 import {dateFormat, getTodayDate} from "../../utils/utils";
 import {ServiceDetail} from "../widgets/TreatmentCards";
-import {DeleteModal} from "../widgets/Modals";
+import {DeleteModal, EditPatientModal} from "../widgets/Modals";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import {dateTimeFormat} from '../../utils/utils';
@@ -15,11 +15,13 @@ import {dateTimeFormat} from '../../utils/utils';
 const PatientDetail = (props) => {
   const {uid} = props.match.params;
   const [patient, setPatient] = useState();
+  const [rawPatient, setRawPatient] = useState();
 
   useEffect(() => {
     axios.get("https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients/" + uid)
       .then((res) => {
         setPatient(confirmPatient(res.data.payload));
+        setRawPatient(res.data.payload);
       })
       .catch((error) => {
       })
@@ -32,12 +34,13 @@ const PatientDetail = (props) => {
         <>
           <GeneralInfo patient={patient}/>
           <ContactInfo patient={patient}>
-            <PatientButtons patient={patient}/>
+            <PatientButtons patient={patient} rawPatient={rawPatient}/>
           </ContactInfo>
           <ServiceDetail serviceName={"Operatoria"} treatmentId={"operatoria"} patient={patient}/>
           <ServiceDetail serviceName={"Endodoncia"} treatmentId={"endodoncia"} patient={patient}/>
           <ServiceDetail serviceName={"Cirugía"} treatmentId={"cirugia"} patient={patient}/>
           <ServiceDetail serviceName={"Seguro"} treatmentId={"seguro"} patient={patient}/>
+          <ServiceDetail serviceName={"Ortodoncia"} treatmentId={"ortodoncia"} patient={patient}/>
           <PatientTreatmentList uid={uid}/>
         </>
       }
@@ -93,14 +96,28 @@ const GeneralInfo = (props) => {
 };
 
 const PatientButtons = (props) => {
-  const {patient} = props;
+  const {patient, rawPatient} = props;
 
   return (
     <div style={{width: "200px"}}>
       <ContactButton uid={patient.contact_uid}/>
       <AppointmentButton patient={patient}/>
-      {/*<button className="mid-paper-button">Editar Información</button>*/}
+      <EditButton rawPatient={rawPatient} />
       <DeleteButton patient={patient}/>
+    </div>
+  );
+};
+
+const EditButton = (props) => {
+  const {rawPatient} = props;
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <EditPatientModal isOpen={isOpen} closeModal={() => {setIsOpen(false);}} rawPatient={rawPatient}/>
+      <button className="mid-paper-button" onClick={() => {
+        setIsOpen(true);
+      }}>Editar Información</button>
     </div>
   );
 };
@@ -110,7 +127,7 @@ const ContactButton = (props) => {
 
   return (
     <Link to={"../contacts/" + uid} style={{textDecoration: 'none', color: 'inherit'}}>
-      <button className="mid-paper-button">Contactar</button>
+      <button className="mid-paper-button" >Contactar</button>
     </Link>
   );
 };

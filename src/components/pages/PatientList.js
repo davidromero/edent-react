@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 import {dateTimeFormat, capitalize} from '../../utils/utils';
 import axios from "axios";
 import "../styles/PagesStyle.css";
-import TextField from '@material-ui/core/TextField';
 
 
 const PatientList = () => {
@@ -18,10 +17,6 @@ const PatientList = () => {
       .catch((error) => {
       });
   }, []);
-
-  useEffect(() => {
-    console.log()
-  }, [patientList]);
 
   return (
     <div className={"page-container"}>
@@ -42,6 +37,8 @@ const PatientList = () => {
                   }}>{patient.first_name + " " + patient.last_name}</b><br/><br/>
                   Razón de visita: {capitalize(patient.visit_reason)}<br/>
                   Clínica: {capitalize(patient.clinic_location)}<br/>
+                  Doctor(es): { patient.doctor_names !== undefined && Array.isArray(patient.doctor_names)
+                  ? capitalize(patient.doctor_names.join(", ")) : "No Asignado"}<br/>
                 </p>
                 <small><i>Última modificación: {dateTimeFormat(patient.modified_timestamp)}</i></small>
               </Paper>

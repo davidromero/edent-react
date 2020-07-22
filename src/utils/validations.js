@@ -32,6 +32,7 @@ const confirmPatient = (patient) => {
   prettyPatient.sex = prettyPatient.sex === "male" ? "Hombre" : "Mujer";
   prettyPatient.email = prettyPatient.email === "" ? "No tiene" : prettyPatient.email;
   prettyPatient.address = prettyPatient.address === "" ? "Sin dirección" : prettyPatient.address;
+  prettyPatient.doctor_names = prettyPatient.doctor_names.length === 0 ? "No asignado" : prettyPatient.doctor_names.join(", ")
   return prettyPatient;
 };
 

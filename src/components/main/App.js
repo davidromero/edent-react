@@ -11,10 +11,11 @@ const theme = createMuiTheme({
 });
 
 const App = (props) => {
+  console.log("Props app: " +props.location);
   return (
     <BrowserRouter>
       <MuiThemeProvider theme={theme}>
-        <Home/>
+        <Home props={props}/>
       </MuiThemeProvider>
     </BrowserRouter>
   )

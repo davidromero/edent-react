@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Paper} from "@material-ui/core";
-import {dateTimeFormat} from "../../utils/utils";
+import {capitalize, dateTimeFormat} from "../../utils/utils";
 import {Link} from "react-router-dom";
 import axios from "axios";
 
@@ -47,6 +47,10 @@ const ContactInfo = (props) => {
             {patient.email}</p>
           <p><b>Dirección</b><br/>
             {patient.address}</p>
+          {console.log(patient.doctor_names)}
+          <p><b>Doctor(es)</b><br/>
+            {patient.doctor_names !== undefined
+              ? capitalize(patient.doctor_names) : "No Asignado"}</p>
         </div>
         {props.children}
       </div>

@@ -58,6 +58,12 @@ export default (theme) => ({
     justifyContent: "center",
   },
 
+  contentRight: {
+    position: "relative",
+    marginLeft: theme.spacing(2),
+    marginRight: 0,
+  },
+
   searchBar: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,

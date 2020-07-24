@@ -93,6 +93,22 @@ const CheckoutItem = (props) => {
                   setIsOpen(true);
                 }}>Pagar
         </button>
+        <button className={"print-budget-button"} style={{width: "120px"}}
+                onClick={() => {
+                  axios.post('https://ct9ohf8ai2.execute-api.us-east-1.amazonaws.com/api/pdf',
+                  JSON.stringify(treatmentList), {headers: {'Content-Type': 'application/json'}})
+                  .then((response) => {
+                    if(response.status === 201){
+                      window.open(response.data.payload);
+                    }
+                    else{
+                      alert('No se ha podido crear el presupuesto');
+                    }
+                  })
+                  .catch((error) => {
+                  });
+                }}>Imprimir
+        </button>
         <br/>
         <small><i>Realizado en: {dateTimeFormat(checkout.modified_timestamp)}</i></small>
       </div>

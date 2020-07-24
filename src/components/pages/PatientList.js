@@ -47,6 +47,7 @@ const PatientList = (props) => {
       <Paper className={"wide-paper"} elevation={2} square={false}>
         <h2>Pacientes</h2>
         <h3>Lista de Pacientes</h3>
+        <div className={"patient-filter"}>
         <FormControl style={{margin: "8px", width: "180px"}}>
           <InputLabel id="location">Clínica</InputLabel>
           <Select className={"selectEmpty"} name={"clinic_location"}
@@ -65,6 +66,7 @@ const PatientList = (props) => {
             <MenuItem value={"dra. rocio peralta"}>Dra. Rocio Peralta</MenuItem>
           </Select>
         </FormControl>
+        </div>
       </Paper>
       {patientList.length === 0 ? <h2>Cargando...</h2> : <></>}
       {

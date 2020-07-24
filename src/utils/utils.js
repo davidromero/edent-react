@@ -106,8 +106,5 @@ const filterPatientList = (array, value) => {
   return array.filter((data) =>  JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1);
 }
 
-const filterPatientListDoct = (array, value) => {
-  return array.filter((data) =>  JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1);
-}
 export {dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, doctor_names, getTodayDate, appointmentFormat, 
   validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment, isAppointmentDue, filterPatientList};

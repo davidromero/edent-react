@@ -112,10 +112,17 @@ const EditButton = (props) => {
   const {rawPatient} = props;
   const [isOpen, setIsOpen] = useState(false);
 
+  const editPatient = (patient_edited) => {
+    console.log("Editar Paciente");
+    console.log(patient_edited);
+  };
+
   return (
     <div>
       <EditPatientModal isOpen={isOpen} closeModal={() => {setIsOpen(false);}} rawPatient={rawPatient}/>
       <button className="mid-paper-button" onClick={() => {
+        // 
+        editPatient(rawPatient);
         setIsOpen(true);
       }}>Editar Información</button>
     </div>

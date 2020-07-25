@@ -38,8 +38,8 @@ const PatientList = (props) => {
     else if(e.target.name === "clinic_location"){
       setDoctor("");
       setclinic(e.target.value);
-    } 
-    setPatientList(filterPatientList(rawPatientList, e.target.value))
+    }
+    (e.target.value === 'ninguno') ? (setPatientList(rawPatientList)) : (setPatientList(filterPatientList(rawPatientList, e.target.value)));
   }, [rawPatientList]);
 
   return (
@@ -55,6 +55,7 @@ const PatientList = (props) => {
                   onChange={handleChange} input={<Input name={"location"}/>}>
             <MenuItem value={"chiquimula"}>Chiquimula</MenuItem>
             <MenuItem value={"jocotan"}>Jocotán</MenuItem>
+            <MenuItem value={"ninguno"}>Ninguno</MenuItem>
           </Select>
         </FormControl>
         <FormControl style={{margin: "8px", width: "180px"}}>
@@ -64,6 +65,7 @@ const PatientList = (props) => {
                   onChange={handleChange} input={<Input name={"doctor"}/>}>
             <MenuItem value={"dra. hilda peralta"}>Dra. Hilda Peralta</MenuItem>
             <MenuItem value={"dra. rocio peralta"}>Dra. Rocio Peralta</MenuItem>
+            <MenuItem value={"ninguno"}>Ninguno</MenuItem>
           </Select>
         </FormControl>
         </div>

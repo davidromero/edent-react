@@ -67,6 +67,7 @@ const GeneralForm = (props) => {
                   value={patient.visit_reason ? patient.visit_reason : ""}
                   onChange={handleChange} input={<Input name={"visit_reason"}/>}>
             <MenuItem value={"operatoria"}>Odontología Operatoria</MenuItem>
+            <MenuItem value={"ortodoncia"}>Ortodoncia</MenuItem>
             <MenuItem value={"endodoncia"}>Endodoncia</MenuItem>
             <MenuItem value={"cirugia"}>Cirugía</MenuItem>
             <MenuItem value={"seguro"}>Seguro</MenuItem>

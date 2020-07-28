@@ -40,7 +40,8 @@ const dateFormat = (isoDate) => {
 
 const birthdayFormat = (isoDate) => {
   let date = new Date(isoDate);
-  return date.getUTCDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
+  date.setHours(date.getHours() + 6);
+  return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
 };
 
 const capitalize = (word) => {

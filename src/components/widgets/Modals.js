@@ -5,6 +5,7 @@ import {useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import TextField from '@material-ui/core/TextField';
 import {FormControl, InputLabel, Select, Input, MenuItem, RadioGroup, Radio, FormControlLabel, FormLabel} from '@material-ui/core';
+import {EditForm} from "../forms/PatientForm";
 
 const customStyles = {
   content: {
@@ -172,64 +173,8 @@ const EditPatientModal = (props) =>{
       ariaHideApp={false}
       contentLabel="¿Estas seguro?">
       <h3>Editar Informacion del Paciente</h3>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <TextField style={{margin: "8px", width: "180px"}} label="Nombres" type="text" name={"first_name"}
-                onChange={handleChange} value={confirmation ? confirmation.first_name : ""}/>
-      </div>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <TextField style={{margin: "8px", width: "180px"}} label="Apellidos" type="text" name={"last_name"}
-                onChange={handleChange} value={confirmation ? confirmation.last_name  : ""}/>
-      </div>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <TextField style={{margin: "8px", width: "180px"}} label="Fecha de Nacimiento" name={"birthday"}
-                type="date" onChange={handleChange} value={confirmation ? confirmation.birthday : "2000-12-31"}/>
-      </div>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <FormControl style={{margin: "8px", width: "180px"}}>
-          <InputLabel id="location">Clínica</InputLabel>
-          <Select className={"selectEmpty"} name={"clinic_location"}
-                  value={confirmation ? confirmation.clinic_location : ""}
-                  onChange={handleChange} input={<Input name={"location"}/>}>
-            <MenuItem value={"chiquimula"}>Chiquimula</MenuItem>
-            <MenuItem value={"jocotan"}>Jocotán</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <FormControl style={{margin: "8px"}}>
-          <FormLabel style={{fontSize: "0.8em", padding: "0"}}>Sexo *</FormLabel>
-          <RadioGroup style={{display: "inline-block"}} onChange={handleChange} name="sex" value={confirmation ? confirmation.sex : ""}>
-            <FormControlLabel value="male" control={<Radio/>} label="Hombre"/>
-            <FormControlLabel value="female" control={<Radio/>} label="Mujer"/>
-          </RadioGroup>
-        </FormControl> 
-      </div>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <FormControl style={{margin: "8px", width: "180px"}}>
-          <InputLabel id="location">Motivo de visita *</InputLabel>
-          <Select className={"selectEmpty"} name={"visit_reason"}
-                      value={confirmation ? confirmation.visit_reason : ""}
-                      onChange={handleChange} input={<Input name={"visit_reason"}/>}>
-            <MenuItem value={"operatoria"}>Odontología Operatoria</MenuItem>
-            <MenuItem value={"ortodoncia"}>Ortodoncia</MenuItem>
-            <MenuItem value={"endodoncia"}>Endodoncia</MenuItem>
-            <MenuItem value={"cirugia"}>Cirugía</MenuItem>
-            <MenuItem value={"seguro"}>Seguro</MenuItem>
-          </Select>
-        </FormControl> 
-      </div>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <TextField style={{margin: "8px", width: "180px"}} name="phone_number" required
-                   label="Número Telefónico" type="number" onChange={handleChange} value={ confirmation ? confirmation.phone_number : ""}/>
-      </div>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <TextField style={{margin: "8px", width: "180px"}} name="email"
-                   label="Correo Electrónico" type="email" onChange={handleChange} value={ confirmation ? confirmation.email : ""}/>
-      </div>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <TextField style={{margin: "8px", width: "180px"}} name="address"
-                   label="Dirección" type="text" onChange={handleChange} value={confirmation ? confirmation.address : ""}/>
-      </div>
+      <EditForm confirmation={confirmation} handleChange={handleChange}/>
+
       <div className={"modal-container"} style={{marginBottom: "12px"}}>
         <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
                 onClick={() => {console.log(confirmation)}}>Guardar

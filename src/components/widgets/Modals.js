@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 import {useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import TextField from '@material-ui/core/TextField';
-import {FormControl, InputLabel, Select, Input, MenuItem, RadioGroup, Radio, FormControlLabel, FormLabel} from '@material-ui/core';
 import {EditForm} from "../forms/PatientForm";
 
 const customStyles = {
@@ -32,6 +31,34 @@ const NewTreatmentModal = (props) => {
       <div className={"modal-container"}>
         <Link to={{
           pathname: "/treatments/" + uid,
+          PatientId: uid,
+          TreatmentProp: treatmentId.toLowerCase(),
+          Patient: patient
+        }}>
+          <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}>Aceptar</button>
+
+        </Link>
+        <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
+                onClick={closeModal}>Cancelar
+        </button>
+      </div>
+    </Modal>
+  );
+};
+
+const NewBudgetModal = (props) => {
+  const {uid, treatmentId, patient, closeModal, isOpen} = props;
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      style={customStyles}
+      ariaHideApp={false}
+      contentLabel="Qué tipo de tratamiento se iniciará?">
+      <h3>¿Está seguro en empezar un nuevo tratamiento?</h3>
+      <div className={"modal-container"}>
+        <Link to={{
+          pathname: "/budgetlist/",
           PatientId: uid,
           TreatmentProp: treatmentId.toLowerCase(),
           Patient: patient
@@ -187,4 +214,4 @@ const EditPatientModal = (props) =>{
   );
 };
 
-export {NewTreatmentModal, CancelModal, TreatmentModal, DeleteModal, CheckoutModal, EditPatientModal};
+export {NewTreatmentModal, CancelModal, TreatmentModal, DeleteModal, CheckoutModal, EditPatientModal, NewBudgetModal};

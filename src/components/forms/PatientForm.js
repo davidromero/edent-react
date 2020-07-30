@@ -6,7 +6,6 @@ import {
 import {validateContactsForm, validateGeneralForm, confirmPatient} from "../../utils/validations";
 import "../styles/PagesStyle.css";
 import {doctor_names} from "../../utils/utils";
-import Modal from "react-modal";
 
 const GeneralForm = (props) => {
   const {patient, handleChange, nextStep} = props;

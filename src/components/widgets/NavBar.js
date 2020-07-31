@@ -11,7 +11,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { useLocation } from 'react-router-dom'
 
 const NavBar = (props) => {
-  const {onChange} = props;
+  const {searchChange} = props;
   const {classes} = props;
   const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -38,7 +38,7 @@ const NavBar = (props) => {
             })}>
             <MenuIcon/>
           </IconButton>
-          <SearchBar classes={classes} onChange={onChange}/>
+          <SearchBar classes={classes} onChange={searchChange}/>
           <SideMenu classes={classes}/>
         </Toolbar>
       </AppBar>
@@ -47,7 +47,6 @@ const NavBar = (props) => {
     </div>
   );
 };
-
 
 const SearchBar = (props) => {
   const {onChange} = props;
@@ -71,7 +70,8 @@ const SearchBar = (props) => {
         />
       </div>
     </div>
-  ) : (<div className={classes.content}></div>);
+  ) :
+    <div className={classes.content}/>;
 };
 
 const SideMenu = (props) => {

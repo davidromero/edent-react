@@ -42,14 +42,14 @@ const GeneralForm = (props) => {
         <FormControl className={"multi-container"} style={{margin: "8px", width: "180px"}}>
           <InputLabel id="doctors">Doctores</InputLabel>
           <Select className={"selectEmpty"} name={"doctor_names"} multiple
-            value={patient.doctor_names ? patient.doctor_names : ""}
-            onChange={handleChange}
-            input={<Input />}
-            renderValue={(selected) => selected.join(', ')}>
+                  value={patient.doctor_names ? patient.doctor_names : ""}
+                  onChange={handleChange}
+                  input={<Input/>}
+                  renderValue={(selected) => selected.join(', ')}>
             {doctor_names.map((name) => (
               <MenuItem key={name} value={name}>
-                <Checkbox checked={patient.doctor_names.indexOf(name) > -1} />
-                <ListItemText primary={name} />
+                <Checkbox checked={patient.doctor_names.indexOf(name) > -1}/>
+                <ListItemText primary={name}/>
               </MenuItem>
             ))}
           </Select>
@@ -181,7 +181,7 @@ const ValidationError = (props) => {
 const EditForm = (props) => {
   const {confirmation, handleChange} = props;
 
-  return(
+  return (
     <div>
       <div style={{minWidth: "180px"}}>
         <TextField style={{margin: "8px", width: "180px"}} label="Nombres" type="text" name={"first_name"}
@@ -224,17 +224,18 @@ const EditForm = (props) => {
       </div>
       <div style={{minWidth: "180px"}}>
         <TextField style={{margin: "8px", width: "180px"}} name="phone_number" required
-                   label="Número Telefónico" type="number" onChange={handleChange} value={ confirmation ? confirmation.phone_number : ""}/>
+                   label="Número Telefónico" type="number" onChange={handleChange}
+                   value={confirmation ? confirmation.phone_number : ""}/>
         <TextField style={{margin: "8px", width: "180px"}} name="email"
-                   label="Correo Electrónico" type="email" onChange={handleChange} value={ confirmation ? confirmation.email : ""}/>
+                   label="Correo Electrónico" type="email" onChange={handleChange}
+                   value={confirmation ? confirmation.email : ""}/>
         <TextField style={{margin: "8px", width: "180px"}} name="address"
-                   label="Dirección" type="text" onChange={handleChange} value={confirmation ? confirmation.address : ""}/>
+                   label="Dirección" type="text" onChange={handleChange}
+                   value={confirmation ? confirmation.address : ""}/>
       </div>
     </div>
   );
 };
-
-
 
 
 export {GeneralForm, ContactForm, Confirmation, EditForm};

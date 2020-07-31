@@ -17,20 +17,19 @@ import {Budget} from "../pages/Budget";
 const Home = () => {
   const [patientNameFiltering, setPatientNameFiltering] = useState();
 
-  const onChange = (event) => {
+  const searchChange = (event) => {
     setPatientNameFiltering(event.target.value);
-    //console.log("filtering " + patientNameFiltering);
   };
 
   return (
     <div style={{display: "flex"}}>
-      <NavBar onChange={onChange}/>
+      <NavBar searchChange={searchChange}/>
       <main className={"home-frame"}>
         <div className={"home-content"}>
           <Switch>
             <Route exact path={"/"} component={Dashboard}/>
             <Route exact path={"/calendar"} component={Calendar}/>
-            <Route exact path={"/patients"} component={PatientList} patientNameFiltering={patientNameFiltering}/>
+            <Route exact path={"/patients"} render={props => <PatientList {...props} search={patientNameFiltering}/>}/>
             <Route exact path={"/patients/:uid"} component={PatientDetail}/>
             <Route exact path={"/contacts"} component={ContactList}/>
             <Route exact path={"/contacts/:uid"} component={ContactDetail}/>

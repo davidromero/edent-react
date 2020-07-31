@@ -68,7 +68,7 @@ const convertISO = (date) => {
   const dd = String(formatDate.getDate()).padStart(2, '0');
   const mm = String(formatDate.getMonth() + 1).padStart(2, '0');
   const yyyy = formatDate.getFullYear();
-  formatDate = yyyy + mm + dd + hh + minmin ;
+  formatDate = yyyy + mm + dd + hh + minmin;
   return formatDate;
 };
 
@@ -81,13 +81,13 @@ const validateNameAppointment = (name) => {
 // If description contains "ID:" and "Tel:", before check lengths to avoid exception, test
 const validateDescriptAppointment = (description) => {
   let itemsList = description.split(/\r?\n/);
-    return (description.split(/\r?\n/).length > 1 && itemsList[0].length > 1 && itemsList[1].length > 1 &&
-      itemsList[0].match(/\S+/g).length > 1 && itemsList[1].match(/\S+/g).length > 1) ?
-      (itemsList[0].match(/\S+/g).includes('ID:') && 
-      itemsList[1].match(/\S+/g).includes("Tel:") && 
+  return (description.split(/\r?\n/).length > 1 && itemsList[0].length > 1 && itemsList[1].length > 1 &&
+    itemsList[0].match(/\S+/g).length > 1 && itemsList[1].match(/\S+/g).length > 1) ?
+    (itemsList[0].match(/\S+/g).includes('ID:') &&
+      itemsList[1].match(/\S+/g).includes("Tel:") &&
       validatePhoneNumber(itemsList[1].match(/\S+/g)[1]))
     :
-  false;
+    false;
 };
 
 const validatePhoneNumber = (number) => {
@@ -99,13 +99,39 @@ const getUidPatientfromDescriptionAppointment = (description) => {
   return validateDescriptAppointment(description) ? itemsList[0].match(/\S+/g)[1] : "";
 }
 
-const isAppointmentDue = (date) =>{
+const isAppointmentDue = (date) => {
   return (convertISO(new Date()) > convertISO(date));
 }
 
-const filterPatientList = (array, value) => {
-  return array.filter((data) =>  JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1);
+const filterPatientList = (array, search, filter) => {
+  let filteredArray = array;
+  if(filter.doctor !== ""){
+    filteredArray = filterByAttribute(filteredArray, "doctor_names", filter.doctor);
+  }
+  if(filter.clinic !== ""){
+    filteredArray = filterByAttribute(filteredArray, "clinic_location", filter.clinic)
+  }
+  if(search !== ""){
+    filteredArray = searchByName(filteredArray, search)
+  }
+  return filteredArray;
 }
 
-export {dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, doctor_names, getTodayDate, appointmentFormat, 
-  validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment, isAppointmentDue, filterPatientList};
+const searchByName = (array, search) => {
+  return array.filter((item) => item["first_name"].startsWith(search) || item["last_name"].startsWith(search));
+}
+
+const filterByAttribute = (array, type, filter) => {
+  if (type === "doctor_names"){
+    return array.filter((item) => JSON.stringify(item).toLowerCase().indexOf(filter) !== -1)
+  }
+  else{
+    return array.filter((item) => item[type] === filter)
+  }
+}
+
+export {
+  dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, doctor_names, getTodayDate,
+  appointmentFormat, validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment,
+  isAppointmentDue, filterPatientList
+};

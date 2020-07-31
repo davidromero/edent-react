@@ -198,19 +198,15 @@ const PatientTreatmentList = (props) => {
       {
         patientList && patientList.map((patient, index) => {
           return (
-            <Paper className={"small-paper"} elevation={2} key={index}>
-              <h3 style={{textTransform: "capitalize", margin: "15px"}}><p>{patient.treatment_name}</p></h3>
-                <List component="nav" >
-                <ListItem>
-                  <b>Precio: </b>
-                  <p>{patient.treatment_price}</p><br/>
-                  <b>Lugar: </b>
-                  <p>{patient.clinic_location}</p><br/>
-                  <b>Fecha Creacion: </b>
-                  <p>{dateTimeFormat(patient.created_timestamp)}</p><br/>
-                </ListItem>
-                </List>
-            </Paper>
+            <div key={index}>
+              <h3 style={{textTransform: "capitalize"}}>{patient.treatment_name}</h3>
+              <div style={{display: "grid"}}>
+                <div><b>Precio: </b> Q{patient.treatment_price}<br/></div>
+                <div style={{textTransform: "capitalize"}}><b>Clínica: </b> {patient.clinic_location}<br/></div>
+                <div><b>Fecha: </b> {dateTimeFormat(patient.created_timestamp)}</div>
+              </div>
+              <hr/>
+            </div>
           );
         })
       }

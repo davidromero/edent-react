@@ -47,7 +47,6 @@ const ContactInfo = (props) => {
             {patient.email}</p>
           <p><b>Dirección</b><br/>
             {patient.address}</p>
-          {console.log(patient.doctor_names)}
           <p><b>Doctor(es)</b><br/>
             {patient.doctor_names !== undefined
               ? capitalize(patient.doctor_names) : "No Asignado"}</p>

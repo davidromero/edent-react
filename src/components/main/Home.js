@@ -12,7 +12,8 @@ import {TreatmentList} from "../pages/TreatmentList";
 import {BudgetList} from "../pages/BudgetList";
 import {CheckoutList} from "../pages/CheckoutList";
 import {AppointmentList} from "../pages/AppointmentList";
-import {Budget} from "../pages/Budget";
+
+
 
 const Home = () => {
   const [patientNameFiltering, setPatientNameFiltering] = useState();
@@ -38,7 +39,6 @@ const Home = () => {
             <Route exact path={"/budgetlist/"} component={BudgetList}/>
             <Route exact path={"/checkout"} component={CheckoutList}/>
             <Route exact path={"/appointments"} component={AppointmentList}/>
-            <Route exact path={"/budget"} component={Budget}/>
           </Switch>
         </div>
       </main>

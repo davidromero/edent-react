@@ -11,15 +11,13 @@ const TreatmentList = (props) => {
   const [patientId, setPatientId] = useState();
   const [isOpen, setIsOpen] = useState();
   const [menu, setMenu] = useState([]);
-  const [descTreatment, setDescTreatment] = useState("");
-  const [descNextTreatment, setDescNextTreatment] = useState("");
+  const [values, setValues] = useState({
+    descTreatment: '',
+    descNextTreatment: '',
+  });
 
-  const handleChange = (e) => {
-    if(e.target.name === "details1"){
-      setDescTreatment(e.target.value);
-    }else{
-      setDescNextTreatment(e.target.value);
-    }
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
   };
 
   useEffect(() => {
@@ -93,7 +91,7 @@ const TreatmentList = (props) => {
       </Paper>
       <div style={{display: "table-column", width: "100%", justifyContent: "center"}}>
         <TreatmentCheckout checkout={checkout} patient={patient} patient_uid={patientId} 
-        remove={removeTreatment} descTreatment={descTreatment} descNextTreatment={descNextTreatment} handleChange={handleChange}/>
+        remove={removeTreatment} values={values} handleChange={handleChange}/>
         <TreatmentMenu treatmentMenu={menu} addNewTreatment={addNewTreatment}/>
       </div>
     </div>
@@ -186,7 +184,7 @@ const displayMenu = (originalMenu, currentLevel, clickedItem) => {
 }
 
 const TreatmentCheckout = (props) => {
-  const {checkout, patient, remove, patient_uid, descTreatment, descNextTreatment, handleChange} = props;
+  const {checkout, patient, remove, patient_uid, handleChange, values} = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const finishTreatment = () => {
@@ -196,8 +194,8 @@ const TreatmentCheckout = (props) => {
       treatment_type: localStorage.getItem("treatment-type"),
       patient: patient,
       patient_uid: patient_uid,
-      treatment_description: descTreatment,
-      next_treatment: descTreatment,
+      treatment_description: values.descTreatment,
+      next_treatment: values.descNextTreatment,
     };
     
     axios.post('https://219f9v9yfl.execute-api.us-east-1.amazonaws.com/api/checkout',
@@ -240,16 +238,18 @@ const TreatmentCheckout = (props) => {
             <TreatmentItem key={idx} idx={idx} treatment={treatment} remove={remove}/>)
         }
         <h3><b>Detalle del Tratamiento</b></h3>
-        <TextField label="Tratamiento Actual" 
-                   name={"details1"}
-                   onChange={handleChange} 
-                   multiline rowsMax={4} 
-                   value={descTreatment}/>
-        <TextField label="Siguiente Tratamiento" 
-                   name={"details2"}
-                   onChange={ handleChange} 
-                   multiline rowsMax={4} 
-                   value={descNextTreatment}/>
+        <div className={"wide-textfield"}>
+          <TextField  label="Tratamiento Actual" 
+                      name={"details1"}
+                      onChange={handleChange('descTreatment')} 
+                      multiline rowsMax={4} 
+                      value={values.descTreatment}/>
+          <TextField  label="Siguiente Tratamiento" 
+                      name={"details2"}
+                      onChange={ handleChange('descNextTreatment')} 
+                      multiline rowsMax={4} 
+                      value={values.descNextTreatment}/>
+        </div>
         {checkout.length > 0 ? checkoutTotal : <></>}
       </Paper>
     </>

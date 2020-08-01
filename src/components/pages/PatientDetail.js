@@ -8,8 +8,6 @@ import {confirmPatient} from "../../utils/validations";
 import {dateFormat, getTodayDate} from "../../utils/utils";
 import {ServiceDetail} from "../widgets/TreatmentCards";
 import {DeleteModal, EditPatientModal} from "../widgets/Modals";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import {dateTimeFormat} from '../../utils/utils';
 
 const PatientDetail = (props) => {

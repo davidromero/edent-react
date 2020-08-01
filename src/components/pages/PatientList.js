@@ -23,6 +23,7 @@ const PatientList = (props) => {
 
   useEffect(() => {
     setPatientList(filterPatientList(originalPatientList, search, filter));
+    // eslint-disable-next-line
   }, [search]);
 
   const handleChange = (e) => {

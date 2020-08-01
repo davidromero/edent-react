@@ -7,7 +7,7 @@ const ServiceDetail = (props) => {
   const {patient, serviceName, treatmentId} = props;
 
   return (
-    <Paper className={"small-paper"} elevation={2}>
+    <Paper className={"small-paper"} elevation={2} style={{maxHeight: "115px"}}>
       <h2 style={{textTransform: "capitalize", margin: "15px"}}><b>{serviceName}</b></h2>
       <ServiceButtons patient={patient} treatment_id={treatmentId}/>
     </Paper>

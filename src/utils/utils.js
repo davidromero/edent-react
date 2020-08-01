@@ -11,11 +11,13 @@ const patientTemplate = {
   "phone_number": ""
 };
 
-
 const doctor_names = [
   'Dra. Hilda Peralta',
   'Dra. Rocio Peralta',
 ];
+
+const ignoredAttributes = ["modified_by", "uid", "modified_timestamp", "created_by", "created_timestamp", "active",
+  "contact_uid"]
 
 const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 
@@ -73,12 +75,10 @@ const convertISO = (date) => {
 };
 
 const validateNameAppointment = (name) => {
-  // Regex nombres con tildes y ñ 
   let letters = /^[A-Za-z\s]+$/;
   return String(name).match(letters);
 };
 
-// If description contains "ID:" and "Tel:", before check lengths to avoid exception, test
 const validateDescriptAppointment = (description) => {
   let itemsList = description.split(/\r?\n/);
   return (description.split(/\r?\n/).length > 1 && itemsList[0].length > 1 && itemsList[1].length > 1 &&
@@ -103,15 +103,23 @@ const isAppointmentDue = (date) => {
   return (convertISO(new Date()) > convertISO(date));
 }
 
+const reduceAttributes = (original) => {
+  var clone = Object.assign({}, original);
+  ignoredAttributes.forEach(
+    element => delete clone[element]
+  );
+  return clone;
+}
+
 const filterPatientList = (array, search, filter) => {
   let filteredArray = array;
-  if(filter.doctor !== ""){
+  if (filter.doctor !== "") {
     filteredArray = filterByAttribute(filteredArray, "doctor_names", filter.doctor);
   }
-  if(filter.clinic !== ""){
+  if (filter.clinic !== "") {
     filteredArray = filterByAttribute(filteredArray, "clinic_location", filter.clinic)
   }
-  if(search !== ""){
+  if (search !== "") {
     filteredArray = searchByName(filteredArray, search)
   }
   return filteredArray;
@@ -122,10 +130,9 @@ const searchByName = (array, search) => {
 }
 
 const filterByAttribute = (array, type, filter) => {
-  if (type === "doctor_names"){
+  if (type === "doctor_names") {
     return array.filter((item) => JSON.stringify(item).toLowerCase().indexOf(filter) !== -1)
-  }
-  else{
+  } else {
     return array.filter((item) => item[type] === filter)
   }
 }
@@ -133,5 +140,5 @@ const filterByAttribute = (array, type, filter) => {
 export {
   dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, doctor_names, getTodayDate,
   appointmentFormat, validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment,
-  isAppointmentDue, filterPatientList
+  isAppointmentDue, filterPatientList, reduceAttributes
 };

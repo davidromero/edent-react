@@ -221,22 +221,22 @@ const EditForm = (props) => {
             <MenuItem value={"seguro"}>Seguro</MenuItem>
           </Select>
         </FormControl>
-        <FormControl className={"multi-container"} style={{margin: "8px", width: "180px"}}>
-          <InputLabel id="doctors">Doctores</InputLabel>
-          <Select className={"selectEmpty"} name={"doctor_names"} multiple
-                  value={confirmation.doctor_names ? confirmation.doctor_names : ""}
-                  onChange={handleChange}
-                  input={<Input/>}
-                  renderValue={(selected) => selected.join(', ')}>
-            {doctor_names.map((name) => (
-              <MenuItem key={name} value={name}>
-                <Checkbox checked={confirmation.doctor_names.indexOf(name) > -1}/>
-                <ListItemText primary={name}/>
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
       </div>
+      <FormControl className={"multi-container"} style={{margin: "8px", width: "180px"}}>
+        <InputLabel id="doctors">Doctores</InputLabel>
+        <Select className={"selectEmpty"} name={"doctor_names"} multiple
+                value={confirmation.doctor_names ? confirmation.doctor_names : ""}
+                onChange={handleChange}
+                input={<Input/>}
+                renderValue={(selected) => selected.join(', ')}>
+          {doctor_names.map((name) => (
+            <MenuItem key={name} value={name.toLowerCase()}>
+              <Checkbox checked={confirmation.doctor_names.indexOf(name.toLowerCase()) > -1}/>
+              <ListItemText primary={name}/>
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
       <div style={{minWidth: "180px"}}>
         <TextField style={{margin: "8px", width: "180px"}} name="phone_number" required
                    label="Número Telefónico" type="number" onChange={handleChange}

@@ -5,6 +5,8 @@ import {useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import TextField from '@material-ui/core/TextField';
 import {EditForm} from "../forms/PatientForm";
+import axios from "axios";
+import {reduceAttributes} from "../../utils/utils";
 
 const customStyles = {
   content: {
@@ -193,6 +195,17 @@ const EditPatientModal = (props) =>{
     setConfirmation(rawPatient)
   }, [rawPatient]);
 
+  const handleSubmit = () => {
+    const payload = reduceAttributes(confirmation);
+    axios.put('https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients/' + rawPatient.uid,
+      JSON.stringify(payload), {headers: {'Content-Type': 'application/json'}})
+      .then((response) => {
+        console.log("Éxito")
+      })
+      .catch((error) => {
+      });
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -204,7 +217,7 @@ const EditPatientModal = (props) =>{
 
       <div className={"modal-container"} style={{marginBottom: "12px"}}>
         <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
-                onClick={() => {console.log(confirmation)}}>Guardar
+                onClick={handleSubmit}>Guardar
         </button>   
         <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
                 onClick={closeModal}>Cancelar

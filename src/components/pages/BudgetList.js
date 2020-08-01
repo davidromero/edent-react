@@ -46,14 +46,7 @@ const BudgetList = (props) => {
       <Paper className={"wide-paper"} style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap"}}
              elevation={2} square={false}>
         <div>
-            <h2>Nuevo Tratamiento</h2>
-        </div>
-        <div style={{width: "285px", display: "flex", justifyContent: "center"}}>
-          <button className={"finish-treatment-button"} style={{margin: "auto"}}
-                  onClick={() => {
-                    setIsOpen(true);
-                  }}>Cancelar Tratamiento
-          </button>
+            <h2>Nuevo Presupuesto</h2>
         </div>
       </Paper>
       <div style={{display: "table-column", width: "100%", justifyContent: "center"}}>

@@ -23,7 +23,7 @@ const PatientList = (props) => {
 
   useEffect(() => {
     setPatientList(filterPatientList(originalPatientList, search, filter));
-  }, [originalPatientList, filter, search]);
+  }, [search]);
 
   const handleChange = (e) => {
     const newFilter = {...filter, [e.target.name]: e.target.value};

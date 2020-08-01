@@ -200,9 +200,11 @@ const EditPatientModal = (props) =>{
     axios.put('https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients/' + rawPatient.uid,
       JSON.stringify(payload), {headers: {'Content-Type': 'application/json'}})
       .then((response) => {
-        console.log("Éxito")
+        closeModal();
+        window.location.reload();
       })
       .catch((error) => {
+        //TODO handle the errors
       });
   };
 

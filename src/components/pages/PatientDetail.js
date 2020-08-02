@@ -8,8 +8,6 @@ import {confirmPatient} from "../../utils/validations";
 import {dateFormat, getTodayDate} from "../../utils/utils";
 import {ServiceDetail} from "../widgets/TreatmentCards";
 import {DeleteModal, EditPatientModal} from "../widgets/Modals";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import {dateTimeFormat} from '../../utils/utils';
 
 const PatientDetail = (props) => {
@@ -36,12 +34,15 @@ const PatientDetail = (props) => {
           <ContactInfo patient={patient}>
             <PatientButtons patient={patient} rawPatient={rawPatient}/>
           </ContactInfo>
-          <ServiceDetail serviceName={"Operatoria"} treatmentId={"operatoria"} patient={patient}/>
-          <ServiceDetail serviceName={"Endodoncia"} treatmentId={"endodoncia"} patient={patient}/>
-          <ServiceDetail serviceName={"Cirugía"} treatmentId={"cirugia"} patient={patient}/>
-          <ServiceDetail serviceName={"Seguro"} treatmentId={"seguro"} patient={patient}/>
-          <ServiceDetail serviceName={"Ortodoncia"} treatmentId={"ortodoncia"} patient={patient}/>
+          <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center"}}>
+            <ServiceDetail serviceName={"Operatoria"} treatmentId={"operatoria"} patient={patient}/>
+            <ServiceDetail serviceName={"Endodoncia"} treatmentId={"endodoncia"} patient={patient}/>
+            <ServiceDetail serviceName={"Cirugía"} treatmentId={"cirugia"} patient={patient}/>
+            <ServiceDetail serviceName={"Seguro"} treatmentId={"seguro"} patient={patient}/>
+            <ServiceDetail serviceName={"Ortodoncia"} treatmentId={"ortodoncia"} patient={patient}/>
+          </div>
           <PatientTreatmentList uid={uid}/>
+          <TreatmentDescriptionList uid={uid}/>
         </>
       }
     </div>
@@ -178,7 +179,6 @@ const DeleteButton = (props) => {
 };
 
 const PatientTreatmentList = (props) => {
-
   const {uid} = props
   const [patientList, setPatientList] = useState([]);
 
@@ -193,29 +193,69 @@ const PatientTreatmentList = (props) => {
   
   return(
     <Paper className={"mid-paper"} elevation={2} style={{maxHeight: 400, overflow: 'auto'}}>
-      <h2 style={{textTransform: "capitalize", margin: "15px"}}><b>Lista de Tratamientos</b></h2>
+      <h2 style={{margin: "15px"}}><b>Lista de Tratamientos</b></h2>
       {patientList.length === 0 ? <h2>Sin Tratamientos</h2> : <div/>}
       {
         patientList && patientList.map((patient, index) => {
           return (
-            <Paper className={"small-paper"} elevation={2} key={index}>
-              <h3 style={{textTransform: "capitalize", margin: "15px"}}><p>{patient.treatment_name}</p></h3>
-                <List component="nav" >
-                <ListItem>
-                  <b>Precio: </b>
-                  <p>{patient.treatment_price}</p><br/>
-                  <b>Lugar: </b>
-                  <p>{patient.clinic_location}</p><br/>
-                  <b>Fecha Creacion: </b>
-                  <p>{dateTimeFormat(patient.created_timestamp)}</p><br/>
-                </ListItem>
-                </List>
-            </Paper>
+            <div key={index}>
+              <h3 style={{textTransform: "capitalize"}}>{patient.treatment_name}</h3>
+              <div style={{display: "grid"}}>
+                <div><b>Precio: </b> Q{patient.treatment_price}<br/></div>
+                <div style={{textTransform: "capitalize"}}><b>Clínica: </b> {patient.clinic_location}<br/></div>
+              </div>
+              <div style={{textAlign: "right"}}>
+                <small style={{margin: "4px"}}><i>Fecha de tratamiento: {dateTimeFormat(patient.created_timestamp)}</i></small>
+              </div>
+              <hr/>
+            </div>
           );
         })
       }
     </Paper>
   );
 };
+
+const TreatmentDescriptionList = (props) => {
+  const {uid} = props;
+  const [descriptionList, setDescriptionList] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://219f9v9yfl.execute-api.us-east-1.amazonaws.com/api/checkout_desc/" + uid)
+      .then((res) => {
+        setDescriptionList(res.data.payload);
+      })
+      .catch((error) => {
+      });
+  }, [uid]);
+
+  return(
+    <Paper className={"mid-paper"} elevation={2} style={{maxHeight: 400, overflow: 'auto'}}>
+      <h2 style={{margin: "15px"}}><b>Registro Diario</b></h2>
+      {descriptionList.length === 0 ? <h2>No tiene tratamientos</h2> : <div/>}
+      {
+        descriptionList && descriptionList.map((description, index) => {
+          return (
+            <div key={index}>
+              <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
+                <div style={{width: "100%", margin: "8px"}}>
+                  <b>Actual: </b>{description.treatment_description}
+                </div>
+                <div style={{width: "100%", margin: "8px"}}>
+                  <b>Siguiente: </b>{description.next_treatment}
+                </div>
+              </div>
+              <div style={{textAlign: "right"}}>
+                <small style={{margin: "4px"}}><i>Fecha de tratamiento: {dateTimeFormat(description.created_timestamp)}</i></small>
+              </div>
+              <hr/>
+
+            </div>
+          );
+        })
+      }
+    </Paper>
+  )
+}
 
 export {PatientDetail};

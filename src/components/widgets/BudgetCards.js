@@ -1,37 +1,37 @@
 import {Paper} from "@material-ui/core";
 import React, {useState} from "react";
-import {NewTreatmentModal} from "./Modals";
+import {NewBudgetModal} from "./Modals";
 
 
-const ServiceDetail = (props) => {
-  const {patient, serviceName, treatmentId} = props;
+const ServiceDetailBudget = (props) => {
+  const {serviceName, treatmentId} = props;
 
   return (
-    <Paper className={"small-paper"} elevation={2} style={{maxHeight: "115px"}}>
+    <Paper className={"small-paper"} elevation={2}>
       <h2 style={{textTransform: "capitalize", margin: "15px"}}><b>{serviceName}</b></h2>
-      <ServiceButtons patient={patient} treatment_id={treatmentId}/>
+      <ServiceButtons  treatment_id={treatmentId}/>
     </Paper>
   );
 };
 
 const ServiceButtons = (props) => {
-  const {patient, treatment_id} = props;
+  const {treatment_id} = props;
 
   return (
     <div style={{width: "200px"}}>
-      <StartTreatmentButton uid={patient.uid} treatment_id={treatment_id} patient={patient}/>
+      <StartTreatmentButton  treatment_id={treatment_id}/>
     </div>
   );
 };
 
 
 const StartTreatmentButton = (props) => {
-  const {uid, treatment_id, patient} = props;
+  const {treatment_id} = props;
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <NewTreatmentModal uid={uid} patient={patient} isOpen={isOpen}
+      <NewBudgetModal isOpen={isOpen}
                          treatmentId={treatment_id} closeModal={() => {
         setIsOpen(false);
       }}/>
@@ -44,4 +44,4 @@ const StartTreatmentButton = (props) => {
 };
 
 
-export {ServiceDetail};
+export {ServiceDetailBudget};

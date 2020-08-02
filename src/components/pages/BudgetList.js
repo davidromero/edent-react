@@ -1,43 +1,16 @@
 import React, {useEffect, useState} from "react";
-import {Paper, TextField} from "@material-ui/core";
+import {Paper} from "@material-ui/core";
 import axios from 'axios/index';
 import "../styles/PagesStyle.css";
 import {CancelModal, TreatmentModal} from "../widgets/Modals";
 
-const TreatmentList = (props) => {
+const BudgetList = (props) => {
   const [checkout, setCheckout] = useState([]);
-  const [treatmentType, setTreatmentType] = useState();
-  const [patient, setPatient] = useState();
-  const [patientId, setPatientId] = useState();
   const [isOpen, setIsOpen] = useState();
   const [menu, setMenu] = useState([]);
-  const [values, setValues] = useState({
-    descTreatment: '',
-    descNextTreatment: '',
-  });
 
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-
-  useEffect(() => {
-    const {TreatmentProp, Patient, PatientId} = props.location;
-    if (TreatmentProp !== undefined) {
-      localStorage.setItem("patient", JSON.stringify(Patient));
-      localStorage.setItem("treatment-type", TreatmentProp);
-      localStorage.setItem("patient-uid", PatientId);
-      setTreatmentType(TreatmentProp);
-      setPatient(Patient);
-      setPatientId(PatientId);
-    } else {
-      setPatient(JSON.parse(localStorage.getItem("patient")));
-      setTreatmentType(localStorage.getItem("treatment-type"));
-      setPatientId(localStorage.getItem("patient-uid"));
-    }
-  }, [props.location]);
-
-  const getTreatmentRates = (type) => {
-    axios.get("https://hrtd76yb9b.execute-api.us-east-1.amazonaws.com/api/rates?type=" + type)
+  const getTreatmentRates = () => {
+    axios.get("https://hrtd76yb9b.execute-api.us-east-1.amazonaws.com/api/rates")
       .then((res) => {
         setMenu(res.data.payload);
       })
@@ -46,10 +19,8 @@ const TreatmentList = (props) => {
   };
 
   useEffect(() => {
-    if (treatmentType) {
-      getTreatmentRates(treatmentType);
-    }
-  }, [treatmentType]);
+      getTreatmentRates();
+  }, []);
 
   const addNewTreatment = (treatment) => {
     if (checkout.length < 9) {
@@ -75,23 +46,11 @@ const TreatmentList = (props) => {
       <Paper className={"wide-paper"} style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap"}}
              elevation={2} square={false}>
         <div>
-          {patient ?
-            <h2 style={{textTransform: "capitalize"}}>Nuevo Tratamiento: {patient.first_name + " "
-            + patient.last_name}</h2> :
-            <h2>Nuevo Tratamiento</h2>}
-          <h3 style={{textTransform: "capitalize"}}>{treatmentType}</h3>
-        </div>
-        <div style={{width: "285px", display: "flex", justifyContent: "center"}}>
-          <button className={"finish-treatment-button"} style={{margin: "auto"}}
-                  onClick={() => {
-                    setIsOpen(true);
-                  }}>Cancelar Tratamiento
-          </button>
+            <h2>Nuevo Presupuesto</h2>
         </div>
       </Paper>
       <div style={{display: "table-column", width: "100%", justifyContent: "center"}}>
-        <TreatmentCheckout checkout={checkout} patient={patient} patient_uid={patientId} 
-        remove={removeTreatment} values={values} handleChange={handleChange}/>
+        <TreatmentCheckout checkout={checkout} remove={removeTreatment}/>
         <TreatmentMenu treatmentMenu={menu} addNewTreatment={addNewTreatment}/>
       </div>
     </div>
@@ -121,7 +80,6 @@ const TreatmentMenu = (props) => {
 
   return (
     <div className={"side-content"}>
-      {treatmentMenu.length === 0 ? <h2>Cargando...</h2> :
         <div className={"menu-container"}>
           {
             display && display.map((treatment, index) => {
@@ -136,7 +94,6 @@ const TreatmentMenu = (props) => {
             })
           }
         </div>
-      }
     </div>
   )
 }
@@ -184,28 +141,11 @@ const displayMenu = (originalMenu, currentLevel, clickedItem) => {
 }
 
 const TreatmentCheckout = (props) => {
-  const {checkout, patient, remove, patient_uid, handleChange, values} = props;
+  const {checkout, remove} = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const finishTreatment = () => {
     setIsOpen(false);
-    const checkout_payload = {
-      checkout: checkout,
-      treatment_type: localStorage.getItem("treatment-type"),
-      patient: patient,
-      patient_uid: patient_uid,
-      treatment_description: values.descTreatment,
-      next_treatment: values.descNextTreatment,
-    };
-    
-    axios.post('https://219f9v9yfl.execute-api.us-east-1.amazonaws.com/api/checkout',
-      JSON.stringify(checkout_payload), {headers: {'Content-Type': 'application/json'}})
-      .then((response) => {
-        localStorage.clear();
-        window.location.href = '/checkout';
-      })
-      .catch((error) => {
-      });
   }
 
   const getTotal = (checkoutItems) => {
@@ -216,12 +156,31 @@ const TreatmentCheckout = (props) => {
     return total;
   }
 
+  const checkout_payload_budget = {
+    checkout: checkout,
+  };
+
+  const createBudgetPDF = () => {
+    axios.post('https://ct9ohf8ai2.execute-api.us-east-1.amazonaws.com/api/pdf',
+    JSON.stringify(checkout_payload_budget.checkout), {headers: {'Content-Type': 'application/json'}})
+    .then((response) => {
+      if(response.status === 201){
+        window.open(response.data.payload);
+      }
+      else{
+        console.log('No se ha podido crear el presupuesto');
+      }
+    })
+    .catch((error) => {
+    });
+  }
+
   const checkoutTotal =
     <>
       <h3><b>Total: Q{getTotal(checkout)}</b></h3>
       <button className={"finish-treatment-button"} onClick={() => {
-        setIsOpen(true);
-      }}>Finalizar tratamiento
+        createBudgetPDF();
+      }}>Imprimir Presupuesto
       </button>
     </>
 
@@ -232,24 +191,11 @@ const TreatmentCheckout = (props) => {
         setIsOpen(false)
       }}/>
       <Paper className={"lateral-paper"} elevation={2}>
-        <h3><b>Tratamientos en Progreso:</b></h3>
+        <h3><b>Presupuesto en Progreso:</b></h3>
         {
           checkout.map((treatment, idx) =>
             <TreatmentItem key={idx} idx={idx} treatment={treatment} remove={remove}/>)
         }
-        <h3><b>Detalle del Tratamiento</b></h3>
-        <div className={"wide-textfield"}>
-          <TextField  label="Tratamiento Actual" 
-                      name={"details1"}
-                      onChange={handleChange('descTreatment')} 
-                      multiline rowsMax={4} 
-                      value={values.descTreatment}/>
-          <TextField  label="Siguiente Tratamiento" 
-                      name={"details2"}
-                      onChange={ handleChange('descNextTreatment')} 
-                      multiline rowsMax={4} 
-                      value={values.descNextTreatment}/>
-        </div>
         {checkout.length > 0 ? checkoutTotal : <></>}
       </Paper>
     </>
@@ -271,4 +217,4 @@ const TreatmentItem = (props) => {
   );
 };
 
-export {TreatmentList};
+export {BudgetList};

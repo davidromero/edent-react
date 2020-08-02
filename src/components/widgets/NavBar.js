@@ -11,6 +11,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { useLocation } from 'react-router-dom'
 
 const NavBar = (props) => {
+  const {searchChange} = props;
   const {classes} = props;
   const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -37,11 +38,8 @@ const NavBar = (props) => {
             })}>
             <MenuIcon/>
           </IconButton>
-
-          <SearchBar classes={classes}/>
-
+          <SearchBar classes={classes} onChange={searchChange}/>
           <SideMenu classes={classes}/>
-
         </Toolbar>
       </AppBar>
 
@@ -50,18 +48,16 @@ const NavBar = (props) => {
   );
 };
 
-
 const SearchBar = (props) => {
+  const {onChange} = props;
   const {classes} = props;
   let location = useLocation();
-  console.log(location.pathname);
 
   return ((location.pathname === "/patients")) ?
   (
     <div className={classes.content}>
       <div className={classes.searchBar}>
         <div className={classes.searchIcon}>
-          {console.log("sie ntro")}
           <SearchIcon />
         </div>
         <InputBase
@@ -70,11 +66,12 @@ const SearchBar = (props) => {
             root: classes.inputRoot,
             input: classes.inputInput,
           }}
-          inputProps={{ 'aria-label': 'search' }}
+          onChange={onChange}
         />
       </div>
     </div>
-  ) : (<div></div>);
+  ) :
+    <div className={classes.content}/>;
 };
 
 const SideMenu = (props) => {
@@ -90,12 +87,12 @@ const SideMenu = (props) => {
   };
 
   return (
-    <div className={classes.content}>
+    <div className={classes.contentRight}>
       <IconButton
         aria-haspopup="true"
         onClick={handleClick}
         color="inherit"
-        className="accountButton">
+        className="contentRight">
         <MoreVert/>
       </IconButton>
 

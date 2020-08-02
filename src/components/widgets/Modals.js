@@ -4,7 +4,9 @@ import {Link} from "react-router-dom";
 import {useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import TextField from '@material-ui/core/TextField';
-import {FormControl, InputLabel, Select, Input, MenuItem, RadioGroup, Radio, FormControlLabel, FormLabel} from '@material-ui/core';
+import {EditForm} from "../forms/PatientForm";
+import axios from "axios";
+import {reduceAttributes} from "../../utils/utils";
 
 const customStyles = {
   content: {
@@ -25,12 +27,38 @@ const NewTreatmentModal = (props) => {
     <Modal
       isOpen={isOpen}
       style={customStyles}
-      ariaHideApp={false}
-      contentLabel="Qué tipo de tratamiento se iniciará?">
+      ariaHideApp={false}>
       <h3>¿Está seguro en empezar un nuevo tratamiento?</h3>
       <div className={"modal-container"}>
         <Link to={{
           pathname: "/treatments/" + uid,
+          PatientId: uid,
+          TreatmentProp: treatmentId.toLowerCase(),
+          Patient: patient
+        }}>
+          <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}>Aceptar</button>
+
+        </Link>
+        <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
+                onClick={closeModal}>Cancelar
+        </button>
+      </div>
+    </Modal>
+  );
+};
+
+const NewBudgetModal = (props) => {
+  const {uid, treatmentId, patient, closeModal, isOpen} = props;
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      style={customStyles}
+      ariaHideApp={false}>
+      <h3>¿Está seguro en empezar un nuevo tratamiento?</h3>
+      <div className={"modal-container"}>
+        <Link to={{
+          pathname: "/budgetlist/",
           PatientId: uid,
           TreatmentProp: treatmentId.toLowerCase(),
           Patient: patient
@@ -54,8 +82,7 @@ const CancelModal = (props) => {
     <Modal
       isOpen={isOpen}
       style={customStyles}
-      ariaHideApp={false}
-      contentLabel="¿Estas seguro?">
+      ariaHideApp={false}>
       <h3>¿Está seguro en cancelar el tratamiento?</h3>
       <div className={"modal-container"}>
         <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
@@ -81,8 +108,7 @@ const TreatmentModal = (props) => {
     <Modal
       isOpen={isOpen}
       style={customStyles}
-      ariaHideApp={false}
-      contentLabel="¿Estas seguro?">
+      ariaHideApp={false}>
       <h3>¿Está seguro en terminar el tratamiento?</h3>
       <div className={"modal-container"}>
         <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
@@ -103,8 +129,7 @@ const DeleteModal = (props) => {
     <Modal
       isOpen={isOpen}
       style={customStyles}
-      ariaHideApp={false}
-      contentLabel="¿Estas seguro?">
+      ariaHideApp={false}>
       <h3>¿Está seguro en eliminar este paciente?</h3>
       <div className={"modal-container"}>
         <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
@@ -132,8 +157,7 @@ const CheckoutModal = (props) => {
     <Modal
       isOpen={isOpen}
       style={customStyles}
-      ariaHideApp={false}
-      contentLabel="¿Estas seguro?">
+      ariaHideApp={false}>
       <h3>¿Cuánto desea en pagar en esta cuenta?</h3>
       <div className={"modal-container"} style={{marginBottom: "12px"}}>
         <TextField id="payment-amount" label="Cantidad" variant="outlined" type="number" defaultValue={toBePayed}
@@ -165,73 +189,30 @@ const EditPatientModal = (props) =>{
     setConfirmation(rawPatient)
   }, [rawPatient]);
 
+  const handleSubmit = () => {
+    const payload = reduceAttributes(confirmation);
+    axios.put('https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients/' + rawPatient.uid,
+      JSON.stringify(payload), {headers: {'Content-Type': 'application/json'}})
+      .then((response) => {
+        closeModal();
+        window.location.reload();
+      })
+      .catch((error) => {
+        //TODO handle the errors
+      });
+  };
+
   return (
     <Modal
       isOpen={isOpen}
       style={customStyles}
-      ariaHideApp={false}
-      contentLabel="¿Estas seguro?">
+      ariaHideApp={false}>
       <h3>Editar Informacion del Paciente</h3>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <TextField style={{margin: "8px", width: "180px"}} label="Nombres" type="text" name={"first_name"}
-                onChange={handleChange} value={confirmation ? confirmation.first_name : ""}/>
-      </div>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <TextField style={{margin: "8px", width: "180px"}} label="Apellidos" type="text" name={"last_name"}
-                onChange={handleChange} value={confirmation ? confirmation.last_name  : ""}/>
-      </div>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <TextField style={{margin: "8px", width: "180px"}} label="Fecha de Nacimiento" name={"birthday"}
-                type="date" onChange={handleChange} value={confirmation ? confirmation.birthday : "2000-12-31"}/>
-      </div>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <FormControl style={{margin: "8px", width: "180px"}}>
-          <InputLabel id="location">Clínica</InputLabel>
-          <Select className={"selectEmpty"} name={"clinic_location"}
-                  value={confirmation ? confirmation.clinic_location : ""}
-                  onChange={handleChange} input={<Input name={"location"}/>}>
-            <MenuItem value={"chiquimula"}>Chiquimula</MenuItem>
-            <MenuItem value={"jocotan"}>Jocotán</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <FormControl style={{margin: "8px"}}>
-          <FormLabel style={{fontSize: "0.8em", padding: "0"}}>Sexo *</FormLabel>
-          <RadioGroup style={{display: "inline-block"}} onChange={handleChange} name="sex" value={confirmation ? confirmation.sex : ""}>
-            <FormControlLabel value="male" control={<Radio/>} label="Hombre"/>
-            <FormControlLabel value="female" control={<Radio/>} label="Mujer"/>
-          </RadioGroup>
-        </FormControl> 
-      </div>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <FormControl style={{margin: "8px", width: "180px"}}>
-          <InputLabel id="location">Motivo de visita *</InputLabel>
-          <Select className={"selectEmpty"} name={"visit_reason"}
-                      value={confirmation ? confirmation.visit_reason : ""}
-                      onChange={handleChange} input={<Input name={"visit_reason"}/>}>
-            <MenuItem value={"operatoria"}>Odontología Operatoria</MenuItem>
-            <MenuItem value={"endodoncia"}>Endodoncia</MenuItem>
-            <MenuItem value={"cirugia"}>Cirugía</MenuItem>
-            <MenuItem value={"seguro"}>Seguro</MenuItem>
-          </Select>
-        </FormControl> 
-      </div>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <TextField style={{margin: "8px", width: "180px"}} name="phone_number" required
-                   label="Número Telefónico" type="number" onChange={handleChange} value={ confirmation ? confirmation.phone_number : ""}/>
-      </div>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <TextField style={{margin: "8px", width: "180px"}} name="email"
-                   label="Correo Electrónico" type="email" onChange={handleChange} value={ confirmation ? confirmation.email : ""}/>
-      </div>
-      <div className={"modal-container"} style={{marginBottom: "12px"}}>
-        <TextField style={{margin: "8px", width: "180px"}} name="address"
-                   label="Dirección" type="text" onChange={handleChange} value={confirmation ? confirmation.address : ""}/>
-      </div>
+      <EditForm confirmation={confirmation} handleChange={handleChange}/>
+
       <div className={"modal-container"} style={{marginBottom: "12px"}}>
         <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
-                onClick={() => {console.log(confirmation)}}>Guardar
+                onClick={handleSubmit}>Guardar
         </button>   
         <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
                 onClick={closeModal}>Cancelar
@@ -241,4 +222,28 @@ const EditPatientModal = (props) =>{
   );
 };
 
-export {NewTreatmentModal, CancelModal, TreatmentModal, DeleteModal, CheckoutModal, EditPatientModal};
+const ConfirmationModal = (props) => {
+  const {closeModal, isOpen, acceptAction, title, subtitle} = props;
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      style={customStyles}
+      ariaHideApp={false}>
+      <h3>{title}</h3>
+      <h5>{subtitle}</h5>
+      <div className={"modal-container"}>
+        <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
+                onClick={acceptAction}>Aceptar
+        </button>
+        <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
+                onClick={closeModal}>Cancelar
+        </button>
+      </div>
+    </Modal>
+  );
+};
+
+
+export {NewTreatmentModal, CancelModal, TreatmentModal, DeleteModal, CheckoutModal, EditPatientModal,
+  NewBudgetModal, ConfirmationModal};

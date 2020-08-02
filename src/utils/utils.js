@@ -11,11 +11,13 @@ const patientTemplate = {
   "phone_number": ""
 };
 
-
 const doctor_names = [
   'Dra. Hilda Peralta',
   'Dra. Rocio Peralta',
 ];
+
+const ignoredAttributes = ["modified_by", "uid", "modified_timestamp", "created_by", "created_timestamp", "active",
+  "contact_uid"]
 
 const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 
@@ -40,7 +42,8 @@ const dateFormat = (isoDate) => {
 
 const birthdayFormat = (isoDate) => {
   let date = new Date(isoDate);
-  return date.getUTCDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
+  date.setHours(date.getHours() + 6);
+  return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear();
 };
 
 const capitalize = (word) => {
@@ -67,26 +70,24 @@ const convertISO = (date) => {
   const dd = String(formatDate.getDate()).padStart(2, '0');
   const mm = String(formatDate.getMonth() + 1).padStart(2, '0');
   const yyyy = formatDate.getFullYear();
-  formatDate = yyyy + mm + dd + hh + minmin ;
+  formatDate = yyyy + mm + dd + hh + minmin;
   return formatDate;
 };
 
 const validateNameAppointment = (name) => {
-  // Regex nombres con tildes y ñ 
   let letters = /^[A-Za-z\s]+$/;
   return String(name).match(letters);
 };
 
-// If description contains "ID:" and "Tel:", before check lengths to avoid exception, test
 const validateDescriptAppointment = (description) => {
   let itemsList = description.split(/\r?\n/);
-    return (description.split(/\r?\n/).length > 1 && itemsList[0].length > 1 && itemsList[1].length > 1 &&
-      itemsList[0].match(/\S+/g).length > 1 && itemsList[1].match(/\S+/g).length > 1) ?
-      (itemsList[0].match(/\S+/g).includes('ID:') && 
-      itemsList[1].match(/\S+/g).includes("Tel:") && 
+  return (description.split(/\r?\n/).length > 1 && itemsList[0].length > 1 && itemsList[1].length > 1 &&
+    itemsList[0].match(/\S+/g).length > 1 && itemsList[1].match(/\S+/g).length > 1) ?
+    (itemsList[0].match(/\S+/g).includes('ID:') &&
+      itemsList[1].match(/\S+/g).includes("Tel:") &&
       validatePhoneNumber(itemsList[1].match(/\S+/g)[1]))
     :
-  false;
+    false;
 };
 
 const validatePhoneNumber = (number) => {
@@ -98,8 +99,50 @@ const getUidPatientfromDescriptionAppointment = (description) => {
   return validateDescriptAppointment(description) ? itemsList[0].match(/\S+/g)[1] : "";
 }
 
-const isAppointmentDue = (date) =>{
+const isAppointmentDue = (date) => {
   return (convertISO(new Date()) > convertISO(date));
 }
 
-export {dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, doctor_names, getTodayDate, appointmentFormat, validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment, isAppointmentDue};
+const reduceAttributes = (original) => {
+  var clone = Object.assign({}, original);
+  ignoredAttributes.forEach(
+    element => delete clone[element]
+  );
+  return clone;
+}
+
+const filterPatientList = (array, search, filter) => {
+  let filteredArray = array;
+  if (filter.doctor !== "") {
+    filteredArray = filterByAttribute(filteredArray, "doctor_names", filter.doctor);
+  }
+  if (filter.clinic !== "") {
+    filteredArray = filterByAttribute(filteredArray, "clinic_location", filter.clinic)
+  }
+  if (search !== "") {
+    filteredArray = searchByName(filteredArray, search)
+  }
+  return filteredArray;
+}
+
+const searchByName = (array, search) => {
+  return array.filter((item) => item["first_name"].startsWith(search) || item["last_name"].startsWith(search));
+}
+
+const filterByAttribute = (array, type, filter) => {
+  if (type === "doctor_names") {
+    return array.filter((item) => JSON.stringify(item).toLowerCase().indexOf(filter) !== -1)
+  } else {
+    return array.filter((item) => item[type] === filter)
+  }
+}
+
+const sortByDate = (array) => {
+  return array.sort((a, b) => a.start.localeCompare(b.start));
+}
+
+export {
+  dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, doctor_names, getTodayDate,
+  appointmentFormat, validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment,
+  isAppointmentDue, filterPatientList, reduceAttributes, sortByDate
+};

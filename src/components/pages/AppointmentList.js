@@ -68,14 +68,16 @@ const AttendAppointment = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const startTreatment = () => {
-    markAttended();
+    markAttended(false);
     history.push('/patients/'+getUidPatientfromDescriptionAppointment(description));
   }
 
-  const markAttended = () => {
+  const markAttended = (refresh) => {
     axios.put("https://5ticjo0pz9.execute-api.us-east-1.amazonaws.com/api/appointments/" + uid)
       .then((res) => {
-        window.location.reload();
+        if (refresh) {
+          window.location.reload();
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -85,7 +87,7 @@ const AttendAppointment = (props) => {
   return (
     <>
       <ConfirmationModal isOpen={isOpen} closeModal={() => {setIsOpen(false);}}
-                         acceptAction={correctFormat ? startTreatment : markAttended}
+                         acceptAction={correctFormat ? startTreatment : () => {markAttended(true)}}
                          title={"¿Desea iniciar el tratamiento del paciente?"} subtitle={""}
       />
       <button className={'mid-paper-button'} style={{margin: "4px"}}

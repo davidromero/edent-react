@@ -158,9 +158,6 @@ const TreatmentCheckout = (props) => {
 
   const checkout_payload_budget = {
     checkout: checkout,
-    treatment_type: "",
-    patient: "",
-    patient_uid: "",
   };
 
   const createBudgetPDF = () => {

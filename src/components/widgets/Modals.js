@@ -27,8 +27,7 @@ const NewTreatmentModal = (props) => {
     <Modal
       isOpen={isOpen}
       style={customStyles}
-      ariaHideApp={false}
-      contentLabel="Qué tipo de tratamiento se iniciará?">
+      ariaHideApp={false}>
       <h3>¿Está seguro en empezar un nuevo tratamiento?</h3>
       <div className={"modal-container"}>
         <Link to={{
@@ -55,8 +54,7 @@ const NewBudgetModal = (props) => {
     <Modal
       isOpen={isOpen}
       style={customStyles}
-      ariaHideApp={false}
-      contentLabel="Qué tipo de tratamiento se iniciará?">
+      ariaHideApp={false}>
       <h3>¿Está seguro en empezar un nuevo tratamiento?</h3>
       <div className={"modal-container"}>
         <Link to={{
@@ -84,8 +82,7 @@ const CancelModal = (props) => {
     <Modal
       isOpen={isOpen}
       style={customStyles}
-      ariaHideApp={false}
-      contentLabel="¿Estas seguro?">
+      ariaHideApp={false}>
       <h3>¿Está seguro en cancelar el tratamiento?</h3>
       <div className={"modal-container"}>
         <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
@@ -111,8 +108,7 @@ const TreatmentModal = (props) => {
     <Modal
       isOpen={isOpen}
       style={customStyles}
-      ariaHideApp={false}
-      contentLabel="¿Estas seguro?">
+      ariaHideApp={false}>
       <h3>¿Está seguro en terminar el tratamiento?</h3>
       <div className={"modal-container"}>
         <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
@@ -133,8 +129,7 @@ const DeleteModal = (props) => {
     <Modal
       isOpen={isOpen}
       style={customStyles}
-      ariaHideApp={false}
-      contentLabel="¿Estas seguro?">
+      ariaHideApp={false}>
       <h3>¿Está seguro en eliminar este paciente?</h3>
       <div className={"modal-container"}>
         <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
@@ -162,8 +157,7 @@ const CheckoutModal = (props) => {
     <Modal
       isOpen={isOpen}
       style={customStyles}
-      ariaHideApp={false}
-      contentLabel="¿Estas seguro?">
+      ariaHideApp={false}>
       <h3>¿Cuánto desea en pagar en esta cuenta?</h3>
       <div className={"modal-container"} style={{marginBottom: "12px"}}>
         <TextField id="payment-amount" label="Cantidad" variant="outlined" type="number" defaultValue={toBePayed}
@@ -212,8 +206,7 @@ const EditPatientModal = (props) =>{
     <Modal
       isOpen={isOpen}
       style={customStyles}
-      ariaHideApp={false}
-      contentLabel="¿Estas seguro?">
+      ariaHideApp={false}>
       <h3>Editar Informacion del Paciente</h3>
       <EditForm confirmation={confirmation} handleChange={handleChange}/>
 
@@ -229,4 +222,28 @@ const EditPatientModal = (props) =>{
   );
 };
 
-export {NewTreatmentModal, CancelModal, TreatmentModal, DeleteModal, CheckoutModal, EditPatientModal, NewBudgetModal};
+const ConfirmationModal = (props) => {
+  const {closeModal, isOpen, acceptAction, title, subtitle} = props;
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      style={customStyles}
+      ariaHideApp={false}>
+      <h3>{title}</h3>
+      <h5>{subtitle}</h5>
+      <div className={"modal-container"}>
+        <button className="modal-button" style={{backgroundColor: "rgb(21, 149, 189)"}}
+                onClick={acceptAction}>Aceptar
+        </button>
+        <button className="modal-button" style={{backgroundColor: "rgb(227,83,83)"}}
+                onClick={closeModal}>Cancelar
+        </button>
+      </div>
+    </Modal>
+  );
+};
+
+
+export {NewTreatmentModal, CancelModal, TreatmentModal, DeleteModal, CheckoutModal, EditPatientModal,
+  NewBudgetModal, ConfirmationModal};

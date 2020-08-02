@@ -137,8 +137,12 @@ const filterByAttribute = (array, type, filter) => {
   }
 }
 
+const sortByDate = (array) => {
+  return array.sort((a, b) => a.start.localeCompare(b.start));
+}
+
 export {
   dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, doctor_names, getTodayDate,
   appointmentFormat, validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment,
-  isAppointmentDue, filterPatientList, reduceAttributes
+  isAppointmentDue, filterPatientList, reduceAttributes, sortByDate
 };

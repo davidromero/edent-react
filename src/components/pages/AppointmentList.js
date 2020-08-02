@@ -3,7 +3,8 @@ import {Paper} from "@material-ui/core";
 import "../styles/PagesStyle.css";
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
-import {appointmentFormat, validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment, isAppointmentDue} from "../../utils/utils";
+import {appointmentFormat, validateNameAppointment, validateDescriptAppointment,
+  getUidPatientfromDescriptionAppointment, isAppointmentDue, sortByDate} from "../../utils/utils";
 
 
 const AppointmentList = () => {
@@ -12,7 +13,7 @@ const AppointmentList = () => {
   useEffect(() => {
     axios.get("https://5ticjo0pz9.execute-api.us-east-1.amazonaws.com/api/appointments/")
       .then((res) => {
-        setAppointmentList(res.data.payload);
+        setAppointmentList(sortByDate(res.data.payload));
       })
       .catch((error) => {
       })

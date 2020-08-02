@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Paper} from "@material-ui/core";
 import "../styles/PagesStyle.css";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import {appointmentFormat, validateNameAppointment, validateDescriptAppointment,
   getUidPatientfromDescriptionAppointment, isAppointmentDue, sortByDate} from "../../utils/utils";
 import {ConfirmationModal} from "../widgets/Modals";
@@ -62,12 +63,13 @@ const AppointmentItem = (props) => {
 };
 
 const AttendAppointment = (props) => {
+  let history = useHistory();
   const {correctFormat, description, uid} = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const startTreatment = () => {
     markAttended();
-    window.open('/patients/'+getUidPatientfromDescriptionAppointment(description));
+    history.push('/patients/'+getUidPatientfromDescriptionAppointment(description));
   }
 
   const markAttended = () => {

@@ -242,12 +242,12 @@ const TreatmentCheckout = (props) => {
           <TextField  label="Tratamiento Actual" 
                       name={"details1"}
                       onChange={handleChange('descTreatment')} 
-                      multiline rowsMax={4} 
+                      multiline rowsMax={6} 
                       value={values.descTreatment}/>
           <TextField  label="Siguiente Tratamiento" 
                       name={"details2"}
                       onChange={ handleChange('descNextTreatment')} 
-                      multiline rowsMax={4} 
+                      multiline rowsMax={6} 
                       value={values.descNextTreatment}/>
         </div>
         {checkout.length > 0 ? checkoutTotal : <></>}

@@ -14,6 +14,8 @@ const patientTemplate = {
 const doctor_names = [
   'Dra. Hilda Peralta',
   'Dra. Rocio Peralta',
+  'dr. @guatemala',
+  'dr. @amatitlan',
 ];
 
 const ignoredAttributes = ["modified_by", "uid", "modified_timestamp", "created_by", "created_timestamp", "active",

@@ -25,6 +25,7 @@ const NewPatient = (props) => {
         window.location.href = '/patients/' + response.data.payload;
       })
       .catch((error) => {
+        console.log(error)
       });
   };
 

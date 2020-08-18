@@ -35,6 +35,8 @@ const GeneralForm = (props) => {
           <Select className={"selectEmpty"} name={"clinic_location"}
                   value={patient.clinic_location ? patient.clinic_location : ""}
                   onChange={handleChange} input={<Input name={"location"}/>}>
+            <MenuItem value={"guatemala"}>Guatemala</MenuItem>
+            <MenuItem value={"amatitlan"}>Amatitlan</MenuItem>
             <MenuItem value={"chiquimula"}>Chiquimula</MenuItem>
             <MenuItem value={"jocotan"}>Jocotán</MenuItem>
           </Select>
@@ -197,6 +199,8 @@ const EditForm = (props) => {
           <Select className={"selectEmpty"} name={"clinic_location"}
                   value={confirmation ? confirmation.clinic_location : ""}
                   onChange={handleChange} input={<Input name={"location"}/>}>
+            <MenuItem value={"guatemala"}>Guatemala</MenuItem>
+            <MenuItem value={"amatitlan"}>Amatitlan</MenuItem>
             <MenuItem value={"chiquimula"}>Chiquimula</MenuItem>
             <MenuItem value={"jocotan"}>Jocotán</MenuItem>
           </Select>

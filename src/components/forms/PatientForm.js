@@ -105,6 +105,10 @@ const ContactForm = (props) => {
       <div className={"form-container"}>
         <TextField style={{margin: "8px", width: "180px"}} name="phone_number" required
                    label="Número Telefónico" type="number" onChange={handleChange} value={patient.phone_number || ""}/>
+
+        <TextField style={{margin: "8px", width: "180px"}} name="secondary_phone"
+                   label="Número Secundario" type="number" onChange={handleChange} value={patient.secondary_phone || ""}/>
+
         <TextField style={{margin: "8px", width: "180px"}} name="email"
                    label="Correo Electrónico" type="email" onChange={handleChange} value={patient.email || ""}/>
         <TextField style={{margin: "8px", width: "180px"}} name="address"

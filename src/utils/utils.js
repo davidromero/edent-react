@@ -8,7 +8,8 @@ const patientTemplate = {
   "visit_reason": "",
   "address": "",
   "email": "",
-  "phone_number": ""
+  "phone_number": "",
+  "secondary_phone": ""
 };
 
 const doctor_names = [

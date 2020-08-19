@@ -18,7 +18,6 @@ const NewPatient = (props) => {
   };
 
   const handleSubmit = () => {
-    console.log(patient)
     setStep(step + 1);
     axios.post('https://rwcmecc1l5.execute-api.us-east-1.amazonaws.com/api/patients',
       JSON.stringify(patient), {headers: {'Content-Type': 'application/json'}})

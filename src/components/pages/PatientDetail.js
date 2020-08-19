@@ -148,6 +148,7 @@ const AppointmentButton = (props) => {
   );
 };
 
+// eslint-disable-next-line 
 const DeleteButton = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const {patient} = props;

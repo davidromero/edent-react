@@ -47,7 +47,7 @@ export const secondaryListItems = (
       </ListItemIcon>
       <ListItemText primary="Pago"/>
     </ListItem>
-    <ListItem button component={Link} to="/BudgetList">
+    <ListItem button component={Link} to="/budgetlist">
       <ListItemIcon>
         <AttachMoney/>
       </ListItemIcon>

@@ -3,16 +3,20 @@ import {Paper} from "@material-ui/core";
 import axios from 'axios/index';
 import "../styles/PagesStyle.css";
 import {CancelModal, TreatmentModal} from "../widgets/Modals";
+import {filterBudgetList} from '../../utils/utils';
 
 const BudgetList = (props) => {
+  const {search} = props;
+  const [budgetList, setBudgetList] = useState([]);
+  const [originalBudgetList, setOriginalBudgetList] = useState([]);
   const [checkout, setCheckout] = useState([]);
   const [isOpen, setIsOpen] = useState();
-  const [menu, setMenu] = useState([]);
 
   const getTreatmentRates = () => {
     axios.get("https://hrtd76yb9b.execute-api.us-east-1.amazonaws.com/api/rates")
       .then((res) => {
-        setMenu(res.data.payload);
+        setOriginalBudgetList(res.data.payload);
+        setBudgetList(res.data.payload);
       })
       .catch((error) => {
       });
@@ -21,6 +25,12 @@ const BudgetList = (props) => {
   useEffect(() => {
       getTreatmentRates();
   }, []);
+
+  // eslint-disable-next-line 
+  useEffect(() => {
+    setBudgetList(filterBudgetList(originalBudgetList, search));
+    // eslint-disable-next-line 
+  }, [search]);
 
   const addNewTreatment = (treatment) => {
     if (checkout.length < 9) {
@@ -51,7 +61,7 @@ const BudgetList = (props) => {
       </Paper>
       <div style={{display: "table-column", width: "100%", justifyContent: "center"}}>
         <TreatmentCheckout checkout={checkout} remove={removeTreatment}/>
-        <TreatmentMenu treatmentMenu={menu} addNewTreatment={addNewTreatment}/>
+        <TreatmentMenu treatmentMenu={budgetList} addNewTreatment={addNewTreatment}/>
       </div>
     </div>
   );

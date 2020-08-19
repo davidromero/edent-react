@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {
-  TextField, Select, Input, MenuItem, FormControl, InputLabel, Paper, Checkbox, ListItemText
+  TextField, Select, Input, MenuItem, FormControl, InputLabel, Paper, ListItemText
 } from "@material-ui/core";
 import axios from 'axios/index';
 import "../styles/PagesStyle.css";

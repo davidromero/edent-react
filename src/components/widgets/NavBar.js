@@ -53,7 +53,7 @@ const SearchBar = (props) => {
   const {classes} = props;
   let location = useLocation();
 
-  return ((location.pathname === "/patients")) ?
+  return ((location.pathname === "/patients") || (location.pathname === "/budgetlist")) ?
   (
     <div className={classes.content}>
       <div className={classes.searchBar}>

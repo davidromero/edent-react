@@ -104,7 +104,6 @@ const PatientButtons = (props) => {
       <ContactButton uid={patient.contact_uid}/>
       <AppointmentButton patient={patient}/>
       <EditButton rawPatient={rawPatient} />
-      <DeleteButton patient={patient}/>
     </div>
   );
 };

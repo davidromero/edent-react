@@ -43,6 +43,8 @@ const ContactInfo = (props) => {
         <div style={{width: "200px"}}>
           <p><b>Número Telefónico</b><br/>
             {patient.phone_number}</p>
+            <p><b>Número Secundario</b><br/>
+            {patient.secondary_phone}</p>
           <p><b>Correo Electrónico</b><br/>
             {patient.email}</p>
           <p><b>Dirección</b><br/>

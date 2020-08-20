@@ -26,10 +26,8 @@ const BudgetList = (props) => {
       getTreatmentRates();
   }, []);
 
-  // eslint-disable-next-line 
   useEffect(() => {
     setBudgetList(filterBudgetList(originalBudgetList, search));
-    // eslint-disable-next-line 
   }, [search]);
 
   const addNewTreatment = (treatment) => {

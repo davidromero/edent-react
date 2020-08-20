@@ -35,6 +35,8 @@ const GeneralForm = (props) => {
           <Select className={"selectEmpty"} name={"clinic_location"}
                   value={patient.clinic_location ? patient.clinic_location : ""}
                   onChange={handleChange} input={<Input name={"location"}/>}>
+            <MenuItem value={"guatemala"}>Guatemala</MenuItem>
+            <MenuItem value={"amatitlan"}>Amatitlan</MenuItem>
             <MenuItem value={"chiquimula"}>Chiquimula</MenuItem>
             <MenuItem value={"jocotan"}>Jocotán</MenuItem>
           </Select>
@@ -103,6 +105,10 @@ const ContactForm = (props) => {
       <div className={"form-container"}>
         <TextField style={{margin: "8px", width: "180px"}} name="phone_number" required
                    label="Número Telefónico" type="number" onChange={handleChange} value={patient.phone_number || ""}/>
+
+        <TextField style={{margin: "8px", width: "180px"}} name="secondary_phone"
+                   label="Número Secundario" type="number" onChange={handleChange} value={patient.secondary_phone || ""}/>
+
         <TextField style={{margin: "8px", width: "180px"}} name="email"
                    label="Correo Electrónico" type="email" onChange={handleChange} value={patient.email || ""}/>
         <TextField style={{margin: "8px", width: "180px"}} name="address"
@@ -197,6 +203,8 @@ const EditForm = (props) => {
           <Select className={"selectEmpty"} name={"clinic_location"}
                   value={confirmation ? confirmation.clinic_location : ""}
                   onChange={handleChange} input={<Input name={"location"}/>}>
+            <MenuItem value={"guatemala"}>Guatemala</MenuItem>
+            <MenuItem value={"amatitlan"}>Amatitlan</MenuItem>
             <MenuItem value={"chiquimula"}>Chiquimula</MenuItem>
             <MenuItem value={"jocotan"}>Jocotán</MenuItem>
           </Select>

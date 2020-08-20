@@ -34,7 +34,7 @@ const Home = () => {
             <Route exact path={"/contacts/:uid"} component={ContactDetail}/>
             <Route exact path={"/createpatient"} component={NewPatient}/>
             <Route exact path={"/treatments/:uid"} component={TreatmentList}/>
-            <Route exact path={"/budgetlist/"} component={BudgetList}/>
+            <Route exact path={"/budgetlist/"} render={props => <BudgetList {...props} search={patientNameFiltering}/>}/>
             <Route exact path={"/checkout"} component={CheckoutList}/>
             <Route exact path={"/appointments"} component={AppointmentList}/>
             <Route path='*' exact={true} component={Error404}/>

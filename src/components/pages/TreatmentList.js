@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from "react";
-import {Paper, TextField} from "@material-ui/core";
+import {
+  TextField, Select, Input, MenuItem, FormControl, InputLabel, Paper, ListItemText
+} from "@material-ui/core";
 import axios from 'axios/index';
 import "../styles/PagesStyle.css";
 import {CancelModal, TreatmentModal} from "../widgets/Modals";
+import {doctor_names} from "../../utils/utils";
 
 const TreatmentList = (props) => {
   const [checkout, setCheckout] = useState([]);
@@ -14,6 +17,7 @@ const TreatmentList = (props) => {
   const [values, setValues] = useState({
     descTreatment: '',
     descNextTreatment: '',
+    doctor_name: '',
   });
 
   const handleChange = (prop) => (event) => {
@@ -196,6 +200,7 @@ const TreatmentCheckout = (props) => {
       patient_uid: patient_uid,
       treatment_description: values.descTreatment,
       next_treatment: values.descNextTreatment,
+      doctor_name: values.doctor_name,
     };
     
     axios.post('https://219f9v9yfl.execute-api.us-east-1.amazonaws.com/api/checkout',
@@ -242,13 +247,27 @@ const TreatmentCheckout = (props) => {
           <TextField  label="Tratamiento Actual" 
                       name={"details1"}
                       onChange={handleChange('descTreatment')} 
-                      multiline rowsMax={4} 
+                      multiline rowsMax={6} 
                       value={values.descTreatment}/>
           <TextField  label="Siguiente Tratamiento" 
                       name={"details2"}
                       onChange={ handleChange('descNextTreatment')} 
-                      multiline rowsMax={4} 
+                      multiline rowsMax={6} 
                       value={values.descNextTreatment}/>
+          <span>&nbsp;&nbsp;</span>
+          <FormControl className={"wide-select"}>
+            <InputLabel id="doctors">Doctores</InputLabel>
+            <Select className={"selectEmpty"} name={"doctor_names"} 
+                  value={values.doctor_name ? values.doctor_name : ""}
+                  onChange={handleChange('doctor_name')}
+                  input={<Input/>}>
+            {doctor_names.map((name) => (
+              <MenuItem key={name} value={name}>
+                <ListItemText primary={name}/>
+              </MenuItem>
+            ))}
+            </Select>
+        </FormControl>
         </div>
         {checkout.length > 0 ? checkoutTotal : <></>}
       </Paper>

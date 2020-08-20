@@ -8,12 +8,15 @@ const patientTemplate = {
   "visit_reason": "",
   "address": "",
   "email": "",
-  "phone_number": ""
+  "phone_number": "",
+  "secondary_phone": ""
 };
 
 const doctor_names = [
   'Dra. Hilda Peralta',
   'Dra. Rocio Peralta',
+  'dr. @guatemala',
+  'dr. @amatitlan',
 ];
 
 const ignoredAttributes = ["modified_by", "uid", "modified_timestamp", "created_by", "created_timestamp", "active",
@@ -111,6 +114,10 @@ const reduceAttributes = (original) => {
   return clone;
 }
 
+const filterBudgetList = (array, value) => {
+  return array.filter((data) =>  JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1);
+}
+
 const filterPatientList = (array, search, filter) => {
   let filteredArray = array;
   if (filter.doctor !== "") {
@@ -144,5 +151,5 @@ const sortByDate = (array) => {
 export {
   dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, doctor_names, getTodayDate,
   appointmentFormat, validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment,
-  isAppointmentDue, filterPatientList, reduceAttributes, sortByDate
+  isAppointmentDue, filterPatientList, filterBudgetList, reduceAttributes, sortByDate, 
 };

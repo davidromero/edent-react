@@ -1,6 +1,7 @@
 import React from "react";
 import {ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
 import {Dashboard, People, Contacts, Create, Payment, Schedule, AttachMoney} from "@material-ui/icons";
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import {Link} from "react-router-dom";
 
 export const mainListItems = (
@@ -46,11 +47,17 @@ export const secondaryListItems = (
       </ListItemIcon>
       <ListItemText primary="Pago"/>
     </ListItem>
-    <ListItem button component={Link} to="/BudgetList">
+    <ListItem button component={Link} to="/budgetlist">
       <ListItemIcon>
         <AttachMoney/>
       </ListItemIcon>
       <ListItemText primary="Presupuesto"/>
+    </ListItem>
+    <ListItem button component="a" href="http://www.google.com/calendar/" target={"_blank"}>
+      <ListItemIcon>
+        <CalendarTodayIcon/>
+      </ListItemIcon>
+      <ListItemText primary="Calendario"/>
     </ListItem>
   </div>
 );

@@ -104,7 +104,6 @@ const PatientButtons = (props) => {
       <ContactButton uid={patient.contact_uid}/>
       <AppointmentButton patient={patient}/>
       <EditButton rawPatient={rawPatient} />
-      <DeleteButton patient={patient}/>
     </div>
   );
 };
@@ -149,6 +148,7 @@ const AppointmentButton = (props) => {
   );
 };
 
+// eslint-disable-next-line 
 const DeleteButton = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const {patient} = props;

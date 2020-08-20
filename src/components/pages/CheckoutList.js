@@ -88,6 +88,9 @@ const CheckoutItem = (props) => {
         <h3>
           Pagado: Q{checkout.paid_amount}
         </h3>
+        <h3>
+          Pendiente: Q{total-checkout.paid_amount}
+        </h3>
         <button className={"finish-treatment-button"} style={{width: "120px"}}
                 onClick={() => {
                   setIsOpen(true);

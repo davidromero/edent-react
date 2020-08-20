@@ -24,6 +24,18 @@ const ignoredAttributes = ["modified_by", "uid", "modified_timestamp", "created_
 
 const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 
+const cleanFormatName = (name) => {
+  return name.replace('*', '');
+};
+
+const formatLevels = (level1, level2) => {
+  if(level1.endsWith("*")){
+    return level2;
+  }else{
+    return level1 + ' ' + level2;
+  }
+};
+
 const dateTimeFormat = (isoDate) => {
   let date = new Date(isoDate);
   return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + " - " +
@@ -151,5 +163,5 @@ const sortByDate = (array) => {
 export {
   dateTimeFormat, dateFormat, birthdayFormat, capitalize, patientTemplate, doctor_names, getTodayDate,
   appointmentFormat, validateNameAppointment, validateDescriptAppointment, getUidPatientfromDescriptionAppointment,
-  isAppointmentDue, filterPatientList, filterBudgetList, reduceAttributes, sortByDate, 
+  isAppointmentDue, filterPatientList, filterBudgetList, reduceAttributes, sortByDate, formatLevels, cleanFormatName,
 };

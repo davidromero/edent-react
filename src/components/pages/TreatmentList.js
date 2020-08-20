@@ -5,7 +5,7 @@ import {
 import axios from 'axios/index';
 import "../styles/PagesStyle.css";
 import {CancelModal, TreatmentModal} from "../widgets/Modals";
-import {doctor_names} from "../../utils/utils";
+import {doctor_names, formatLevels, cleanFormatName} from "../../utils/utils";
 
 const TreatmentList = (props) => {
   const [checkout, setCheckout] = useState([]);
@@ -133,7 +133,7 @@ const TreatmentMenu = (props) => {
                 <Paper className={"menu-button"} key={index} onClick={() => {
                   clickItem(treatment)
                 }}>
-                  <h2 style={{textTransform: "capitalize"}}>{treatment.name}</h2>
+                  <h2 style={{textTransform: "capitalize"}}>{cleanFormatName(treatment.name)}</h2>
                   <small>{treatment.parent || treatment.price === "" ? "" : "Q" + treatment.price}</small>
                 </Paper>
               )
@@ -168,7 +168,7 @@ const displayMenu = (originalMenu, currentLevel, clickedItem) => {
           displayMenu.push({
             price: treatment.price,
             uid: treatment.uid,
-            complete_name: levels[0] + " " + levels[1],
+            complete_name: formatLevels(levels[0], levels[1]),
             name: levels[currentLevel],
             parent: true,
           });
@@ -176,7 +176,7 @@ const displayMenu = (originalMenu, currentLevel, clickedItem) => {
           displayMenu.push({
             price: treatment.price,
             uid: treatment.uid,
-            complete_name: levels[0] + " " + levels[1],
+            complete_name: formatLevels(levels[0], levels[1]),
             name: levels[currentLevel],
             parent: false,
           });
